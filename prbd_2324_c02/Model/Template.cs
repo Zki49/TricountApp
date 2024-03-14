@@ -71,26 +71,26 @@ namespace prbd_2324_c02.Model
         }
         //dgdgdgd
         public static Template GetByKey(int id) {
-            using var dbContext = 
+            using var dbContext = new PridContext();
             return dbContext.Templates
                 .FirstOrDefault(t => t.Id == id);
         }
 
         public static List<Template> GetByTricount(int id) {
-            using var dbContext =
+            using var dbContext = new PridContext();
             return dbContext.Templates
                 .Where(t => t.TricountId == id)
                 .ToList();
         }
 
         public static Template GetByTitle(int id, string title) {
-            using var dbContext = 
+            using var dbContext = new PridContext();
             return dbContext.Templates
                 .FirstOrDefault(t => t.TricountId == id && t.Title == title);
         }
 
         public static List<Template> GetAll() {
-            using var dbContext = 
+            using var dbContext = new PridContext();
             return dbContext.Templates.ToList();
         }
 
@@ -108,7 +108,7 @@ namespace prbd_2324_c02.Model
         }
 
         public void Delete() {
-            using var dbContext = 
+            using var dbContext = new PridContext();
             var templateToDelete = dbContext.Templates.Find(Id);
 
             if (templateToDelete != null) {
@@ -118,7 +118,7 @@ namespace prbd_2324_c02.Model
         }
 
         public static Template GetByTitleBis(string title) {
-            using var dbContext = 
+            using var dbContext = new PridContext();
             return dbContext.Templates
                 .FirstOrDefault(t => t.Title == title);
         }
