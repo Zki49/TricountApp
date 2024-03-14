@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace prbd_2324_c02.Model
 {
@@ -68,12 +68,21 @@ namespace prbd_2324_c02.Model
                 .WithMany(tc => tc.Templates)
                 .HasForeignKey(t => t.TricountId);
         }
+<<<<<<< HEAD
 
         //public static Template GetByKey(int id) {
         //    using var dbContext = new PridContext();
         //    return dbContext.Templates
         //        .FirstOrDefault(t => t.Id == id);
         //}
+=======
+        //dgdgdgd
+        public static Template GetByKey(int id) {
+            using var dbContext = new PridContext();
+            return dbContext.Templates
+                .FirstOrDefault(t => t.Id == id);
+        }
+>>>>>>> a0d78cf0899bdcd3f52151b979ffa18b43d50e8d
 
         //public static List<Template> GetByTricount(int id) {
         //    using var dbContext = new PridContext();
