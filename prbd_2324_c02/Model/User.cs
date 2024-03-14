@@ -6,3 +6,4 @@ public class User : EntityBase<PridContext>
 {
     public int UserId { get; set; }
 }
+
