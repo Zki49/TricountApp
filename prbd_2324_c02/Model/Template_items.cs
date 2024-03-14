@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace prbd_2324_c02.Model
 {
-    internal class template_items
+    public class Template_items
     {
         [Required]
         public int weight { get; set; }
@@ -27,6 +27,11 @@ namespace prbd_2324_c02.Model
             this.weight = weight;
             this.TemplateId = TemplateId;
             this.UserId = UserId;   
+        }
+
+        public int incrementWeight() {
+            return weight++;
+
         }
     }
 }
