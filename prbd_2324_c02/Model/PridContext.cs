@@ -36,4 +36,6 @@ public class PridContext : DbContextBase
     }
     
     public DbSet<User> Users => Set<User>();
+
+    public object Templates { get; internal set; }
 }

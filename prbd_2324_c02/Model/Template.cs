@@ -19,8 +19,7 @@ namespace prbd_2324_c02.Model
 
         public static readonly Template DUMMY = new Template("No, I'll use custom repartition", 0);
 
-        public Template() {
-        }
+      
 
         public Template(string title, int tricountId) {
             Title = title;
@@ -70,58 +69,58 @@ namespace prbd_2324_c02.Model
                 .HasForeignKey(t => t.TricountId);
         }
 
-        public static Template GetByKey(int id) {
-            using var dbContext = new PridContext();
-            return dbContext.Templates
-                .FirstOrDefault(t => t.Id == id);
-        }
+        //public static Template GetByKey(int id) {
+        //    using var dbContext = new PridContext();
+        //    return dbContext.Templates
+        //        .FirstOrDefault(t => t.Id == id);
+        //}
 
-        public static List<Template> GetByTricount(int id) {
-            using var dbContext = new PridContext();
-            return dbContext.Templates
-                .Where(t => t.TricountId == id)
-                .ToList();
-        }
+        //public static List<Template> GetByTricount(int id) {
+        //    using var dbContext = new PridContext();
+        //    return dbContext.Templates
+        //        .Where(t => t.TricountId == id)
+        //        .ToList();
+        //}
 
-        public static Template GetByTitle(int id, string title) {
-            using var dbContext = new PridContext();
-            return dbContext.Templates
-                .FirstOrDefault(t => t.TricountId == id && t.Title == title);
-        }
+        //public static Template GetByTitle(int id, string title) {
+        //    using var dbContext = new PridContext();
+        //    return dbContext.Templates
+        //        .FirstOrDefault(t => t.TricountId == id && t.Title == title);
+        //}
 
-        public static List<Template> GetAll() {
-            using var dbContext = new PridContext();
-            return dbContext.Templates.ToList();
-        }
+        //public static List<Template> GetAll() {
+        //    using var dbContext = new PridContext();
+        //    return dbContext.Templates.ToList();
+        //}
 
-        public void Save() {
-            using var dbContext = new PridContext();
-            var existingTemplate = dbContext.Templates.Find(Id);
+    //    public void Save() {
+    //        using var dbContext = new PridContext();
+    //        var existingTemplate = dbContext.Templates.Find(Id);
 
-            if (existingTemplate == null) {
-                dbContext.Templates.Add(this);
-            } else {
+    //        if (existingTemplate == null) {
+    //            dbContext.Templates.Add(this);
+    //        } else {
                
-            }
+    //        }
 
-            dbContext.SaveChanges();
-        }
+    //        dbContext.SaveChanges();
+    //    }
 
-        public void Delete() {
-            using var dbContext = new PridContext();
-            var templateToDelete = dbContext.Templates.Find(Id);
+    //    public void Delete() {
+    //        using var dbContext = new PridContext();
+    //        var templateToDelete = dbContext.Templates.Find(Id);
 
-            if (templateToDelete != null) {
-                dbContext.Templates.Remove(templateToDelete);
-                dbContext.SaveChanges();
-            }
-        }
+    //        if (templateToDelete != null) {
+    //            dbContext.Templates.Remove(templateToDelete);
+    //            dbContext.SaveChanges();
+    //        }
+    //    }
 
-        public static Template GetByTitleBis(string title) {
-            using var dbContext = new PridContext();
-            return dbContext.Templates
-                .FirstOrDefault(t => t.Title == title);
-        }
-    }
+    //    public static Template GetByTitleBis(string title) {
+    //        using var dbContext = new PridContext();
+    //        return dbContext.Templates
+    //            .FirstOrDefault(t => t.Title == title);
+    //    }
+    //}
 }
 }

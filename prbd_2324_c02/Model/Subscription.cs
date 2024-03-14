@@ -69,46 +69,47 @@ namespace prbd_2324_c02.Model
                     .HasForeignKey(s => s.UserId);
             }
 
-            public static Subscription GetByKey(int tricountId, int userId) {
-                using var dbContext = 
-                return dbContext.Subscriptions
-                    .FirstOrDefault(s => s.TricountId == tricountId && s.UserId == userId);
-            }
+        //    public static Subscription GetByKey(int tricountId, int userId) {
+        //        using var dbContext = new PridContext();
+        //    return dbContext.Subscriptions
+        //            .FirstOrDefault(s => s.TricountId == tricountId && s.UserId == userId);
+        //    }
 
-            public static List<Subscription> GetAll() {
-                using var dbContext = 
-                return dbContext.Subscriptions.ToList();
-            }
+        //    public static List<Subscription> GetAll() {
+        //        using var dbContext = new PridContext();
+        //    return dbContext.Subscriptions.ToList();
+        //    }
 
-            public void Save() {
-                using var dbContext = new YourDbContext(); // Replace YourDbContext with your actual DbContext class
-                var existingSubscription = dbContext.Subscriptions.Find(TricountId, UserId);
+        //    public void Save() {
+        //        using var dbContext = new PridContext(); // Replace YourDbContext with your actual DbContext class
+        //    var existingSubscription = dbContext.Subscriptions.Find(TricountId, UserId);
 
-                if (existingSubscription == null) {
-                    dbContext.Subscriptions.Add(this);
-                } else {
+        //        if (existingSubscription == null) {
+        //            dbContext.Subscriptions.Add(this);
+        //        } else {
                    
-                }
+        //        }
 
-                dbContext.SaveChanges();
-            }
+        //        dbContext.SaveChanges();
+        //    }
 
-            public void Delete() {
-                using var dbContext = 
-                var subscriptionToDelete = dbContext.Subscriptions.Find(TricountId, UserId);
+        //    public void Delete() {
+        //        using var dbContext = new PridContext();
+        //    var subscriptionToDelete = dbContext.Subscriptions.Find(TricountId, UserId);
 
-                if (subscriptionToDelete != null) {
-                    dbContext.Subscriptions.Remove(subscriptionToDelete);
-                    dbContext.SaveChanges();
-                }
-            }
+        //        if (subscriptionToDelete != null) {
+        //            dbContext.Subscriptions.Remove(subscriptionToDelete);
+        //            dbContext.SaveChanges();
+        //        }
+        //    }
 
-            public void AddNew() {
-                using var dbContext = 
-                dbContext.Subscriptions.Add(this);
-                dbContext.SaveChanges();
-            }
+        //    public void AddNew() {
+        //        using var dbContext = new PridContext();
+        //    dbContext.Subscriptions.Add(this);
+        //        dbContext.SaveChanges();
+        //    }
         }
 
     }
+
 
