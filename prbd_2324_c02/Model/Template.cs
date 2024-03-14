@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace prbd_2324_c02.Model
 {
@@ -69,28 +69,28 @@ namespace prbd_2324_c02.Model
                 .WithMany(tc => tc.Templates)
                 .HasForeignKey(t => t.TricountId);
         }
-
+        //dgdgdgd
         public static Template GetByKey(int id) {
-            using var dbContext = new PridContext();
+            using var dbContext = 
             return dbContext.Templates
                 .FirstOrDefault(t => t.Id == id);
         }
 
         public static List<Template> GetByTricount(int id) {
-            using var dbContext = new PridContext();
+            using var dbContext =
             return dbContext.Templates
                 .Where(t => t.TricountId == id)
                 .ToList();
         }
 
         public static Template GetByTitle(int id, string title) {
-            using var dbContext = new PridContext();
+            using var dbContext = 
             return dbContext.Templates
                 .FirstOrDefault(t => t.TricountId == id && t.Title == title);
         }
 
         public static List<Template> GetAll() {
-            using var dbContext = new PridContext();
+            using var dbContext = 
             return dbContext.Templates.ToList();
         }
 
@@ -108,7 +108,7 @@ namespace prbd_2324_c02.Model
         }
 
         public void Delete() {
-            using var dbContext = new PridContext();
+            using var dbContext = 
             var templateToDelete = dbContext.Templates.Find(Id);
 
             if (templateToDelete != null) {
@@ -118,7 +118,7 @@ namespace prbd_2324_c02.Model
         }
 
         public static Template GetByTitleBis(string title) {
-            using var dbContext = new PridContext();
+            using var dbContext = 
             return dbContext.Templates
                 .FirstOrDefault(t => t.Title == title);
         }
