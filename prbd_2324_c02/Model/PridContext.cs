@@ -36,6 +36,10 @@ public class PridContext : DbContextBase
     }
     
     public DbSet<User> Users => Set<User>();
+    public DbSet<Subscription > Subscriptions => Set<Subscription>();
+    public DbSet<Template> Template => Set<Template>();
+    public DbSet<Template_items> Template_items => Set<Template_items>();
+    public DbSet<Tricount> Tricount => Set<Tricount>();
 
     public object Templates { get; internal set; }
 }
