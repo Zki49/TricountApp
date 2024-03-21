@@ -54,7 +54,7 @@ namespace prbd_2324_c02.Model
                 return $"Subscription[tricountId={TricountId}, userId={UserId}]";
             }
 
-            public static void OnModelCreating(ModelBuilder modelBuilder) {
+          /*  public static void OnModelCreating(ModelBuilder modelBuilder) {
                 modelBuilder.Entity<Subscription>()
                     .HasKey(s => new { s.TricountId, s.UserId });
 
@@ -67,7 +67,7 @@ namespace prbd_2324_c02.Model
                     .HasOne(s => s.User)
                     .WithMany(u => u.Subscriptions)
                     .HasForeignKey(s => s.UserId);
-            }
+            }*/
 
         //    public static Subscription GetByKey(int tricountId, int userId) {
         //        using var dbContext = new PridContext();

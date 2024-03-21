@@ -54,7 +54,7 @@ namespace prbd_2324_c02.Model
             return Title;
         }
 
-        public static void OnModelCreating(ModelBuilder modelBuilder) {
+      /*  public static void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Template>()
                 .HasMany(t => t.TemplateItems)
                 .WithOne(ti => ti.Template)
@@ -67,7 +67,7 @@ namespace prbd_2324_c02.Model
                 .HasOne(t => t.Tricount)
                 .WithMany(tc => tc.Templates)
                 .HasForeignKey(t => t.TricountId);
-        }
+        }*/
 <<<<<<< HEAD
 
         //public static Template GetByKey(int id) {
@@ -77,10 +77,10 @@ namespace prbd_2324_c02.Model
         //}
 =======
         //dgdgdgd
-        public static Template GetByKey(int id) {
+      /*  public static Template GetByKey(int id) {
             using var dbContext = new PridContext();
             return dbContext.Templates
-                .FirstOrDefault(t => t.Id == id);
+                .FirstOrDefault(t => t.Id == id);/*
         }
 >>>>>>> a0d78cf0899bdcd3f52151b979ffa18b43d50e8d
 

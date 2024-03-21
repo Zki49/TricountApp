@@ -39,6 +39,21 @@ public class PridContext : DbContextBase
             .HasOne(s => s.User)
             .WithMany(u => u.Subscriptions)
             .HasForeignKey(s => s.UserId);
+
+
+
+        modelBuilder.Entity<Template>()
+             .HasMany(t => t.TemplateItems)
+             .WithOne(ti => ti.Template)
+             .HasForeignKey(ti => ti.TemplateId);
+
+        modelBuilder.Entity<Template>()
+            .HasKey(t => t.Id);
+
+        modelBuilder.Entity<Template>()
+            .HasOne(t => t.Tricount)
+            .WithMany(tc => tc.Templates)
+            .HasForeignKey(t => t.TricountId);
     }
 
     private static void ConfigureOptions(DbContextOptionsBuilder optionsBuilder) {
