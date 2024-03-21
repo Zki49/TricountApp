@@ -8,7 +8,7 @@ namespace prbd_2324_c02.Model;
 public class PridContext : DbContextBase
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-        base.OnConfiguring(optionsBuilder);
+       base.OnConfiguring(optionsBuilder);
 
         /*
          * SQLite

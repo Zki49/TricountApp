@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace prbd_2324_c02.Model
 {
@@ -18,7 +20,7 @@ namespace prbd_2324_c02.Model
         public int UserId { get; set; }
 
         public enum fields {
-            User,Template,Weight
+            User, Template, Weight }
         
         public Template_items() {
         }

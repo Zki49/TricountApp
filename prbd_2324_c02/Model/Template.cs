@@ -29,7 +29,7 @@ namespace prbd_2324_c02.Model
         [Key]
         public int Id { get; set; }
 
-        public List<TemplateItem> TemplateItems { get; set; }
+        public List<Template_items> TemplateItems { get; set; }
 
         public string Title { get; set; }
 
