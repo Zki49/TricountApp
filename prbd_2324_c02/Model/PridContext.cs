@@ -44,8 +44,8 @@ public class PridContext : DbContextBase
 
         modelBuilder.Entity<Template>()
              .HasMany(t => t.TemplateItems)
-             .WithOne(ti => ti.Template)
-             .HasForeignKey(ti => ti.TemplateId);
+             .WithOne(ti => ti.template)
+             .HasForeignKey(ti => ti.template);
 
         modelBuilder.Entity<Template>()
             .HasKey(t => t.Id);

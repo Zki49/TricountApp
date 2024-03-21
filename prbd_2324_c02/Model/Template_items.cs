@@ -13,8 +13,8 @@ namespace prbd_2324_c02.Model
         [Required]
         public int weight { get; set; }
 
-        [Required, ForeignKey(nameof(TemplateId))]
-        public int TemplateId { get; set; }
+        [Required, ForeignKey(nameof(template))]
+        public Template template { get; set; }
 
         [Required, ForeignKey(nameof(UserId))]
         public int UserId { get; set; }
