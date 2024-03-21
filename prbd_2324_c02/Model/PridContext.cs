@@ -26,6 +26,20 @@ public class PridContext : DbContextBase
 
         ConfigureOptions(optionsBuilder);
     }
+    public static void OnModelCreating(ModelBuilder modelBuilder) {
+        modelBuilder.Entity<Subscription>()
+            .HasKey(s => new { s.TricountId, s.UserId });
+
+        modelBuilder.Entity<Subscription>()
+            .HasOne(s => s.Tricount)
+            .WithMany(t => t.Subscriptions)
+            .HasForeignKey(s => s.TricountId);
+
+        modelBuilder.Entity<Subscription>()
+            .HasOne(s => s.User)
+            .WithMany(u => u.Subscriptions)
+            .HasForeignKey(s => s.UserId);
+    }
 
     private static void ConfigureOptions(DbContextOptionsBuilder optionsBuilder) {
         optionsBuilder.UseLazyLoadingProxies()
