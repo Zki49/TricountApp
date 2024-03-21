@@ -71,10 +71,10 @@ namespace prbd_2324_c02.Model
 
        
 
-        public static void OnModelCreating(ModelBuilder modelBuilder) {
+       /* public static void OnModelCreating(ModelBuilder modelBuilder) {
           
-        }
+        }*/
     }
 
 }
-}
+
