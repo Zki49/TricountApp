@@ -22,9 +22,9 @@ namespace prbd_2324_c02.Model
             public Subscription() {
             }
 
-            public Subscription(int tricountId, int userId) {
-                TricountId = tricountId;
-                UserId = userId;
+            public Subscription(Tricount tricountId, User userId) {
+                Tricount = tricountId;
+                User = userId;
             }
 
             [Key, Column("tricount")]
@@ -32,13 +32,13 @@ namespace prbd_2324_c02.Model
 
             [Key, Column("user")]
             public int UserId { get; set; }
-
+          
             [ForeignKey(nameof(TricountId))]
-            public Tricount Tricount { get; set; }
-
+            public virtual Tricount Tricount { get; set; }
+          
             [ForeignKey(nameof(UserId))]
-            public User User { get; set; }
-
+            public virtual User User { get; set; }
+        
             public override bool Equals(object obj) {
                 if (obj is not Subscription subscription)
                     return false;

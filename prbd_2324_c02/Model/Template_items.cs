@@ -16,11 +16,12 @@ namespace prbd_2324_c02.Model
         [Required, ForeignKey(nameof(template))]
         public Template template { get; set; }
 
-        [Required, ForeignKey(nameof(UserId))]
-        public int UserId { get; set; }
+        [Required, ForeignKey(nameof(User))]
+        public User User { get; set; }
 
         public enum fields {
-            User, Template, Weight }
+            User, Template, Weight 
+        }
         
         public Template_items() {
         }
