@@ -25,11 +25,11 @@ namespace prbd_2324_c02.Model
         public Template_items() {
         }
 
-        public Template_items(int weight, int TemplateId , int UserId) {
+       /* public Template_items(int weight, int TemplateId , int UserId) {
             this.weight = weight;
             this.TemplateId = TemplateId;
             this.UserId = UserId;   
-        }
+        }*/
 
         public int incrementWeight() {
             return weight++;

@@ -26,7 +26,7 @@ public class PridContext : DbContextBase
 
         ConfigureOptions(optionsBuilder);
     }
-    public static void OnModelCreating(ModelBuilder modelBuilder) {
+    public static  void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<Subscription>()
             .HasKey(s => new { s.TricountId, s.UserId });
 
