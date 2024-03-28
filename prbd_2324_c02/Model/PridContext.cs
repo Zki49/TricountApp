@@ -26,7 +26,7 @@ public class PridContext : DbContextBase
 
         ConfigureOptions(optionsBuilder);
     }
-    public static  void OnModelCreating(ModelBuilder modelBuilder) {
+    public static void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<Subscription>()
             .HasKey(s => new { s.TricountId, s.UserId });
 
@@ -40,8 +40,6 @@ public class PridContext : DbContextBase
             .WithMany(u => u.Subscriptions)
             .HasForeignKey(s => s.UserId);
 
-
-
         modelBuilder.Entity<Template>()
              .HasMany(t => t.TemplateItems)
              .WithOne(ti => ti.template)
@@ -54,6 +52,30 @@ public class PridContext : DbContextBase
             .HasOne(t => t.Tricount)
             .WithMany(tc => tc.Templates)
             .HasForeignKey(t => t.TricountId);
+
+        modelBuilder.Entity<Repartitions>()
+            .HasKey(r => new { r.operations, r.user } );
+
+        modelBuilder.Entity<Repartitions>()
+            .HasOne(r => r.operations)
+            .WithMany(o => o.repartitions)  
+            .HasForeignKey(r => r.operations);
+
+        modelBuilder.Entity<Repartitions>()
+            .HasOne(r => r.user)
+            .WithMany(u => u.repartitions)
+            .HasForeignKey(r => r.user);
+            
+        modelBuilder.Entity<Operations>()
+            .HasOne(o => o.user)
+            .WithMany(u => u.operations)
+            .HasForeignKey(o => o.user);
+
+        modelBuilder.Entity<Operations>()
+            .HasOne(o => o.Tricount)
+            .WithMany(tr => tr.Operations);
+            
+            
     }
 
     private static void ConfigureOptions(DbContextOptionsBuilder optionsBuilder) {
@@ -69,6 +91,8 @@ public class PridContext : DbContextBase
     public DbSet<Template> Template => Set<Template>();
     public DbSet<Template_items> Template_items => Set<Template_items>();
     public DbSet<Tricount> Tricount => Set<Tricount>();
+    public DbSet<Operations> Operations => Set<Operations>();
+    public DbSet<Repartitions> Repartitions => Set<Repartitions>();
 
     public object Templates { get; internal set; }
 }

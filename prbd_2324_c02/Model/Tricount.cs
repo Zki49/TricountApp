@@ -1,5 +1,4 @@
-﻿using Azure;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,8 +38,8 @@ namespace prbd_2324_c02.Model
         public DateTime CreatedAt { get; set; }
         public int CreatorId { get; set; }
 
-        [NotMapped]
-        public List<Operation> Operations { get; set; }
+        
+        public List<Operations> Operations { get; set; }
 
         public List<Subscription> Subscriptions { get; set; }
 
