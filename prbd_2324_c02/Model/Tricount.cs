@@ -39,15 +39,15 @@ namespace prbd_2324_c02.Model
         public int CreatorId { get; set; }
 
         
-        public List<Operations> Operations { get; set; }
+        public virtual List<Operations> Operations { get; set; }
 
-        public List<Subscription> Subscriptions { get; set; }
+        public virtual List<Subscription> Subscriptions { get; set; }
 
-        public List<User> Participants { get; set; }
+        public virtual List<User> Participants { get; set; }
 
-        public List<Template> Templates { get; set; }
+        public virtual List<Template> Templates { get; set; }
 
-        public User Creator { get; set; }
+        public virtual User Creator { get; set; }
 
         public override bool Equals(object obj) {
             if (obj is not Tricount tricount)

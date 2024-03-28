@@ -29,7 +29,7 @@ namespace prbd_2324_c02.Model
         [Key]
         public int Id { get; set; }
 
-        public List<Template_items> TemplateItems { get; set; }
+        public virtual List<Template_items> TemplateItems { get; set; }
 
         public string Title { get; set; }
 
@@ -37,7 +37,7 @@ namespace prbd_2324_c02.Model
         public int TricountId { get; set; }
 
         [ForeignKey(nameof(TricountId))]
-        public Tricount Tricount { get; set; }
+        public virtual Tricount Tricount { get; set; }
 
         public override bool Equals(object obj) {
             if (obj is not Template template)

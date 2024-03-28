@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,8 @@ namespace prbd_2324_c02.Model
     public class Operations
     {
         public Operations() { }
-        public Operations OperationsId {  get; set; }
+        [Key]
+        public virtual int OperationsId {  get; set; }
 
         public string title {  get; set; }
 
@@ -26,6 +28,6 @@ namespace prbd_2324_c02.Model
 
         [ForeignKey(nameof(userId))]
         public virtual User user { get; set; }
-        public List<Repartitions> repartitions { get; set; }
+        public virtual List<Repartitions> repartitions { get; set; }
     }
 }

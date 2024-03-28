@@ -14,11 +14,18 @@ namespace prbd_2324_c02.Model
 
         [Required]
         public int weight { get; set; }
+        
+        
+        public int userId { get; set; }
 
-        [ForeignKey(nameof(user))]
+        [Required]
         public virtual User user { get; set; }
 
-        [ForeignKey(nameof(operations))]
+
+        
+        public int operationsID { get; set; }
+
+        [Required]
         public virtual Operations operations { get; set; }
     }
 

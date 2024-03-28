@@ -54,7 +54,7 @@ public class PridContext : DbContextBase
             .HasForeignKey(t => t.TricountId);
 
         modelBuilder.Entity<Repartitions>()
-            .HasKey(r => new { r.operations, r.user } );
+            .HasKey(r => new { r.operationsID, r.userId } );
 
         modelBuilder.Entity<Repartitions>()
             .HasOne(r => r.operations)

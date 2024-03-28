@@ -27,10 +27,10 @@ namespace prbd_2324_c02.Model
                 User = userId;
             }
 
-            [Key, Column("tricount")]
+           
             public int TricountId { get; set; }
 
-            [Key, Column("user")]
+           
             public int UserId { get; set; }
           
             [ForeignKey(nameof(TricountId))]
