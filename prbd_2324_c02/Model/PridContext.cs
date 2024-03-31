@@ -26,7 +26,7 @@ public class PridContext : DbContextBase
 
         ConfigureOptions(optionsBuilder);
     }
-    public static void OnModelCreating(ModelBuilder modelBuilder) {
+    protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<Subscription>()
             .HasKey(s => new { s.TricountId, s.UserId });
 
@@ -43,7 +43,7 @@ public class PridContext : DbContextBase
         modelBuilder.Entity<Template>()
              .HasMany(t => t.TemplateItems)
              .WithOne(ti => ti.template)
-             .HasForeignKey(ti => ti.template);
+             .HasForeignKey(ti => ti.templateId);
 
         modelBuilder.Entity<Template>()
             .HasKey(t => t.Id);
@@ -59,21 +59,24 @@ public class PridContext : DbContextBase
         modelBuilder.Entity<Repartitions>()
             .HasOne(r => r.operations)
             .WithMany(o => o.repartitions)  
-            .HasForeignKey(r => r.operations);
+            .HasForeignKey(r => r.operationsID);
 
         modelBuilder.Entity<Repartitions>()
             .HasOne(r => r.user)
             .WithMany(u => u.repartitions)
-            .HasForeignKey(r => r.user);
+            .HasForeignKey(r => r.userId);
             
         modelBuilder.Entity<Operations>()
             .HasOne(o => o.user)
             .WithMany(u => u.operations)
-            .HasForeignKey(o => o.user);
+            .HasForeignKey(o => o.userId);
 
         modelBuilder.Entity<Operations>()
             .HasOne(o => o.Tricount)
             .WithMany(tr => tr.Operations);
+
+        modelBuilder.Entity<Template_items>()
+            .HasKey(ti => new { ti.userId,ti.templateId});
             
             
     }
