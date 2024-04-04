@@ -77,7 +77,9 @@ public class PridContext : DbContextBase
 
         modelBuilder.Entity<Operations>()
             .HasOne(o => o.Tricount)
-            .WithMany(tr => tr.Operations);
+            .WithMany(tr => tr.Operations)
+            .HasForeignKey(o => o.tricountId);
+        
 
         modelBuilder.Entity<Template_items>()
             .HasKey(ti => new { ti.userId,ti.templateId});
@@ -111,20 +113,20 @@ public class PridContext : DbContextBase
     public void seedData() {
         Database.BeginTransaction();
 
-        var user1 = new User { FullName = "Boris", hashedPassword = "3D4AEC0A9B43782133B8120B2FDD8C6104ABB513FE0CDCD0D1D4D791AA42E338:C217604FDAEA7291C7BA5D1D525815E4:100000:SHA256", mail = "boverhaegen@epfc.eu", Role = false };
-        var user2 = new User { FullName = "Benoît", hashedPassword = "9E58D87797C6795D294E6762B6C05116D075BC18445AD4078C25674809DB57EF:C91E0B85B7264877C0424D52494D6296:100000:SHA256", mail = "bepenelle@epfc.eu", Role = false };
-        var user3 = new User { FullName = "Xavier", hashedPassword = "5B979AB86EC73B0996F439D0BC3947ECCFA0A41310C77533EA36CB409DBB1243:0CF43009110DE4B4AA6D4E749F622755:100000:SHA256", mail = "xapigeolet@epfc.eu", Role = false };
-        var user4 = new User { FullName = "Marc", hashedPassword = "955F147CE3473774E35EE58F4233AA84AE9118C6ECD4699DD788B8D588238034:5514D1DD0A97E9BA7FE4C0B5A4E89351:100000:SHA256", mail = "mamichel@epfc.eu", Role = false };
-        var user5 = new User { FullName = "Administrator", hashedPassword = "C9949A02A5DFBE50F1DA289DC162E3C97443AB09CE6F6EB1FD0C9D51B5241BBD:5533437973C5BC6459DB687CA5BDE76C:100000:SHA256", mail = "admin@epfc.eu", Role = true };
+        var user1 = new User { UserId = 1, FullName = "Boris", hashedPassword = "3D4AEC0A9B43782133B8120B2FDD8C6104ABB513FE0CDCD0D1D4D791AA42E338:C217604FDAEA7291C7BA5D1D525815E4:100000:SHA256", mail = "boverhaegen@epfc.eu", Role = false };
+        var user2 = new User { UserId = 2, FullName = "Benoît", hashedPassword = "9E58D87797C6795D294E6762B6C05116D075BC18445AD4078C25674809DB57EF:C91E0B85B7264877C0424D52494D6296:100000:SHA256", mail = "bepenelle@epfc.eu", Role = false };
+        var user3 = new User { UserId = 4, FullName = "Xavier", hashedPassword = "5B979AB86EC73B0996F439D0BC3947ECCFA0A41310C77533EA36CB409DBB1243:0CF43009110DE4B4AA6D4E749F622755:100000:SHA256", mail = "xapigeolet@epfc.eu", Role = false };
+        var user4 = new User { UserId = 5, FullName = "Marc", hashedPassword = "955F147CE3473774E35EE58F4233AA84AE9118C6ECD4699DD788B8D588238034:5514D1DD0A97E9BA7FE4C0B5A4E89351:100000:SHA256", mail = "mamichel@epfc.eu", Role = false };
+        var user5 = new User { UserId = 6, FullName = "Administrator", hashedPassword = "C9949A02A5DFBE50F1DA289DC162E3C97443AB09CE6F6EB1FD0C9D51B5241BBD:5533437973C5BC6459DB687CA5BDE76C:100000:SHA256", mail = "admin@epfc.eu", Role = true };
 
         Users.AddRange(user1, user2, user3, user4, user5);
 
 
-        var tricount1 = new Tricount { Title = "Gers 2023" ,CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 18, 42, 24) };
-        var tricount2 = new Tricount { Title = "Resto badminton ", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 19, 25, 10) };
-        var tricount3 = new Tricount { Title = "Vacances A la mer du nord", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 19, 31, 9) };
-        var tricount4 = new Tricount { Title = "Grosse virée    A Torremolinos  ", CreatorId = 2, CreatedAt = new DateTime(2023, 8, 15, 10, 0, 0) };
-        var tricount5 = new Tricount { Title = "Torhout Werchter ", CreatorId = 3, CreatedAt = new DateTime(2023, 6, 2, 18, 30, 12) };
+        var tricount1 = new Tricount { Id = 1, Title = "Gers 2023" ,CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 18, 42, 24) };
+        var tricount2 = new Tricount { Id = 2, Title = "Resto badminton ", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 19, 25, 10) };
+        var tricount3 = new Tricount { Id = 3, Title = "Vacances A la mer du nord", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 19, 31, 9) };
+        var tricount4 = new Tricount { Id = 4 , Title = "Grosse virée    A Torremolinos  ", CreatorId = 2, CreatedAt = new DateTime(2023, 8, 15, 10, 0, 0) };
+        var tricount5 = new Tricount { Id = 5, Title = "Torhout Werchter ", CreatorId = 3, CreatedAt = new DateTime(2023, 6, 2, 18, 30, 12) };
 
         Tricounts.AddRange(tricount1, tricount2, tricount3, tricount4, tricount5);
 
@@ -150,17 +152,17 @@ public class PridContext : DbContextBase
 
         var operations = new List<Operations>
    {
-        new Operations { title = "Colruyt", tricountId = 1, Amount = 100, DateTime = new DateTime(2023, 10, 13), userId = 2 },
-        new Operations { title = "Plein essence", tricountId = 1, Amount = 75, DateTime = new DateTime(2023, 10, 13), userId = 1 },
-        new Operations { title = "Grosses courses LIDL", tricountId = 1, Amount = 212.47, DateTime = new DateTime(2023, 10, 13), userId = 3 },
-        new Operations { title = "Apéros", tricountId = 1, Amount = 31.89745622, DateTime = new DateTime(2023, 10, 13), userId = 1 },
-        new Operations { title = "Boucherie", tricountId = 1, Amount = 25.5, DateTime = new DateTime(2023, 10, 26), userId = 2 },
-        new Operations { title = "Loterie", tricountId = 1, Amount = 35, DateTime = new DateTime(2023, 10, 26), userId = 1 },
-        new Operations { title = "Sangria", tricountId = 2, Amount = 42, DateTime = new DateTime(2023, 08, 16), userId = 2 },
-        new Operations { title = "Jet Ski", tricountId = 2, Amount = 250, DateTime = new DateTime(2023, 08, 17), userId = 3 },
-        new Operations { title = "PV parking", tricountId = 2, Amount = 15.5, DateTime = new DateTime(2023, 08, 16), userId = 3 },
-        new Operations { title = "Tickets", tricountId = 3, Amount = 220, DateTime = new DateTime(2023, 06, 08), userId = 1 },
-        new Operations { title = "Décathlon", tricountId = 3, Amount = 199.99, DateTime = new DateTime(2023, 07, 01), userId = 2 }
+        new Operations { OperationsId = 1 , title = "Colruyt", tricountId = 1, Amount = 100, DateTime = new DateTime(2023, 10, 13), userId = 2 },
+        new Operations { OperationsId = 2 , title = "Plein essence", tricountId = 1, Amount = 75, DateTime = new DateTime(2023, 10, 13), userId = 1 },
+        new Operations { OperationsId = 3 , title = "Grosses courses LIDL", tricountId = 1, Amount = 212.47, DateTime = new DateTime(2023, 10, 13), userId = 3 },
+        new Operations { OperationsId = 4 , title = "Apéros", tricountId = 1, Amount = 31.89745622, DateTime = new DateTime(2023, 10, 13), userId = 1 },
+        new Operations { OperationsId = 5 , title = "Boucherie", tricountId = 1, Amount = 25.5, DateTime = new DateTime(2023, 10, 26), userId = 2 },
+        new Operations { OperationsId = 6 , title = "Loterie", tricountId = 1, Amount = 35, DateTime = new DateTime(2023, 10, 26), userId = 1 },
+        new Operations { OperationsId = 7 , title = "Sangria", tricountId = 2, Amount = 42, DateTime = new DateTime(2023, 08, 16), userId = 2 },
+        new Operations { OperationsId = 8 , title = "Jet Ski", tricountId = 2, Amount = 250, DateTime = new DateTime(2023, 08, 17), userId = 3 },
+        new Operations { OperationsId = 9 , title = "PV parking", tricountId = 2, Amount = 15.5, DateTime = new DateTime(2023, 08, 16), userId = 3 },
+        new Operations { OperationsId = 10 , title = "Tickets", tricountId = 3, Amount = 220, DateTime = new DateTime(2023, 06, 08), userId = 1 },
+        new Operations { OperationsId = 11 , title = "Décathlon", tricountId = 3, Amount = 199.99, DateTime = new DateTime(2023, 07, 01), userId = 2 }
     };
 
         Operations.AddRange(operations);
@@ -198,9 +200,11 @@ public class PridContext : DbContextBase
         Repartitions.AddRange(repartitions);
 
         var templates = new List<Template>
-{
-        new Template("Boris paye double", 4),
-        new Template("Benoît ne paye rien", 4)
+{       {
+        new Template { Id = 1 , Title = "Boris paye double", TricountId = 4 },
+        new Template { Id = 2 , Title = "Benoît ne paye rien", TricountId = 4 } 
+        }
+
     };
 
         Template.AddRange(templates);

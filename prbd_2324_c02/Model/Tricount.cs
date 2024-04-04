@@ -43,7 +43,7 @@ namespace prbd_2324_c02.Model
 
         public virtual List<Subscription> Subscriptions { get; set; }
 
-        public virtual List<User> Participants { get; set; }
+        //public virtual List<User> Participants { get; set; }
 
         public virtual List<Template> Templates { get; set; }
 

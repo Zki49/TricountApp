@@ -16,9 +16,10 @@ namespace prbd_2324_c02.Model
 
         public string title {  get; set; }
 
+        
         public int tricountId { get; set; }
 
-        [ForeignKey(nameof(tricountId))]
+        
         public virtual Tricount Tricount { get; set; }
 
         public double Amount {  get; set; }
@@ -26,7 +27,6 @@ namespace prbd_2324_c02.Model
 
         public int userId { get; set; }
 
-        [ForeignKey(nameof(userId))]
         public virtual User user { get; set; }
         public virtual List<Repartitions> repartitions { get; set; }
     }

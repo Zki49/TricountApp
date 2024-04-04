@@ -17,13 +17,16 @@ namespace prbd_2324_c02.Model
             Id, Title, Repartition, Tricount
         }
 
-        public static readonly Template DUMMY = new Template("No, I'll use custom repartition", 0);
 
-      
 
-        public Template(string title, int tricountId) {
-            Title = title;
-            TricountId = tricountId;
+
+
+        //public Template(string title, int tricountId) {
+        //    Title = title;
+        //    TricountId = tricountId;
+        //}
+        public Template() {
+
         }
 
         [Key]
