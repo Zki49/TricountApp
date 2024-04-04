@@ -32,6 +32,8 @@ public partial class App : ApplicationBase<User,PridContext>{
         Context.Database.EnsureDeleted();
         Context.Database.EnsureCreated();
 
+        Context.seedData();
+
         // Cold start
         Console.Write("Cold starting database... ");
         Context.Users.Find(1);
