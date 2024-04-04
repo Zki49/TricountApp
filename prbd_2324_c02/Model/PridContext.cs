@@ -64,8 +64,9 @@ public class PridContext : DbContextBase
         modelBuilder.Entity<Repartitions>()
             .HasOne(r => r.user)
             .WithMany(u => u.repartitions)
-            .HasForeignKey(r => r.userId);
-            
+            .HasForeignKey(r => r.userId)
+            .OnDelete(DeleteBehavior.NoAction);
+
         modelBuilder.Entity<Operations>()
             .HasOne(o => o.user)
             .WithMany(u => u.operations)

@@ -10,22 +10,25 @@ namespace prbd_2324_c02.Model
 {
     public class Repartitions
     {
+
         public Repartitions() { }
 
         [Required]
         public int weight { get; set; }
-        
-        
+
+        //[ForeignKey(nameof(user))]
         public int userId { get; set; }
 
-        [Required]
+        //[Required]
+        [ForeignKey(nameof(userId))]
         public virtual User user { get; set; }
 
 
-        
+        //[ForeignKey(nameof(operations))]
         public int operationsID { get; set; }
 
-        [Required]
+        //[Required]
+        [ForeignKey(nameof(operationsID))]
         public virtual Operations operations { get; set; }
     }
 
