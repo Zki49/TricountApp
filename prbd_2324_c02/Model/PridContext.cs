@@ -89,6 +89,8 @@ public class PridContext : DbContextBase
             .HasForeignKey(t=>t.CreatorId)
             .OnDelete(DeleteBehavior.NoAction);
 
+  
+
 
     }
 
@@ -110,7 +112,7 @@ public class PridContext : DbContextBase
 
     public object Templates { get; internal set; }
 
-    public void seedData() {
+    public  void seedData() {
         Database.BeginTransaction();
 
         var user1 = new User { UserId = 1, FullName = "Boris", hashedPassword = "3D4AEC0A9B43782133B8120B2FDD8C6104ABB513FE0CDCD0D1D4D791AA42E338:C217604FDAEA7291C7BA5D1D525815E4:100000:SHA256", mail = "boverhaegen@epfc.eu", Role = false };
@@ -200,12 +202,12 @@ public class PridContext : DbContextBase
         Repartitions.AddRange(repartitions);
 
         var templates = new List<Template>
-{       {
+        {
         new Template { Id = 1 , Title = "Boris paye double", TricountId = 4 },
-        new Template { Id = 2 , Title = "Benoît ne paye rien", TricountId = 4 } 
-        }
+        new Template { Id = 2 , Title = "Benoît ne paye rien", TricountId = 4 }
+        };
 
-    };
+    
 
         Template.AddRange(templates);
 
