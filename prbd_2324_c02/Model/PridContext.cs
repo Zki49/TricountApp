@@ -200,10 +200,10 @@ public class PridContext : DbContextBase
         Repartitions.AddRange(repartitions);
 
         var templates = new List<Template>
-{       {
+{       
         new Template { Id = 1 , Title = "Boris paye double", TricountId = 4 },
         new Template { Id = 2 , Title = "Benoît ne paye rien", TricountId = 4 } 
-        }
+        
 
     };
 
