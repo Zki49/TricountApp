@@ -11,5 +11,7 @@ public class User : EntityBase<PridContext>
     public virtual List<Subscription> Subscriptions { get; internal set; }
     public virtual List<Repartitions> repartitions { get; internal set; }
     public virtual List<Operations> operations { get; internal set; }
+    public virtual List<Tricount> tricounts{ get; internal set; }
+
 }
 

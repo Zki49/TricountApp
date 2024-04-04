@@ -64,7 +64,8 @@ public class PridContext : DbContextBase
         modelBuilder.Entity<Repartitions>()
             .HasOne(r => r.user)
             .WithMany(u => u.repartitions)
-            .HasForeignKey(r => r.userId);
+            .HasForeignKey(r => r.userId)
+            .OnDelete(DeleteBehavior.NoAction);
             
         modelBuilder.Entity<Operations>()
             .HasOne(o => o.user)
@@ -77,8 +78,13 @@ public class PridContext : DbContextBase
 
         modelBuilder.Entity<Template_items>()
             .HasKey(ti => new { ti.userId,ti.templateId});
-            
-            
+        modelBuilder.Entity<Tricount>()
+            .HasOne(t=>t.Creator)
+            .WithMany(c=>c.tricounts)
+            .HasForeignKey(t=>t.CreatorId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+
     }
 
     private static void ConfigureOptions(DbContextOptionsBuilder optionsBuilder) {
