@@ -32,7 +32,7 @@ public partial class App : ApplicationBase<User,PridContext>{
         Context.Database.EnsureDeleted();
         Context.Database.EnsureCreated();
 
-        Context.seedData();
+       // Context.seedData();
 
         // Cold start
         Console.Write("Cold starting database... ");

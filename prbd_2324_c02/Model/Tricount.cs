@@ -11,11 +11,7 @@ namespace prbd_2324_c02.Model
 {
     public class Tricount
     {
-        public enum Fields
-        {
-            Id, Title, Description, CreatedAt, Templates, Creator
-        }
-
+       
         public Tricount() {
         }
 
@@ -32,6 +28,7 @@ namespace prbd_2324_c02.Model
             CreatorId = creatorId;
         }
 
+        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -65,8 +62,7 @@ namespace prbd_2324_c02.Model
         }
 
       
-        [Key]
-        public int TricountId { get; set; }
+        
 
        
 
