@@ -54,11 +54,16 @@ namespace prbd_2324_c02.Model
         }
 
        
-        public double balance() {
+        public double balance(User user) {
            
             var res = Operations
-                     //.Where(operation => operation.tricountId==Id)
-                     .Sum(operation => operation.Amount);
+                              
+                       .Sum(operation => operation.Amount);
+
+            var myExpense = Operations
+                .Where(operation => operation.userId == user.UserId)
+                .Sum(operation => operation.Amount);
+           
             Console.WriteLine(res);
 
 /*
