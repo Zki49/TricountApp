@@ -26,7 +26,8 @@ public class PridContext : DbContextBase
          */
 
         var connectionString = ConfigurationManager.ConnectionStrings["MsSqlConnectionString"].ConnectionString;
-        optionsBuilder.UseSqlServer(connectionString);
+        optionsBuilder.UseSqlServer(connectionString)
+            .UseLazyLoadingProxies(true);
 
         ConfigureOptions(optionsBuilder);
     }
@@ -209,5 +210,7 @@ public class PridContext : DbContextBase
                                                       new Template_items { weight = 1, templateId = 2, userId = 4 }
                                                    );
 
+        tricount1.balance();
+        Console.WriteLine("hey ");
     }
 }

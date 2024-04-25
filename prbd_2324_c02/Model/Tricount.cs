@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
+using System.Windows.Navigation;
 
 namespace prbd_2324_c02.Model
 {
@@ -15,18 +17,7 @@ namespace prbd_2324_c02.Model
         public Tricount() {
         }
 
-        public Tricount(string title, int creatorId) {
-            Title = title;
-            CreatedAt = DateTime.Now;
-            CreatorId = creatorId;
-        }
-
-        public Tricount(string title, string description, int creatorId) {
-            Title = title;
-            Description = description;
-            CreatedAt = DateTime.Now;
-            CreatorId = creatorId;
-        }
+       
 
         [Key]
         public int Id { get; set; }
@@ -34,17 +25,18 @@ namespace prbd_2324_c02.Model
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public int CreatorId { get; set; }
+       
 
         
-        public virtual List<Operations> Operations { get; set; }
+        public virtual List<Operations> Operations { get; set; } = new List<Operations>();
 
-        public virtual List<Subscription> Subscriptions { get; set; }
+        public virtual List<Subscription> Subscriptions { get; set; }=new List<Subscription>();
 
         //public virtual List<User> Participants { get; set; }
 
-        public virtual List<Template> Templates { get; set; }
+        public virtual List<Template> Templates { get; set; } = new List<Template>();
 
-        public virtual User Creator { get; set; }
+        public virtual User Creator { get; set; } 
 
         public override bool Equals(object obj) {
             if (obj is not Tricount tricount)
@@ -61,7 +53,31 @@ namespace prbd_2324_c02.Model
             return $"Tricount[id={Id}, title={Title}, description={Description}, createdAt={CreatedAt}, creatorId={CreatorId}]";
         }
 
-      
+       
+        public double balance() {
+           
+            var res = Operations
+                     //.Where(operation => operation.tricountId==Id)
+                     .Sum(operation => operation.Amount);
+            Console.WriteLine(res);
+
+/*
+ * 
+ * public double GetUserBalance(User user) {
+    double userBalance = Tricounts
+        .Where(tricount => tricount.CreatorId == user.Id) // Assuming CreatorId represents the user who created the tricount
+        .SelectMany(tricount => tricount.Operations) // Get all operations related to tricounts created by the user
+        .Sum(operation => operation.Amount); // Sum all operation amounts
+
+    return userBalance;
+}
+
+ * */
+
+
+
+               return 00;
+        }
         
 
        

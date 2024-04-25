@@ -37,6 +37,7 @@ public partial class App : ApplicationBase<User,PridContext>{
         // Cold start
         Console.Write("Cold starting database... ");
         Context.Users.Find(1);
+
         Console.WriteLine("done");
     }
 
