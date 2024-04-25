@@ -37,7 +37,9 @@ public partial class App : ApplicationBase<User,PridContext>{
         // Cold start
         Console.Write("Cold starting database... ");
         Context.Users.Find(1);
-
+        var tricount1=Context.Tricounts.Find(1);
+        tricount1.balance();
+        Console.WriteLine("hey ");
         Console.WriteLine("done");
     }
 
