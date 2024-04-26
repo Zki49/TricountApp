@@ -56,9 +56,13 @@ namespace prbd_2324_c02.Model
        
         public double balance(User user) {
            
-            var res = Operations
-                              
-                       .Sum(operation => operation.Amount);
+             var res = Operations
+            .Select(operation => new {
+                Amount = operation.Amount,
+                Subscription = Subscriptions.FirstOrDefault(subscription => subscription.UserId == user.UserId)
+            })
+            .Where(item => item.Subscription != null) // Filtrer les opérations sans abonnement correspondant
+            .Sum(item => item.Amount / item.Subscription.);
 
             var myExpense = Operations
                 .Where(operation => operation.userId == user.UserId)
