@@ -56,14 +56,10 @@ namespace prbd_2324_c02.Model
        
         public double balance(User user) {
            
-             var res = Operations
-            .Select(operation => new {
-                Amount = operation.Amount,
-                Subscription = Subscriptions.FirstOrDefault(subscription => subscription.UserId == user.UserId)
-            })
-            .Where(item => item.Subscription != null) // Filtrer les opérations sans abonnement correspondant
-            .Sum(item => item.Amount / item.Subscription.);
-
+            var res = Operations
+                      .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
+                    .Sum(operation => operation.Amount / operation.repartitions.First(repartition => repartition.userId == user.UserId).weight);
+            
             var myExpense = Operations
                 .Where(operation => operation.userId == user.UserId)
                 .Sum(operation => operation.Amount);
@@ -85,7 +81,7 @@ namespace prbd_2324_c02.Model
 
 
 
-               return 00;
+               return res-myExpense;
         }
         
 
