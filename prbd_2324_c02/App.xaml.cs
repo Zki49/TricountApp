@@ -38,9 +38,11 @@ public partial class App : ApplicationBase<User,PridContext>{
         Console.Write("Cold starting database... ");
         Context.Users.Find(1);
         var tricount1=Context.Tricounts.Find(1);
-        tricount1.balance();
-        Console.WriteLine("hey ");
-        Console.WriteLine("done");
+        var user = Context.Users.Find(1);
+        Console.WriteLine(user.FullName);
+        Console.WriteLine(tricount1.Title);
+        
+        Console.WriteLine(tricount1.balance(user));
     }
 
     protected override void OnRefreshData() {

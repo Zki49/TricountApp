@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -55,16 +56,27 @@ namespace prbd_2324_c02.Model
 
        
         public double balance(User user) {
-           
+
+
             var res = Operations
                       .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
-                    .Sum(operation => operation.Amount / operation.repartitions.First(repartition => repartition.userId == user.UserId).weight);
-            
+                      .Sum(operation => operation.Amount /(double)(operation.repartitions.First(repartition => repartition.userId == user.UserId).weight / operation.repartitions.Sum(repartition => repartition.weight)));
+
+            Console.WriteLine(Operations
+                          .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
+                          .Sum(operation => operation.Amount));
+            Console.WriteLine(Operations
+                          .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
+                          .Sum(operation => (double)operation.repartitions.First(repartition => repartition.userId == user.UserId).weight / operation.repartitions.Sum(repartition => repartition.weight)));
+
             var myExpense = Operations
                 .Where(operation => operation.userId == user.UserId)
                 .Sum(operation => operation.Amount);
-           
+
+            Console.WriteLine(myExpense);
             Console.WriteLine(res);
+
+            Console.WriteLine( myExpense - res);
 
 /*
  * 
