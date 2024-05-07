@@ -31,7 +31,7 @@
                  Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="Password" Grid.Row="1" VerticalAlignment="Top" Padding="5"/>
         <PasswordBox x:Name="txtPassword"
-                     f:PasswordHelper.Attach="True"
+                     f:PasswordHelper.Attach="false"
                      f:PasswordHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
                      Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
         <DockPanel Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">

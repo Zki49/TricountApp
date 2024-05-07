@@ -26,6 +26,16 @@ public class User : EntityBase<PridContext>
             .FirstOrDefault();
         return res;
     }
+    public bool checkPassword(string password) {
+        if (password == null) return false;
+        
+
+        if (SecretHasher.Verify(password, hashedPassword)) {
+            Console.WriteLine(password);
+            return true;
+        }
+        return false;
+    }
 
 }
 
