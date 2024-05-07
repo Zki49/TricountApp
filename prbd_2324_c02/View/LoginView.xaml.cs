@@ -22,5 +22,8 @@ namespace prbd_2324_c02.View
         public Window1() {
             
         }
+        private void btnCancel_Click(object sender, RoutedEventArgs e) {
+            Close();
+        }
     }
 }

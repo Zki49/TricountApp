@@ -6,7 +6,10 @@ using PRBD_Framework;
 
 namespace prbd_2324_c02;
 
-public partial class App : ApplicationBase<User,PridContext>{
+public partial class App : ApplicationBase<User, PridContext> {
+    public enum Messages {
+        MSG_LOGIN 
+    }
     public App() {
         var ci = new CultureInfo("fr-BE") {
             DateTimeFormat = {
@@ -24,7 +27,12 @@ public partial class App : ApplicationBase<User,PridContext>{
         PrepareDatabase();
         TestQueries();
 
-        NavigateTo<LoginViewModel, User, PridContext>();
+        //NavigateTo<LoginViewModel, User, PridContext>();
+
+        Register<User>(this, Messages.MSG_LOGIN, member => {
+            Login(member);
+            NavigateTo<MainViewModel, User, PridContext>();
+        });
     }
 
     private static void PrepareDatabase() {

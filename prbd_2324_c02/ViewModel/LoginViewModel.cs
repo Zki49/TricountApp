@@ -1,12 +1,13 @@
 ﻿using PRBD_Framework;
 using prbd_2324_c02.Model;
+using System.Windows.Input;
 
 namespace prbd_2324_c02.ViewModel;
 
-public class LoginViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
-{
+public class LoginViewModel : CommonViewModel { 
     private string _mail;
     private string _password;
+    public ICommand LoginCommand { get; set; }
 
     public string Mail {
         get => _mail;
@@ -33,6 +34,16 @@ public class LoginViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         
 
         return !HasErrors;
+    }
+    public LoginViewModel() {
+        LoginCommand = new RelayCommand(LoginAction,
+            () => _mail != null && _password != null && !HasErrors);
+    }
+    private void LoginAction() {
+        if (Validate()) {
+            var member = User.GetUserByMail(Mail);
+            NotifyColleagues(App.Messages.MSG_LOGIN, member);
+        }
     }
 
     protected override void OnRefreshData() {
