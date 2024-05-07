@@ -1,6 +1,8 @@
 ﻿using PRBD_Framework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
 
 namespace prbd_2324_c02.Model;
 
@@ -16,6 +18,14 @@ public class User : EntityBase<PridContext>
     public virtual List<Repartitions> repartitions { get; internal set; }
     public virtual List<Operations> operations { get; internal set; }
     public virtual List<Tricount> tricounts { get; internal set; }
+
+
+    public static User GetUserByMail(string mail) {
+        var res = Context.Users
+            .Where(user => user.mail == mail)
+            .FirstOrDefault();
+        return res;
+    }
 
 }
 

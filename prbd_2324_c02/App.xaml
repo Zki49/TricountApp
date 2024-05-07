@@ -3,7 +3,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:m="clr-namespace:prbd_2324_c02.Model"
-             xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework">
+             xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
+             StartupUri = "View/LoginView.xaml"  >
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
