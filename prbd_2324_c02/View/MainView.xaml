@@ -8,13 +8,19 @@
               mc:Ignorable="d"
               d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
               WindowStartupLocation="CenterScreen"
-              Title="MainView" Height="400" Width="600">
+              Title="Mytricounts" Height="400" Width="600">
 
     <Window.DataContext>
         <vm:MainViewModel x:Name="vm" />
     </Window.DataContext>
 
-    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"
-           Text="{Binding Title}" />
+    <ListView ItemsSource="{Binding tricounts}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Button Content="{Binding Title}"></Button>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        
+    </ListView>
 
 </f:WindowBase>
