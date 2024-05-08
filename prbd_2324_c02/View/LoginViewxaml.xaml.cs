@@ -11,17 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PRBD_Framework;
 
 namespace prbd_2324_c02.View
 {
     /// <summary>
-    /// Logique d'interaction pour Window1.xaml
+    /// Logique d'interaction pour LoginViewxaml.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class LoginViewxaml : WindowBase
     {
-        public Window1() {
-            
+        public LoginViewxaml() {
+            InitializeComponent();
         }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
             Close();
         }

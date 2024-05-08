@@ -22,7 +22,6 @@ public class LoginViewModel : CommonViewModel {
         ClearErrors();
 
         var member = User.GetUserByMail(Mail);
-        Console.WriteLine(Password);
 
         if (string.IsNullOrEmpty(Mail))
             AddError(nameof(Mail), "required");
