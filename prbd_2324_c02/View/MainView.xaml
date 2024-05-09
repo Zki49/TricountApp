@@ -19,18 +19,21 @@
         <vm:MainViewModel x:Name="vm" />
     </Window.DataContext>
 
-    <ListView ItemsSource="{Binding tricounts}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <WrapPanel Margin="5" Orientation="Horizontal">
+        <ListView ItemsSource="{Binding tricounts}">
+            <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="10">
                         <StackPanel>
                             <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Description, Converter={StaticResource DescriptionConverter}}" TextWrapping="Wrap"/>
                         </StackPanel>
                     </Border>
-                </WrapPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 </f:WindowBase>
