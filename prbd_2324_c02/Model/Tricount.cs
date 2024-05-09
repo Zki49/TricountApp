@@ -17,12 +17,13 @@ namespace prbd_2324_c02.Model
        
         public Tricount() {
         }
-
+         
+        private String _description;
        
 
         [Key]
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get => _description==null?"no description ": _description; set=>_description=value ; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public int CreatorId { get; set; }

@@ -128,7 +128,7 @@ public class PridContext : DbContextBase
 
         var tricount1 = new Tricount { Id = 1, Title = "Gers 2023", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 18, 42, 24) };
         var tricount2 = new Tricount { Id = 2, Title = "Resto badminton ", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 19, 25, 10) };
-        var tricount3 = new Tricount { Id = 3, Title = "Vacances A la mer du nord", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 19, 31, 9) };
+        var tricount3 = new Tricount { Id = 3, Title = "Vacances ",Description= "A la mer du nord", CreatorId = 1, CreatedAt = new DateTime(2023, 10, 10, 19, 31, 9) };
         var tricount4 = new Tricount { Id = 4, Title = "Grosse virée    A Torremolinos  ", CreatorId = 2, CreatedAt = new DateTime(2023, 8, 15, 10, 0, 0) };
         var tricount5 = new Tricount { Id = 5, Title = "Torhout Werchter ", CreatorId = 4, CreatedAt = new DateTime(2023, 6, 2, 18, 30, 12) };
 

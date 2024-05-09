@@ -17,10 +17,15 @@
     <ListView ItemsSource="{Binding tricounts}">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <Button Content="{Binding Title}"></Button>
+                <WrapPanel Margin="5" Orientation="Horizontal">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </WrapPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
-        
     </ListView>
-
 </f:WindowBase>
