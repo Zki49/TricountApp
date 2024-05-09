@@ -31,7 +31,10 @@
                         <StackPanel>
                             <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Description, Converter={StaticResource DescriptionConverter}}" TextWrapping="Wrap"/>
-                        </StackPanel>
+                            <TextBlock Text="{Binding Creator.FullName}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding CreatedAt}" TextWrapping="Wrap"/>
+                            
+                         </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
