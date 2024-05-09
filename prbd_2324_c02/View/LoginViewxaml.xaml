@@ -56,13 +56,13 @@
             </TextBlock>
         </DockPanel>
         <Button x:Name="conexionboris" Content="conect with boris" 
-        HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="10,0,0,-26" 
+        HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="10,0,0,-40" 
         Command="{Binding LoginCommandBoris}" Grid.ColumnSpan="2" Grid.Row="4"/>
         <Button x:Name="conexionben" Content="conect with benoit" 
-   HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="20,89,0,-115" 
+   HorizontalAlignment="Left"  Width="255" IsDefault="True" Margin="-5,80,0,-115" 
    Command="{Binding LoginCommandBenoit}" Grid.ColumnSpan="2" Grid.Row="4"/>
         <Button x:Name="conexionxavier" Content="conect with xavier" 
-   HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="15,40,0,-66" 
+   HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="15,40,0,-80" 
    Command="{Binding LoginCommandXavier}" Grid.ColumnSpan="2" Grid.Row="4"/>
         <Button x:Name="conexionadmin" Content="conect with admin" 
    HorizontalAlignment="Left"  Width="265" IsDefault="True" Margin="-10,120,0,-146" 
