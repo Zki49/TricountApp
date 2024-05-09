@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Login" WindowStartupLocation="CenterScreen"
         FocusManager.FocusedElement="{Binding ElementName=txtPseudo}" ResizeMode="NoResize"
-        Width="270" Height="300">
+        Width="270" Height="320">
     <Window.DataContext>
         <vm:LoginViewModel x:Name="vm" />
     </Window.DataContext>
@@ -59,13 +59,13 @@
         HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="10,0,0,-40" 
         Command="{Binding LoginCommandBoris}" Grid.ColumnSpan="2" Grid.Row="4"/>
         <Button x:Name="conexionben" Content="conect with benoit" 
-   HorizontalAlignment="Left"  Width="255" IsDefault="True" Margin="-5,80,0,-115" 
+   HorizontalAlignment="Left"  Width="230" IsDefault="True" Margin="10,80,0,-115" 
    Command="{Binding LoginCommandBenoit}" Grid.ColumnSpan="2" Grid.Row="4"/>
         <Button x:Name="conexionxavier" Content="conect with xavier" 
    HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="15,40,0,-80" 
    Command="{Binding LoginCommandXavier}" Grid.ColumnSpan="2" Grid.Row="4"/>
         <Button x:Name="conexionadmin" Content="conect with admin" 
-   HorizontalAlignment="Left"  Width="265" IsDefault="True" Margin="-10,120,0,-146" 
+   HorizontalAlignment="Left"  Width="210" IsDefault="True" Margin="20,120,0,-146" 
    Command="{Binding LoginCommandAdmin}" Grid.ColumnSpan="2" Grid.Row="4"/>
     </Grid>
 </f:WindowBase>
