@@ -8,6 +8,7 @@ public class LoginViewModel : CommonViewModel {
     private string _mail;
     private string _password;
     public ICommand LoginCommand { get; set; }
+    public ICommand LoginCommandBoris { get; set; }
 
     public string Mail {
         get => _mail;
@@ -37,6 +38,7 @@ public class LoginViewModel : CommonViewModel {
     public LoginViewModel() {
         LoginCommand = new RelayCommand(LoginAction,
             () => _mail != null && _password != null && !HasErrors);
+        LoginCommandBoris = new RelayCommand(LoginActionBoris);
     }
     private void LoginAction() {
         if (Validate()) {
@@ -44,7 +46,11 @@ public class LoginViewModel : CommonViewModel {
             NotifyColleagues(App.Messages.MSG_LOGIN, member);
         }
     }
+    private void LoginActionBoris() {
+        var member = Context.Users.Find(1);
+        NotifyColleagues(App.Messages.MSG_LOGIN, member);
 
+    }
     protected override void OnRefreshData() {
     }
 }
