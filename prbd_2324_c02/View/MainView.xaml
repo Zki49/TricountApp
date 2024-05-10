@@ -39,7 +39,7 @@
                             <Run Text="{Binding CreatedAt}"/>
                         </TextBlock>
                         <TextBlock TextWrapping="Wrap">
-                            <!--trouver comment faire operations.size-->
+                            <!--trouver comment faire operations.size pareil pour users -->
                            <Run Text="{Binding Operations.Count}"/>
                             <Run Text="Operations "/>
                         </TextBlock>
