@@ -8,6 +8,7 @@ namespace prbd_2324_c02.ViewModel;
 public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
 {
     public string Title => "prbd_2324_c02";
+    public string Color => "LightGray";
 
     public ObservableCollection<Tricount> tricounts { get; set; } = new ();
     public MainViewModel() {

@@ -26,8 +26,8 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate >
-                    <Border BorderBrush="Black" BorderThickness="1"  Padding="30">
-                        <StackPanel >
+                <Border BorderBrush="Black" BorderThickness="1"  Padding="30" Background="{Binding Color , ElementName=vm}" >
+                    <StackPanel >
                             <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Description, Converter={StaticResource DescriptionConverter}}" TextWrapping="Wrap"/>
                         <TextBlock  TextWrapping="Wrap">
@@ -40,8 +40,8 @@
                         </TextBlock>
                         <TextBlock TextWrapping="Wrap">
                             <!--trouver comment faire operations.size pareil pour users -->
-                           <Run Text="{Binding Operations.Count}"/>
-                            <Run Text="Operations "/>
+                           <Run Text="{Binding Operations}"/>
+                            <Run Text="Operations"/>
                         </TextBlock>
                     </StackPanel>
                     </Border>
