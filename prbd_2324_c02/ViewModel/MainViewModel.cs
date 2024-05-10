@@ -14,6 +14,10 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         OnRefreshData();
     }
     protected override void OnRefreshData() {
-        tricounts.RefreshFromModel(Context.Tricounts.Where(t=> t.Creator.UserId == CurrentUser.UserId  ));   
+        if (!CurrentUser.Role) {
+            tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId));
+        } else {
+            tricounts.RefreshFromModel(Context.Tricounts);
+        }
     }
 }

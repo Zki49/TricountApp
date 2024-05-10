@@ -6,7 +6,6 @@
               xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
               xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
               xmlns:converters="clr-namespace:prbd_2324_c02.ViewModel"
-
               mc:Ignorable="d"
               d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
               WindowStartupLocation="CenterScreen"
@@ -26,18 +25,25 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1"  Padding="10">
-                        <StackPanel>
+                <DataTemplate >
+                    <Border BorderBrush="Black" BorderThickness="1"  Padding="30">
+                        <StackPanel >
                             <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Description, Converter={StaticResource DescriptionConverter}}" TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding Creator.FullName}" TextWrapping="Wrap"/>
+                        <TextBlock  TextWrapping="Wrap">
+                            <Run Text="Created by "/>
+                            <Run Text="{Binding Creator.FullName}"/>
+                        </TextBlock>
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="on"/>
                             <Run Text="{Binding CreatedAt}"/>
-                        </TextBlock> 
-                            
-                         </StackPanel>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap">
+                            <!--trouver comment faire operations.size-->
+                           <Run Text="{Binding Operations.Count}"/>
+                            <Run Text="Operations "/>
+                        </TextBlock>
+                    </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
