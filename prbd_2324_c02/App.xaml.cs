@@ -8,7 +8,8 @@ namespace prbd_2324_c02;
 
 public partial class App : ApplicationBase<User, PridContext> {
     public enum Messages {
-        MSG_LOGIN 
+        MSG_LOGIN,
+        MSG_LOGOUT
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {
@@ -32,6 +33,10 @@ public partial class App : ApplicationBase<User, PridContext> {
         Register<User>(this, Messages.MSG_LOGIN, member => {
             Login(member);
             NavigateTo<MainViewModel, User, PridContext>();
+        });
+        Register(this, Messages.MSG_LOGOUT,() => {
+            Logout();
+            NavigateTo<LoginViewModel, User, PridContext>();
         });
     }
 

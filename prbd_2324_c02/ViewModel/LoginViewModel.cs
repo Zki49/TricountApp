@@ -8,6 +8,7 @@ public class LoginViewModel : CommonViewModel {
     private string _mail;
     private string _password;
     public ICommand LoginCommand { get; set; }
+
     public ICommand LoginCommandBoris { get; set; }
     public ICommand LoginCommandBenoit { get; set; }
     public ICommand LoginCommandXavier { get; set; }
@@ -41,11 +42,13 @@ public class LoginViewModel : CommonViewModel {
     public LoginViewModel() {
         LoginCommand = new RelayCommand(LoginAction,
             () => _mail != null && _password != null && !HasErrors);
+
         LoginCommandBoris = new RelayCommand(LoginActionBoris);
         LoginCommandXavier= new RelayCommand(LoginActionXavier);
         LoginCommandBenoit= new RelayCommand(LoginActionBenoit);
         LoginCommandAdmin= new RelayCommand(LoginActionAdmin);
     }
+    
     private void LoginAction() {
         if (Validate()) {
             var member = User.GetUserByMail(Mail);

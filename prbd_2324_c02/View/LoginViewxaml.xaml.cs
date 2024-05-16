@@ -18,9 +18,9 @@ namespace prbd_2324_c02.View
     /// <summary>
     /// Logique d'interaction pour LoginViewxaml.xaml
     /// </summary>
-    public partial class LoginViewxaml : WindowBase
+    public partial class LoginView : WindowBase
     {
-        public LoginViewxaml() {
+        public LoginView() {
             InitializeComponent();
         }
 
