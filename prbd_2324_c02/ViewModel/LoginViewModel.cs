@@ -8,6 +8,7 @@ public class LoginViewModel : CommonViewModel {
     private string _mail;
     private string _password;
     public ICommand LoginCommand { get; set; }
+    public ICommand CancelCommand { get; set; }
 
     public string Mail {
         get => _mail;
@@ -38,7 +39,9 @@ public class LoginViewModel : CommonViewModel {
     public LoginViewModel() {
         LoginCommand = new RelayCommand(LoginAction,
             () => _mail != null && _password != null && !HasErrors);
+        //CancelCommand = new RelayCommand();
     }
+    
     private void LoginAction() {
         if (Validate()) {
             var member = User.GetUserByMail(Mail);
