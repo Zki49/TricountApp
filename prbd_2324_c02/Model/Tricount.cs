@@ -61,22 +61,23 @@ namespace prbd_2324_c02.Model
 
             var res = Operations
                       .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
-                      .Sum(operation => operation.Amount /(double)(operation.repartitions.First(repartition => repartition.userId == user.UserId).weight / operation.repartitions.Sum(repartition => repartition.weight)));
+                      .Sum(operation => operation.Amount *((double)(operation.repartitions.First(repartition => repartition.userId == user.UserId).weight /(double) operation.repartitions.Sum(repartition => repartition.weight))));
 
-            Console.WriteLine(Operations
+          /*  Console.WriteLine(Operations
                           .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
                           .Sum(operation => operation.Amount));
             Console.WriteLine(Operations
                           .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
-                          .Sum(operation => (double)operation.repartitions.First(repartition => repartition.userId == user.UserId).weight / operation.repartitions.Sum(repartition => repartition.weight)));
-
+                          .Sum(operation => (double)operation.repartitions
+                                .First(repartition => repartition.userId == user.UserId).weight / (double)operation.repartitions.Sum(repartition => repartition.weight)));
+          */
             var myExpense = Operations
                 .Where(operation => operation.userId == user.UserId)
                 .Sum(operation => operation.Amount);
 
-            Console.WriteLine(myExpense);
+          /*  Console.WriteLine(myExpense);
             Console.WriteLine(res);
-
+          */
             Console.WriteLine( myExpense - res);
 
 /*

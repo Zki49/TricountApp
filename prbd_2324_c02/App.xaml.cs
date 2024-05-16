@@ -45,12 +45,13 @@ public partial class App : ApplicationBase<User, PridContext> {
         // Cold start
         Console.Write("Cold starting database... ");
         Context.Users.Find(1);
-        var tricount1=Context.Tricounts.Find(1);
-        var user = Context.Users.Find(1);
+        var tricount1 = Context.Tricounts.Find(1);
+        var user = Context.Users.Find(4);
         Console.WriteLine(user.FullName);
         Console.WriteLine(tricount1.Title);
-        
+
         Console.WriteLine(tricount1.balance(user));
+
     }
 
     protected override void OnRefreshData() {
@@ -59,5 +60,6 @@ public partial class App : ApplicationBase<User, PridContext> {
 
     private static void TestQueries() {
         // Un endroit pour tester vos requêtes LINQ
+       
     }
 }
