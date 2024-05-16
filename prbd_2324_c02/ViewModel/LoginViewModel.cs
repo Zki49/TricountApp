@@ -8,7 +8,11 @@ public class LoginViewModel : CommonViewModel {
     private string _mail;
     private string _password;
     public ICommand LoginCommand { get; set; }
-    public ICommand CancelCommand { get; set; }
+
+    public ICommand LoginCommandBoris { get; set; }
+    public ICommand LoginCommandBenoit { get; set; }
+    public ICommand LoginCommandXavier { get; set; }
+    public ICommand LoginCommandAdmin { get; set; }
 
     public string Mail {
         get => _mail;
@@ -23,7 +27,6 @@ public class LoginViewModel : CommonViewModel {
         ClearErrors();
 
         var member = User.GetUserByMail(Mail);
-        Console.WriteLine(Password);
 
         if (string.IsNullOrEmpty(Mail))
             AddError(nameof(Mail), "required");
@@ -39,7 +42,11 @@ public class LoginViewModel : CommonViewModel {
     public LoginViewModel() {
         LoginCommand = new RelayCommand(LoginAction,
             () => _mail != null && _password != null && !HasErrors);
-        //CancelCommand = new RelayCommand();
+
+        LoginCommandBoris = new RelayCommand(LoginActionBoris);
+        LoginCommandXavier= new RelayCommand(LoginActionXavier);
+        LoginCommandBenoit= new RelayCommand(LoginActionBenoit);
+        LoginCommandAdmin= new RelayCommand(LoginActionAdmin);
     }
     
     private void LoginAction() {
@@ -48,7 +55,26 @@ public class LoginViewModel : CommonViewModel {
             NotifyColleagues(App.Messages.MSG_LOGIN, member);
         }
     }
+    private void LoginActionBoris() {
+        var member = Context.Users.Find(1);
+        NotifyColleagues(App.Messages.MSG_LOGIN, member);
 
+    }
+    private void LoginActionBenoit() {
+        var member = Context.Users.Find(2);
+        NotifyColleagues(App.Messages.MSG_LOGIN, member);
+
+    }
+    private void LoginActionXavier() {
+        var member = Context.Users.Find(4);
+        NotifyColleagues(App.Messages.MSG_LOGIN, member);
+
+    }
+    private void LoginActionAdmin() {
+        var member = Context.Users.Find(6);
+        NotifyColleagues(App.Messages.MSG_LOGIN, member);
+
+    }
     protected override void OnRefreshData() {
     }
 }
