@@ -55,7 +55,7 @@ namespace prbd_2324_c02.Model
             return $"Tricount[id={Id}, title={Title}, description={Description}, createdAt={CreatedAt}, creatorId={CreatorId}]";
         }
 
-       
+        
         public double balance(User user) {
 
 
@@ -78,7 +78,7 @@ namespace prbd_2324_c02.Model
           /*  Console.WriteLine(myExpense);
             Console.WriteLine(res);
           */
-            Console.WriteLine( myExpense - res);
+           // Console.WriteLine( myExpense - res);
 
 /*
  * 
