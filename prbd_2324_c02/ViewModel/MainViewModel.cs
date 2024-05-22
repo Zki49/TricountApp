@@ -1,4 +1,5 @@
-﻿using prbd_2324_c02.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using prbd_2324_c02.Model;
 using PRBD_Framework;
 
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     private string _inputText;
     public string InputText {
         get => _inputText;
-        set => SetProperty(ref _inputText, value);
+        set => SetProperty(ref _inputText, value, () => OnRefreshData());
     }
 
     public ICommand LogoutCommand {  get; set; }
@@ -29,10 +30,15 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     }
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {
-            tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId));
+            if (!string.IsNullOrEmpty(InputText)) { 
+                tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId && EF.Functions.Like(t.Title,InputText+"%")));
+            } else {
+                tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId));
+            }
         } else {
             tricounts.RefreshFromModel(Context.Tricounts);
         }
+        
     }
     private void logout() {
         NotifyColleagues(App.Messages.MSG_LOGOUT);
