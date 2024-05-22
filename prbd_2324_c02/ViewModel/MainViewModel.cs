@@ -12,12 +12,20 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
 
     public string Title => "prbd_2324_c02";
     public string Color => "LightGray";
+    private string _inputText;
+    public string InputText {
+        get => _inputText;
+        set => SetProperty(ref _inputText, value);
+    }
+
     public ICommand LogoutCommand {  get; set; }
+    public ICommand ClearCommand { get; set; }
 
     public ObservableCollection<Tricount> tricounts { get; set; } = new ();
     public MainViewModel() {
         OnRefreshData();
         LogoutCommand =  new RelayCommand(logout);
+        ClearCommand = new RelayCommand(ClearTextBox);
     }
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {
@@ -28,5 +36,8 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     }
     private void logout() {
         NotifyColleagues(App.Messages.MSG_LOGOUT);
+    }
+    private void ClearTextBox() {
+        InputText = string.Empty;
     }
 }
