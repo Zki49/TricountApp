@@ -31,12 +31,17 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {
             if (!string.IsNullOrEmpty(InputText)) { 
-                tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId && EF.Functions.Like(t.Title,InputText+"%")));
+                tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId && EF.Functions.Like(t.Title,InputText + "%" ) ||
+                                                                                                                  EF.Functions.Like(t.Description, InputText + "%")));
             } else {
                 tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId));
             }
         } else {
-            tricounts.RefreshFromModel(Context.Tricounts);
+            if (!string.IsNullOrEmpty(InputText)) {
+                tricounts.RefreshFromModel(Context.Tricounts.Where(t =>  EF.Functions.Like(t.Title, InputText + "%")));
+            } else {
+                tricounts.RefreshFromModel(Context.Tricounts);
+            }
         }
         
     }
