@@ -13,6 +13,7 @@ public class LoginViewModel : CommonViewModel {
     public ICommand LoginCommandBenoit { get; set; }
     public ICommand LoginCommandXavier { get; set; }
     public ICommand LoginCommandAdmin { get; set; }
+    public ICommand SignupCommand { get; set; }
 
     public string Mail {
         get => _mail;
@@ -47,6 +48,7 @@ public class LoginViewModel : CommonViewModel {
         LoginCommandXavier= new RelayCommand(LoginActionXavier);
         LoginCommandBenoit= new RelayCommand(LoginActionBenoit);
         LoginCommandAdmin= new RelayCommand(LoginActionAdmin);
+        SignupCommand = new RelayCommand(SignupAction);
     }
     
     private void LoginAction() {
@@ -74,6 +76,9 @@ public class LoginViewModel : CommonViewModel {
         var member = Context.Users.Find(6);
         NotifyColleagues(App.Messages.MSG_LOGIN, member);
 
+    }
+    private void SignupAction() {
+        NotifyColleagues(App.Messages.MSG_SIGNUP);
     }
     protected override void OnRefreshData() {
     }
