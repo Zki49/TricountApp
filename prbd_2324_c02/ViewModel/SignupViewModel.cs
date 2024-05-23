@@ -18,13 +18,29 @@ namespace prbd_2324_c02.ViewModel;
     private string _confirmPassword;
     private string _fullName;
     public ICommand ExitCommand { get; set; }
+    public ICommand SignupCommand { get; set; }
+
 
         public SignupViewModel() {
             ExitCommand = new RelayCommand(Exit);
-        }
+            SignupCommand = new RelayCommand(SignupAction,
+                () => _mail != null && _fullName != null && _password != null &&!HasErrors);
+    }
         private void Exit() {
             NotifyColleagues(App.Messages.MSG_LOGOUT);
         }
+
+    private void SignupAction() {
+        if (ValidatePassword() && ValidateFullName() && ValidateMail()) {
+            User.AddUser(FullName,Mail, Password);
+
+            
+            var member = User.GetUserByMail(Mail);
+            
+            NotifyColleagues(App.Messages.MSG_LOGIN, member);
+        }
+    }
+
     public string Mail {
         get => _mail;
         set => SetProperty(ref _mail, value, () => ValidateMail());
@@ -75,7 +91,6 @@ namespace prbd_2324_c02.ViewModel;
     }
 
     public bool ValidateFullName() {
-
         ClearErrors();
         
         if (FullName.Length<3)

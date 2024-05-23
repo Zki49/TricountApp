@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 
 namespace prbd_2324_c02.Model;
 
@@ -19,7 +20,7 @@ public class User : EntityBase<PridContext>
     public virtual List<Operations> operations { get; internal set; }
     public virtual List<Tricount> tricounts { get; internal set; }
 
-
+    
     public static User GetUserByMail(string mail) {
         var res = Context.Users
             .Where(user => user.mail == mail)
@@ -35,6 +36,18 @@ public class User : EntityBase<PridContext>
             return true;
         }
         return false;
+    }
+
+    public static void AddUser(string FullName, string Mail, string Password){
+        User user = new User();
+
+        user.FullName = FullName;
+        user.mail = Mail;
+        user.hashedPassword = SecretHasher.Hash(Password);
+        user.Role = false;
+
+        Context.Users.Add(user);
+        Context.SaveChanges();
     }
 
 }

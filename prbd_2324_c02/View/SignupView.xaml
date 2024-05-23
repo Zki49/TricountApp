@@ -60,7 +60,7 @@ Width="280" Height="325">
                      />
 
         <!-- Bouton S'inscrire -->
-        <Button Content="S'inscrire" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,10,0,60" HorizontalAlignment="Left" Width="145" />
+        <Button Content="S'inscrire" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,10,0,60" HorizontalAlignment="Left" Width="145" Command="{Binding SignupCommand}" />
 
         <!-- Bouton exit -->
         <Button Content="Exit" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,59,0,10" HorizontalAlignment="Left" Width="145" Command="{Binding ExitCommand}" />
