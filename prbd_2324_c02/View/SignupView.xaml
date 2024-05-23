@@ -1,0 +1,68 @@
+﻿<f:WindowBase x:Class=" prbd_2324_c02.View.SignupView"
+        x:Name="window"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
+xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
+mc:Ignorable="d"
+Title="Signup" WindowStartupLocation="CenterScreen"
+FocusManager.FocusedElement="{Binding ElementName=txtPseudo}" ResizeMode="NoResize"
+Width="280" Height="325">
+    <Window.DataContext>
+        <vm:SignupViewModel x:Name="vm" />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Nom -->
+        <TextBlock Text="Nom:" Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
+        <TextBox x:Name="NomTextBox" Grid.Row="0" Grid.Column="1" Margin="10" 
+                 Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" />
+
+
+        <!-- Prénom -->
+        <TextBlock Text="Prénom:" Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
+        <TextBox x:Name="PrenomTextBox" Grid.Row="1" Grid.Column="1" Margin="10" />
+
+        <!-- Email -->
+        <TextBlock Text="Email:" Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
+        <TextBox x:Name="EmailTextBox" Grid.Row="2" Grid.Column="1" Margin="10" 
+                 Text="{Binding Mail, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- Mot de passe -->
+        <TextBlock Text="Mot de passe:" Grid.Row="3" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
+        <PasswordBox x:Name="MotDePasseBox" Grid.Row="3" Grid.Column="1" Margin="10" 
+                     f:PasswordHelper.Attach="false"
+                    f:PasswordHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
+                     
+                     />
+        
+        
+        <!-- Confirmer le mot de passe -->
+        <TextBlock Text="Confirmer le mot de passe:" Grid.Row="4" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
+        
+        <PasswordBox x:Name="ConfirmerMotDePasseBox" Grid.Row="4" Grid.Column="1" Margin="10"
+                      f:PasswordHelper.Attach="false"
+                        f:PasswordHelper.Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" 
+                     />
+
+        <!-- Bouton S'inscrire -->
+        <Button Content="S'inscrire" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,10,0,60" HorizontalAlignment="Left" Width="145" />
+
+        <!-- Bouton exit -->
+        <Button Content="Exit" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,59,0,10" HorizontalAlignment="Left" Width="145" Command="{Binding ExitCommand}" />
+    </Grid>
+</f:WindowBase>
