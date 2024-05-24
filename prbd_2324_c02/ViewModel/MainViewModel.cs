@@ -21,12 +21,14 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
 
     public ICommand LogoutCommand {  get; set; }
     public ICommand ClearCommand { get; set; }
+    public ICommand AddCommand { get; set; }
 
     public ObservableCollection<Tricount> tricounts { get; set; } = new ();
     public MainViewModel() {
         OnRefreshData();
         LogoutCommand =  new RelayCommand(logout);
         ClearCommand = new RelayCommand(ClearTextBox);
+        AddCommand = new RelayCommand(Add);
     }
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {
@@ -53,5 +55,8 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     }
     private void ClearTextBox() {
         InputText = string.Empty;
+    }
+    private void Add() {
+      
     }
 }

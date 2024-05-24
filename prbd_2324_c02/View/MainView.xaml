@@ -10,7 +10,7 @@
               mc:Ignorable="d"
               d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
               WindowStartupLocation="CenterScreen"
-              Title="Mytricounts" Height="400" Width="600">
+              Title="Mytricounts" Height="600" Width="600">
     
 
     <Window.DataContext>

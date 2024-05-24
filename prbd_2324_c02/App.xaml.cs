@@ -10,7 +10,8 @@ public partial class App : ApplicationBase<User, PridContext> {
     public enum Messages {
         MSG_LOGIN,
         MSG_LOGOUT,
-        MSG_SIGNUP
+        MSG_SIGNUP,
+        MSG_ADD,
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {
