@@ -4,12 +4,12 @@
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                    xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
-                   xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
                    xmlns:vw="clr-namespace:prbd_2324_c02.View"
+                   xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                   xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
                    mc:Ignorable="d" 
                    d:DesignHeight="450" d:DesignWidth="800">
 
-    
 
     <Grid>
         <TabControl>
@@ -42,20 +42,31 @@
 
                     <TextBlock Text="New Tricount - No Description" 
                                FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2"/>
-                    <TextBlock Text="Created by Boris on 26/02/2024" 
-                               Grid.Row="1" Margin="0,5,0,10" Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Row="1" Margin="0,5,0,10" Grid.ColumnSpan="2">
+                        <Run Text="created by "/>
+                        <Run Text=" "/>
+                        <Run Text="on "/>
+                    </TextBlock>
 
                     <TextBlock Text="Title:" Grid.Row="2" VerticalAlignment="Center"/>
                     <TextBox x:Name="TitleTextBox" Grid.Row="2" Grid.Column="1" 
-                             BorderBrush="Red" BorderThickness="1" Margin="5" Height="23"/>
+                             BorderThickness="1" Margin="5" Height="23" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Text="Description:" Grid.Row="3" VerticalAlignment="Center"/>
                     <TextBox x:Name="DescriptionTextBox" Grid.Row="3" Grid.Column="1" 
-                             Margin="5" Height="23"/>
+                             Margin="5" Height="23"  Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Creation Date:" Grid.Row="4" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="CreationDatePicker" SelectedDate="2024-02-26" 
-                                Grid.Row="4" Grid.Column="1" Margin="5" Height="23"/>
+                    <DatePicker x:Name="CreationDatePicker" SelectedDate= "{Binding  Date, UpdateSourceTrigger=PropertyChanged}" 
+                                 
+                                Grid.Row="4" Grid.Column="1" Margin="5" Height="23"  DisplayDateEnd="{x:Static sys:DateTime.Today}">
+                        <DatePicker.Resources>
+                            <sys:Boolean x:Key="SelectedDateFormat">Short</sys:Boolean>
+                            <Style TargetType="DatePickerTextBox">
+                                <Setter Property="IsReadOnly" Value="True"/>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
 
                     <GroupBox Header="Participants" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
                         <Grid>
