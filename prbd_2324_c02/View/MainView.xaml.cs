@@ -1,4 +1,5 @@
-﻿using PRBD_Framework;
+﻿using prbd_2324_c02.Model;
+using PRBD_Framework;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -8,6 +9,21 @@ public partial class MainView : WindowBase
 {
     public MainView() {
         InitializeComponent();
+
+        Register<Tricount>(App.Messages.MSG_ADD , tricount => EditTricount(tricount, false));
     }
-    
+
+   private void EditTricount(Tricount tricount, bool isNew) {
+        if (tricount != null)
+            OpenTab(isNew ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isNew));
+    }
+
+    private void OpenTab(string header, string tag, Func<UserControlBase> createView) {
+        var tab = tabControl.FindByTag(tag);
+        if (tab == null)
+            tabControl.Add(createView(), header, tag);
+        else
+            tabControl.SetFocus(tab);
+    }
+
 }

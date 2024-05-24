@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore.Metadata;
+using prbd_2324_c02.Model;
+using prbd_2324_c02.ViewModel;
 using PRBD_Framework;
 
 namespace prbd_2324_c02.View
@@ -21,9 +24,12 @@ namespace prbd_2324_c02.View
     /// </summary>
     public partial class EditTricountView : UserControlBase
     {
-        public EditTricountView()
+        private readonly EditTricountViewModel _vm;
+        public EditTricountView(Tricount tricount ,bool mode )
         {
             InitializeComponent();
+            DataContext = _vm = new EditTricountViewModel(tricount,mode);
+
         }
         private void CloseTab_Click(object sender, RoutedEventArgs e) {
             var tabItem = ((sender as Button).Parent as StackPanel).Parent as TabItem;

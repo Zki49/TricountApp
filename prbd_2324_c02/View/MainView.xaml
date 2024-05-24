@@ -8,7 +8,6 @@
               xmlns:vw="clr-namespace:prbd_2324_c02.View"
               xmlns:converters="clr-namespace:prbd_2324_c02.ViewModel"
               mc:Ignorable="d"
-              d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
               WindowStartupLocation="CenterScreen"
               Title="Mytricounts" Height="600" Width="600">
     
