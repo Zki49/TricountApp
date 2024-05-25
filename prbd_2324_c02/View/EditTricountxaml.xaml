@@ -75,31 +75,34 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="66*"/>
+                                <ColumnDefinition Width="31*"/>
                                 <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
 
-                            <ListBox x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5">
-                                <ListBoxItem>Benoît</ListBoxItem>
-                                <ListBoxItem>Boris (creator)</ListBoxItem>
-                                <ListBoxItem>Xavier</ListBoxItem>
+                            <ListBox   x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"    ItemsSource="{Binding participants}" Grid.ColumnSpan="2">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding FullName}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
                             </ListBox>
-                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+                            <StackPanel Grid.Row="0" Grid.Column="2" Margin="5,5,5,5">
                                 <Button Content="New Template" Height="23" Width="150"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Margin="5">
-                                <ComboBox Width="200"/>
-                                <Button Content="Add" Height="23" Margin="5,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,5,5,5">
+                                <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Button Content="Add" Height="23" Margin="5,0,0,0" Command="{Binding AddUserCommand}"/>
                                 <Button Content="Add Myself" Height="23" Margin="5,0,0,0"/>
-                                <Button Content="Add Everybody" Height="23" Margin="5,0,0,0"/>
+                                <Button Content="Add Everybody" Height="23" Margin="5,0,0,0" Command="{Binding AddAllUserCommand}"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,20,0,0">
-                        <Button Content="Save" Height="23" Width="75" Margin="0,0,5,0"/>
-                        <Button Content="Cancel" Height="23" Width="75"/>
+                        <Button Content="Save" Height="23" Width="75" Margin="0,0,5,0" Command="{Binding AddTricountCommand}"/>
+                        <Button Content="Cancel" Height="23" Width="75" />
                     </StackPanel>
                 </Grid>
             </TabItem>

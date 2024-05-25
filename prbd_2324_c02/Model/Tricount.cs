@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
 using System.Windows.Navigation;
+using PRBD_Framework;
 
 namespace prbd_2324_c02.Model
 {
-    public class Tricount
+    public class Tricount: EntityBase<PridContext>
     {
        
         public Tricount() {
@@ -98,7 +99,25 @@ namespace prbd_2324_c02.Model
                return res-myExpense;
         }
         
+        public static void AddTricount( string Title , string description ,DateTime date ,List<User> participants , User Creator) {
+            Tricount tricount = new Tricount();
+            tricount.Title= Title ;  
+            tricount.Description= description ;
+            tricount.CreatedAt= date ;
+            tricount.Creator= Creator ;
+             foreach(User user in participants ) {
+                Subscription sub = new Subscription();
+                sub.UserId = user.UserId ;
+                sub.TricountId=tricount.Id ;
+                tricount.Subscriptions.Add(sub) ;
 
+            }
+            
+           Context.Add(tricount);
+            Context.SaveChanges();
+             
+
+        }
        
 
        /* public static void OnModelCreating(ModelBuilder modelBuilder) {

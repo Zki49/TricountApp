@@ -22,6 +22,7 @@ public class User : EntityBase<PridContext>
 
     
     public static User GetUserByMail(string mail) {
+        
         var res = Context.Users
             .Where(user => user.mail == mail)
             .FirstOrDefault();
