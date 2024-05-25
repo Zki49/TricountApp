@@ -78,11 +78,11 @@ namespace prbd_2324_c02.ViewModel
         }
         private void AddAllUser() {
             if (users.Count!=0) {
-                /* declanche une exception pk ?????????????
-                foreach (var user in users) {
+                List<User> list = new List<User>(users);
+                foreach (var user in list) {
                     participants.Add(user);
-                    users.Remove(user);
-                }*/
+                }
+                users.Clear();
                 
             }
         }
