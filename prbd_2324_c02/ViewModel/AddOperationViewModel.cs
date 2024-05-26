@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using prbd_2324_c02.Model;
 using PRBD_Framework;
 
@@ -17,7 +18,7 @@ namespace prbd_2324_c02.ViewModel
         public DateTime Date { get; set; }
         public string BoutonaddorSave {  get; set; }
         public bool isedit { get; set; }
-        
+        public ICommand deletCommand {  get; set; }        
 
         public AddOperationViewModel(Tricount tricount, Operations curent,bool isedit) {
             Tricount = tricount;
@@ -27,6 +28,7 @@ namespace prbd_2324_c02.ViewModel
             Date = curent.CreatAt;
             BoutonaddorSave = isedit ? "Save" : "Add";
             this.isedit = isedit;
+            MakeCommand();
         }
 
         public override bool Validate() {
@@ -41,5 +43,14 @@ namespace prbd_2324_c02.ViewModel
 
             return !HasErrors;
         }
+
+        private void MakeCommand() {
+            deletCommand = new RelayCommand(deleteOperation);
+        }
+        private void deleteOperation() {
+            Curent.delete();
+            //fermeture de la vue ;
+        }
+
     }
 }
