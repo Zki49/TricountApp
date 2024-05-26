@@ -36,5 +36,8 @@ namespace prbd_2324_c02.View
             var tabControl = tabItem.Parent as TabControl;
             tabControl.Items.Remove(tabItem);
         }
+        /*private void btnCancel_Click(object sender, RoutedEventArgs e) {
+            Close();
+        }*/
     }
 }
