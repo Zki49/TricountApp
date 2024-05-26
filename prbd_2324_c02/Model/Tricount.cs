@@ -99,7 +99,7 @@ namespace prbd_2324_c02.Model
                return res-myExpense;
         }
         
-        public static void AddTricount( string Title , string description ,DateTime date ,List<User> participants , User Creator) {
+        public static Tricount AddTricount( string Title , string description ,DateTime date ,List<User> participants , User Creator) {
             Tricount tricount = new Tricount();
             tricount.Title= Title ;  
             tricount.Description= description ;
@@ -115,6 +115,8 @@ namespace prbd_2324_c02.Model
             
            Context.Add(tricount);
             Context.SaveChanges();
+            return tricount;
+            
              
 
         }

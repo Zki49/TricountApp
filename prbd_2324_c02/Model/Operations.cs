@@ -24,7 +24,7 @@ namespace prbd_2324_c02.Model
         public virtual Tricount Tricount { get; set; }
 
         public double Amount {  get; set; }
-        public DateTime DateTime { get; set; } = DateTime.Now;
+        public DateTime CreatAt { get; set; } = DateTime.Now;
 
         public int userId { get; set; }
 
