@@ -29,6 +29,7 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         LogoutCommand =  new RelayCommand(logout);
         ClearCommand = new RelayCommand(ClearTextBox);
        AddCommand = new RelayCommand(Add);
+        Register<Tricount>(App.Messages.MSG_TRICOUNT_CHANGED, tricount => OnRefreshData());
     }
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {
@@ -57,7 +58,8 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         InputText = string.Empty;
     }
     private void Add() {
-        NotifyColleagues(App.Messages.MSG_ADD,new Tricount());
-        OnRefreshData();
+        Tricount tricount = new Tricount();
+        NotifyColleagues(App.Messages.MSG_ADD,tricount);
+       
     }
 }
