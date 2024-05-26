@@ -118,6 +118,11 @@ namespace prbd_2324_c02.Model
              
 
         }
+
+        public void delete() {
+            Context.Remove(this);
+            Context.SaveChanges();
+        }
        
 
        /* public static void OnModelCreating(ModelBuilder modelBuilder) {

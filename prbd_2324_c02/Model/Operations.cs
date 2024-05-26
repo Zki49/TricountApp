@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRBD_Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace prbd_2324_c02.Model
 {
-    public class Operations
+    public class Operations : EntityBase<PridContext>
     {
         public Operations() { }
         [Key]
@@ -29,5 +30,10 @@ namespace prbd_2324_c02.Model
 
         public virtual User user { get; set; }
         public virtual List<Repartitions> repartitions { get; set; }
+
+        public void delete() {
+            Context.Remove(this);
+            Context.SaveChanges();
+        }
     }
 }
