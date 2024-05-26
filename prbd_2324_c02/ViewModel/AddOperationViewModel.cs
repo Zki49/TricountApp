@@ -18,7 +18,8 @@ namespace prbd_2324_c02.ViewModel
         public DateTime Date { get; set; }
         public string BoutonaddorSave {  get; set; }
         public bool isedit { get; set; }
-        public ICommand deletCommand {  get; set; }        
+        public ICommand deletCommand {  get; set; }  
+        public ICommand AddCommand { get; set; }    
 
         public AddOperationViewModel(Tricount tricount, Operations curent,bool isedit) {
             Tricount = tricount;
@@ -46,10 +47,28 @@ namespace prbd_2324_c02.ViewModel
 
         private void MakeCommand() {
             deletCommand = new RelayCommand(deleteOperation);
+            AddCommand = new RelayCommand(Addoperation);
+
         }
         private void deleteOperation() {
             Curent.delete();
             //fermeture de la vue ;
+        }
+        private void Addoperation() {
+            if (isedit) {
+                //edition de l'operation 
+                Curent.title= Title;
+                Curent.Amount= Amout;
+                //etc ...
+                //Curent.save();
+            } else {
+                //creation de l'operation 
+                Curent.Tricount=Tricount;
+                Curent.title= Title;
+                Curent.Amount= Amout;
+                //etc ...
+                //Curent.save();
+            }
         }
 
     }
