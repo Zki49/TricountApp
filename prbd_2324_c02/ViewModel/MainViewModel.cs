@@ -58,5 +58,6 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     }
     private void Add() {
         NotifyColleagues(App.Messages.MSG_ADD,new Tricount());
+        OnRefreshData();
     }
 }

@@ -1,0 +1,84 @@
+﻿<f:DialogWindowBase x:Class="prbd_2324_c02.View.AddOperationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
+        xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
+        xmlns:vw="clr-namespace:prbd_2324_c02.View"
+        xmlns:converters="clr-namespace:prbd_2324_c02.ViewModel"
+        mc:Ignorable="d"
+        Title="AddOperationView" Height="450" Width="300">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Title:" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox Grid.Column="1" Width="200" Margin="5"/>
+
+        <TextBlock Text="Amount:" VerticalAlignment="Center" Grid.Row="1" Margin="0,5"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Width="200" Margin="5"/>
+
+        <TextBlock Text="Initiator:" VerticalAlignment="Center" Grid.Row="2" Margin="0,5"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" Width="200" Margin="5">
+            <!-- ComboBox items should be bound to your list of initiators -->
+        </ComboBox>
+
+        <TextBlock Text="Date:" VerticalAlignment="Center" Grid.Row="3" Margin="0,5"/>
+        <DatePicker Grid.Column="1" Grid.Row="3" Width="200" Margin="5"/>
+
+        <TextBlock Text="Template:" VerticalAlignment="Center" Grid.Row="4" Margin="0,5"/>
+        <Grid Grid.Column="1" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Width="150" Margin="5">
+                <!-- ComboBox items should be bound to your list of templates -->
+            </ComboBox>
+            <Button Content="Apply" Grid.Column="1" Margin="5"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10">
+            <StackPanel>
+                <!-- List of participants with checkboxes, numeric up-down controls, and amounts -->
+                <UniformGrid Columns="3" Rows="4">
+                    <CheckBox Content="Benoît" Margin="5"/>
+                    <!--<vw:NumericUpDown Margin="5" />-->
+                    <TextBlock Text="12,50 €" VerticalAlignment="Center" Margin="5"/>
+
+                    <CheckBox Content="Boris" Margin="5"/>
+                    <!--<vw:NumericUpDown Margin="5" />-->
+                    <TextBlock Text="0,00 €" VerticalAlignment="Center" Margin="5"/>
+
+                    <CheckBox Content="Marc" Margin="5"/>
+                    <!--<vw:NumericUpDown Margin="5" />-->
+                    <TextBlock Text="25,00 €" VerticalAlignment="Center" Margin="5"/>
+
+                    <CheckBox Content="Xavier" Margin="5"/>
+                    <!--<vw:NumericUpDown Margin="5" />-->
+                    <TextBlock Text="62,50 €" VerticalAlignment="Center" Margin="5"/>
+                </UniformGrid>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Button Content="Save as New Template" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,5"/>
+
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
+            <Button Content="Add" Width="75" Margin="0,0,5,0"/>
+            <Button Content="Cancel" Width="75"/>
+        </StackPanel>
+    </Grid>
+</f:DialogWindowBase>
