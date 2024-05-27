@@ -56,19 +56,19 @@
                 <!-- List of participants with checkboxes, numeric up-down controls, and amounts -->
                 <UniformGrid Columns="3" Rows="4">
                     <CheckBox Content="Benoît" Margin="5"/>
-                    <!-- <vw:NumericUpDown Margin="5" />-->
+                    <vw:NumericUpDown Margin="5" />
                     <TextBlock Text="12,50 €" VerticalAlignment="Center" Margin="5"/>
 
                     <CheckBox Content="Boris" Margin="5"/>
-                    <!-- <vw:NumericUpDown Margin="5" />-->
+                    <vw:NumericUpDown Margin="5" />
                     <TextBlock Text="0,00 €" VerticalAlignment="Center" Margin="5"/>
 
                     <CheckBox Content="Marc" Margin="5"/>
-                    <!-- <vw:NumericUpDown Margin="5" />-->
+                    <vw:NumericUpDown Margin="5" />
                     <TextBlock Text="25,00 €" VerticalAlignment="Center" Margin="5"/>
 
                     <CheckBox Content="Xavier" Margin="5"/>
-                   <!-- <vw:NumericUpDown Margin="5" />-->
+                    <vw:NumericUpDown Margin="5" />
                     <TextBlock Text="62,50 €" VerticalAlignment="Center" Margin="5"/>
                 </UniformGrid>
             </StackPanel>
