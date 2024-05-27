@@ -156,17 +156,17 @@ public class PridContext : DbContextBase
                                                     );
 
 
-        modelBuilder.Entity<Operations>().HasData(new Operations { OperationsId = 1, title = "Colruyt", tricountId = 1, Amount = 100, DateTime = new DateTime(2023, 10, 13), userId = 2 },
-                                                  new Operations { OperationsId = 2, title = "Plein essence", tricountId = 1, Amount = 75, DateTime = new DateTime(2023, 10, 13), userId = 1 },
-                                                  new Operations { OperationsId = 3, title = "Grosses courses LIDL", tricountId = 1, Amount = 212.47, DateTime = new DateTime(2023, 10, 13), userId = 4 },
-                                                  new Operations { OperationsId = 4, title = "Apéros", tricountId = 1, Amount = 31.89745622, DateTime = new DateTime(2023, 10, 13), userId = 1 },
-                                                  new Operations { OperationsId = 5, title = "Boucherie", tricountId = 1, Amount = 25.5, DateTime = new DateTime(2023, 10, 26), userId = 2 },
-                                                  new Operations { OperationsId = 6, title = "Loterie", tricountId = 1, Amount = 35, DateTime = new DateTime(2023, 10, 26), userId = 1 },
-                                                  new Operations { OperationsId = 7, title = "Sangria", tricountId = 2, Amount = 42, DateTime = new DateTime(2023, 08, 16), userId = 2 },
-                                                  new Operations { OperationsId = 8, title = "Jet Ski", tricountId = 2, Amount = 250, DateTime = new DateTime(2023, 08, 17), userId = 4 },
-                                                  new Operations { OperationsId = 9, title = "PV parking", tricountId = 2, Amount = 15.5, DateTime = new DateTime(2023, 08, 16), userId = 4 },
-                                                  new Operations { OperationsId = 10, title = "Tickets", tricountId = 3, Amount = 220, DateTime = new DateTime(2023, 06, 08), userId = 1 },
-                                                  new Operations { OperationsId = 11, title = "Décathlon", tricountId = 3, Amount = 199.99, DateTime = new DateTime(2023, 07, 01), userId = 2 }
+        modelBuilder.Entity<Operations>().HasData(new Operations { OperationsId = 1, title = "Colruyt", tricountId = 1, Amount = 100, CreatAt = new DateTime(2023, 10, 13), userId = 2 },
+                                                  new Operations { OperationsId = 2, title = "Plein essence", tricountId = 1, Amount = 75, CreatAt = new DateTime(2023, 10, 13), userId = 1 },
+                                                  new Operations { OperationsId = 3, title = "Grosses courses LIDL", tricountId = 1, Amount = 212.47, CreatAt = new DateTime(2023, 10, 13), userId = 4 },
+                                                  new Operations { OperationsId = 4, title = "Apéros", tricountId = 1, Amount = 31.89745622, CreatAt = new DateTime(2023, 10, 13), userId = 1 },
+                                                  new Operations { OperationsId = 5, title = "Boucherie", tricountId = 1, Amount = 25.5, CreatAt = new DateTime(2023, 10, 26), userId = 2 },
+                                                  new Operations { OperationsId = 6, title = "Loterie", tricountId = 1, Amount = 35, CreatAt = new DateTime(2023, 10, 26), userId = 1 },
+                                                  new Operations { OperationsId = 7, title = "Sangria", tricountId = 2, Amount = 42, CreatAt = new DateTime(2023, 08, 16), userId = 2 },
+                                                  new Operations { OperationsId = 8, title = "Jet Ski", tricountId = 2, Amount = 250, CreatAt = new DateTime(2023, 08, 17), userId = 4 },
+                                                  new Operations { OperationsId = 9, title = "PV parking", tricountId = 2, Amount = 15.5, CreatAt = new DateTime(2023, 08, 16), userId = 4 },
+                                                  new Operations { OperationsId = 10, title = "Tickets", tricountId = 3, Amount = 220, CreatAt = new DateTime(2023, 06, 08), userId = 1 },
+                                                  new Operations { OperationsId = 11, title = "Décathlon", tricountId = 3, Amount = 199.99, CreatAt = new DateTime(2023, 07, 01), userId = 2 }
                                                     );
 
                modelBuilder.Entity<Repartitions>().HasData(new Repartitions { weight = 1, userId = 1, operationsID = 1 },
