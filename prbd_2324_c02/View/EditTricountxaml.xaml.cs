@@ -22,7 +22,7 @@ namespace prbd_2324_c02.View
     /// <summary>
     /// Logique d'interaction pour EditTricountxaml.xaml
     /// </summary>
-    public partial class EditTricountView : UserControlBase
+    public partial class EditTricountView :UserControlBase 
     {
         private readonly EditTricountViewModel _vm;
         public EditTricountView(Tricount tricount ,bool mode )
