@@ -11,21 +11,9 @@
                    d:DesignHeight="450" d:DesignWidth="800">
 
 
-    <Grid>
-        <TabControl>
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Tricount View" VerticalAlignment="Center"/>
-                        <Button Content="X" Width="16" Height="16" Margin="5,0,0,0"
-                                VerticalAlignment="Center" 
-                                Foreground="Red"
-                                FontWeight="Bold"
-                                Click="CloseTab_Click"/>
-                    </StackPanel>
-                </TabItem.Header>
+  
 
-                <!-- Existing Grid content -->
+  
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -105,7 +93,7 @@
                         <Button Content="Cancel" Height="23" Width="75"  />
                     </StackPanel>
                 </Grid>
-            </TabItem>
-        </TabControl>
-    </Grid>
+           
+        
+   
 </f:UserControlBase>
