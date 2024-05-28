@@ -11,89 +11,89 @@
                    d:DesignHeight="450" d:DesignWidth="800">
 
 
-  
 
-  
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="200"/>
-                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="New Tricount - No Description" 
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="188.96"/>
+            <RowDefinition Height="Auto" MinHeight="140.84"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="New Tricount - No Description" 
                                FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2"/>
-                    <TextBlock Grid.Row="1" Margin="0,5,0,10" Grid.ColumnSpan="2">
+        <TextBlock Grid.Row="1" Margin="0,5,0,10" Grid.ColumnSpan="2">
                         <Run Text="created by "/>
                         <Run Text=" "/>
                         <Run Text="on "/>
-                    </TextBlock>
+        </TextBlock>
 
-                    <TextBlock Text="Title:" Grid.Row="2" VerticalAlignment="Center"/>
-                    <TextBox x:Name="TitleTextBox" Grid.Row="2" Grid.Column="1" 
-                             BorderThickness="1" Margin="5" Height="23" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="Title:" Grid.Row="2" VerticalAlignment="Center" Height="16"/>
+        <TextBox x:Name="TitleTextBox" Grid.Row="2" Grid.Column="1" 
+                             BorderThickness="1" Margin="5,5,5,5" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <TextBlock Text="Description:" Grid.Row="3" VerticalAlignment="Center"/>
-                    <TextBox x:Name="DescriptionTextBox" Grid.Row="3" Grid.Column="1" 
-                             Margin="5" Height="23"  Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Text="Description:" Grid.Row="3" VerticalAlignment="Center" Height="16"/>
+        <TextBox x:Name="DescriptionTextBox" Grid.Row="3" Grid.Column="1" 
+                             Margin="5,20,5,10"  Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <TextBlock Text="Creation Date:" Grid.Row="4" VerticalAlignment="Center"/>
-                    <DatePicker x:Name="CreationDatePicker" SelectedDate= "{Binding  Date, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Text="Creation Date:" Grid.Row="4" VerticalAlignment="Center" Height="61"/>
+        <DatePicker x:Name="CreationDatePicker" SelectedDate= "{Binding  Date, UpdateSourceTrigger=PropertyChanged}" 
                                  
-                                Grid.Row="4" Grid.Column="1" Margin="5" Height="23"  DisplayDateEnd="{x:Static sys:DateTime.Today}">
-                        <DatePicker.Resources>
-                            <sys:Boolean x:Key="SelectedDateFormat">Short</sys:Boolean>
-                            <Style TargetType="DatePickerTextBox">
-                                <Setter Property="IsReadOnly" Value="True"/>
-                            </Style>
-                        </DatePicker.Resources>
-                    </DatePicker>
+                                Grid.Row="4" Grid.Column="1" Margin="0,30,10,107"  DisplayDateEnd="{x:Static sys:DateTime.Today}">
+            <DatePicker.Resources>
+                <sys:Boolean x:Key="SelectedDateFormat">Short</sys:Boolean>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="IsReadOnly" Value="True"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
 
-                    <GroupBox Header="Participants" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="66*"/>
-                                <ColumnDefinition Width="31*"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
+        <GroupBox Header="Participants" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="66*"/>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
 
-                            <ListBox   x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"    ItemsSource="{Binding participants}" Grid.ColumnSpan="2">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding FullName}"/>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                            <StackPanel Grid.Row="0" Grid.Column="2" Margin="5,5,5,5">
-                                <Button Content="New Template" Height="23" Width="150"/>
-                            </StackPanel>
+                <ListBox   x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"    ItemsSource="{Binding participants}" Grid.ColumnSpan="2">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding FullName}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Grid.Row="0" Grid.Column="2" Margin="5,5,5,5">
+                    <Button Content="New Template" Height="23" Width="150"/>
+                </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,5,5,5">
-                                <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged}"/>
-                                <Button Content="Add" Height="23" Margin="5,0,0,0" Command="{Binding AddUserCommand}"/>
-                                <Button Content="Add Myself" Height="23" Margin="5,0,0,0"/>
-                                <Button Content="Add Everybody" Height="23" Margin="5,0,0,0" Command="{Binding AddAllUserCommand}"/>
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,5,5,5">
+                    <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="Add" Height="23" Margin="5,0,0,0" Command="{Binding AddUserCommand}"/>
+                    <Button Content="Add Myself" Height="23" Margin="5,0,0,0"/>
+                    <Button Content="Add Everybody" Height="23" Margin="5,0,0,0" Command="{Binding AddAllUserCommand}"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,20,0,0">
-                        <Button Content="Save" Height="23" Width="75" Margin="0,0,5,0" Command="{Binding AddTricountCommand}"/>
-                        <Button Content="Cancel" Height="23" Width="75"  />
-                    </StackPanel>
-                </Grid>
-           
-        
-   
+        <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,20,0,0" Grid.Column="1" Width="155">
+            <Button Content="Save" Height="23" Width="75" Margin="0,0,5,0" Command="{Binding AddTricountCommand}"/>
+            <Button Content="Cancel" Height="23" Width="75"  />
+        </StackPanel>
+    </Grid>
+
+
+
 </f:UserControlBase>
