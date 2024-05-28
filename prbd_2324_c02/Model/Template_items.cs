@@ -23,7 +23,7 @@ namespace prbd_2324_c02.Model
         
         public virtual User User { get; set; }
 
-        public enum fields {
+        public enum Fields {
             User, Template, Weight 
         }
         
