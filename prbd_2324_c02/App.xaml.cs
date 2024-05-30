@@ -12,7 +12,8 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_LOGOUT,
         MSG_SIGNUP,
         MSG_ADD,
-        MSG_TRICOUNT_CHANGED
+        MSG_TRICOUNT_CHANGED,
+        MSG_OPEN_TRICOUNT
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {

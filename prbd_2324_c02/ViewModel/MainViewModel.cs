@@ -25,6 +25,8 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     public ICommand LogoutCommand {  get; set; }
     public ICommand ClearCommand { get; set; }
     public ICommand AddCommand { get; set; }
+    public ICommand openTricount { get; set; }
+
 
     public ObservableCollection<Tricount> tricounts { get; set; } = new ();
     public MainViewModel() {
@@ -32,7 +34,10 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         LogoutCommand =  new RelayCommand(logout);
         ClearCommand = new RelayCommand(ClearTextBox);
        AddCommand = new RelayCommand(Add);
+        openTricount = new RelayCommand(opentricount);
+        
         Register<Tricount>(App.Messages.MSG_TRICOUNT_CHANGED, tricount => OnRefreshData());
+
     }
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {
@@ -65,4 +70,10 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         NotifyColleagues(App.Messages.MSG_ADD,tricount);
        
     }
+    private void opentricount() {
+        Tricount tricount = new Tricount();
+        NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, tricount);
+
+    }
+
 }

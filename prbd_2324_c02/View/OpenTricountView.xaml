@@ -1,0 +1,121 @@
+﻿<f:UserControlBase x:Class="prbd_2324_c02.View.OpenTricountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
+             xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
+             xmlns:vw="clr-namespace:prbd_2324_c02.View"
+
+             xmlns:local="clr-namespace:prbd_2324_c02.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+       
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Header with user email -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+            <Button Content="Logout" Margin="5"/>
+            <Button Content="Reload" Margin="5"/>
+            <Button Content="Reset" Margin="5"/>
+            <TextBlock Text="MyTricounts" VerticalAlignment="Center" Margin="15,0,0,0"/>
+        </StackPanel>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="10">
+                <TextBlock Text="{Binding Tricount.Title}" FontSize="24" FontWeight="Bold" Margin="0,10,0,10"/>
+                <TextBlock Text="Created by Boris on 10/10/2023" FontStyle="Italic" Margin="0,0,0,20"/>
+
+                <!-- Expenses -->
+                <StackPanel>
+                    <Border Background="LightGray" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Loterie" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="Paid by Boris" FontStyle="Italic"/>
+                            <TextBlock Text="35,00 €" FontWeight="Bold"/>
+                            <TextBlock Text="26/10/2023" FontStyle="Italic"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="LightGray" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Boucherie" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="Paid by Benoît" FontStyle="Italic"/>
+                            <TextBlock Text="25,50 €" FontWeight="Bold"/>
+                            <TextBlock Text="26/10/2023" FontStyle="Italic"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="LightGray" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Apéros" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="Paid by Boris" FontStyle="Italic"/>
+                            <TextBlock Text="31,90 €" FontWeight="Bold"/>
+                            <TextBlock Text="13/10/2023" FontStyle="Italic"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="LightGray" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Grosses courses LIDL" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="Paid by Xavier" FontStyle="Italic"/>
+                            <TextBlock Text="212,47 €" FontWeight="Bold"/>
+                            <TextBlock Text="13/10/2023" FontStyle="Italic"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="LightGray" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Plein essence" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="Paid by Boris" FontStyle="Italic"/>
+                            <TextBlock Text="75,00 €" FontWeight="Bold"/>
+                            <TextBlock Text="13/10/2023" FontStyle="Italic"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="LightGray" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                        <StackPanel>
+                            <TextBlock Text="Colruyt" FontSize="16" FontWeight="Bold"/>
+                            <TextBlock Text="Paid by Benoît" FontStyle="Italic"/>
+                            <TextBlock Text="100,00 €" FontWeight="Bold"/>
+                            <TextBlock Text="13/10/2023" FontStyle="Italic"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Balances -->
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <StackPanel Margin="0,0,20,0">
+                        <TextBlock Text="-32,12 €" Foreground="Red" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="Benoît" Margin="0,0,0,5"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,0,20,0">
+                        <TextBlock Text="-87,40 €" Foreground="Red" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="Boris (me)" Margin="0,0,0,5"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,0,20,0">
+                        <TextBlock Text="0,00 €" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="Marc" Margin="0,0,0,5"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="119,53 €" Foreground="Green" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock Text="Xavier" Margin="0,0,0,5"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Edit and Delete Buttons -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" Margin="10">
+            <Button Content="Edit" Margin="5"/>
+            <Button Content="Delete" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</f:UserControlBase>
+
+

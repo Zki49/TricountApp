@@ -11,6 +11,7 @@ public partial class MainView : WindowBase
         InitializeComponent();
 
         Register<Tricount>(App.Messages.MSG_ADD , tricount => EditTricount(tricount, false));
+        Register<Tricount>(App.Messages.MSG_OPEN_TRICOUNT, tricount => OpenTricount(tricount));
     }
 
    private void EditTricount(Tricount tricount, bool isEdit) {
@@ -18,6 +19,12 @@ public partial class MainView : WindowBase
             OpenTab(!isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));
         }
         
+    }
+    private void OpenTricount(Tricount tricount) {
+        if (tricount != null) {
+            OpenTab(tricount.Title,tricount.Title, () => new OpenTricountView(tricount));
+        }
+
     }
 
     private void OpenTab(string header, string tag, Func<UserControlBase> createView) {
