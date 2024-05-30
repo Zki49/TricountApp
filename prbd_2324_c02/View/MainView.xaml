@@ -31,7 +31,7 @@
             <Button Content="Reset" Command="{Binding ResetCommand}" Margin="5" />
         </StackPanel>
 
-        <f:MyTabControl x:Name="tabControl" Margin="10" Grid.Row="2" HasCloseButton="False">
+        <f:MyTabControl x:Name="tabControl" Margin="10" Grid.Row="2" HasCloseButton="True">
             <TabItem x:Name="tricountView" Header="Tricount" Tag="Tricount">
                 <vw:TricountView/>
             </TabItem>

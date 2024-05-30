@@ -32,11 +32,6 @@ Width="280" Height="325">
         <TextBox x:Name="NomTextBox" Grid.Row="0" Grid.Column="1" Margin="10" 
                  Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" />
 
-
-        <!-- Prénom -->
-        <TextBlock Text="Prénom:" Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
-        <TextBox x:Name="PrenomTextBox" Grid.Row="1" Grid.Column="1" Margin="10" />
-
         <!-- Email -->
         <TextBlock Text="Email:" Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
         <TextBox x:Name="EmailTextBox" Grid.Row="2" Grid.Column="1" Margin="10" 
@@ -46,9 +41,7 @@ Width="280" Height="325">
         <TextBlock Text="Mot de passe:" Grid.Row="3" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
         <PasswordBox x:Name="MotDePasseBox" Grid.Row="3" Grid.Column="1" Margin="10" 
                      f:PasswordHelper.Attach="false"
-                    f:PasswordHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}" 
-                     
-                     />
+                    f:PasswordHelper.Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}" />
         
         
         <!-- Confirmer le mot de passe -->
@@ -56,13 +49,12 @@ Width="280" Height="325">
         
         <PasswordBox x:Name="ConfirmerMotDePasseBox" Grid.Row="4" Grid.Column="1" Margin="10"
                       f:PasswordHelper.Attach="false"
-                        f:PasswordHelper.Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" 
-                     />
+                        f:PasswordHelper.Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" />
 
         <!-- Bouton S'inscrire -->
-        <Button Content="S'inscrire" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,10,0,60" HorizontalAlignment="Left" Width="145" Command="{Binding SignupCommand}" />
+        <Button Content="S'inscrire" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,10,0,79" HorizontalAlignment="Left" Width="145" Command="{Binding SignupCommand}" />
 
         <!-- Bouton exit -->
-        <Button Content="Exit" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,59,0,10" HorizontalAlignment="Left" Width="145" Command="{Binding ExitCommand}" />
+        <Button Content="Exit" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,78,0,10" HorizontalAlignment="Left" Width="145" Command="{Binding ExitCommand}" />
     </Grid>
 </f:WindowBase>

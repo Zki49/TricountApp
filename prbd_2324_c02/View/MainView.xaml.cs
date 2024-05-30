@@ -16,7 +16,7 @@ public partial class MainView : WindowBase
 
    private void EditTricount(Tricount tricount, bool isEdit) {
         if (tricount != null) {
-            OpenTab(isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));
+            OpenTab(!isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));
         }
         
     }
