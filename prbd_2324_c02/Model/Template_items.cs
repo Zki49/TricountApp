@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PRBD_Framework;
 
 namespace prbd_2324_c02.Model
 {
-    public class Template_items
+    public class Template_items : EntityBase<PridContext>
     {
         [Required]
         public int weight { get; set; }

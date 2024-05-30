@@ -12,7 +12,10 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
 {
 
     public string Title => "prbd_2324_c02";
-    public string Color => "LightGray";
+    public string Color {
+        get;
+        set;
+    } 
     private string _inputText;
     public string InputText {
         get => _inputText;
