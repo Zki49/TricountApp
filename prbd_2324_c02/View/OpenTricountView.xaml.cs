@@ -1,4 +1,6 @@
-﻿using PRBD_Framework;
+﻿using prbd_2324_c02.Model;
+using prbd_2324_c02.ViewModel;
+using PRBD_Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +23,12 @@ namespace prbd_2324_c02.View
     /// </summary>
     public partial class OpenTricountView : UserControlBase
     {
-        public OpenTricountView() {
+        private readonly OpenTricountViewModel _vm;
+        public OpenTricountView(Tricount tricount) {
+            Console.WriteLine("test");
             InitializeComponent();
+            DataContext = _vm = new OpenTricountViewModel(tricount);
+
         }
     }
 }
