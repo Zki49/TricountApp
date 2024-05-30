@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +10,23 @@ using PRBD_Framework;
 
 namespace prbd_2324_c02.ViewModel
 {
-    public  class AddOperationViewModel : ViewModelBase<User, PridContext>
+    public class AddOperationViewModel : ViewModelBase<User, PridContext>
     {
         public Tricount Tricount { get; set; }
         public Operations Curent { get; set; }
-        public String Title {  get; set; }
+        public String Title { get; set; }
         public double Amout { get; set; }
         public DateTime Date { get; set; }
-        public string BoutonaddorSave {  get; set; }
+        public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
-        public ICommand deletCommand {  get; set; }  
-        public ICommand AddCommand { get; set; }    
+        public ICommand deletCommand { get; set; }
+        public ICommand AddCommand { get; set; }
 
-        public AddOperationViewModel(Tricount tricount, Operations curent,bool isedit) {
+
+        public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
+
+        public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
+            OnRefreshData();
             Tricount = tricount;
             Curent = curent;
             Title = curent.title;
@@ -38,7 +43,7 @@ namespace prbd_2324_c02.ViewModel
 
             if (string.IsNullOrEmpty(Title))
                 AddError(nameof(Title), "required");
-            else if (Amout<0)
+            else if (Amout < 0)
                 AddError(nameof(Amout), "minimum 1 cent ");
 
 
@@ -59,19 +64,34 @@ namespace prbd_2324_c02.ViewModel
         private void Addoperation() {
             if (isedit) {
                 //edition de l'operation 
-                Curent.title= Title;
-                Curent.Amount= Amout;
+                Curent.title = Title;
+                Curent.Amount = Amout;
                 //etc ...
                 //Curent.save();
             } else {
                 //creation de l'operation 
-                Curent.Tricount=Tricount;
-                Curent.title= Title;
-                Curent.Amount= Amout;
+                Curent.Tricount = Tricount;
+                Curent.title = Title;
+                Curent.Amount = Amout;
                 //etc ...
                 //Curent.save();
             }
         }
 
+        protected override void OnRefreshData() {
+            if (!isedit) {
+                var Participants = Tricount.Subscriptions;
+                foreach(var participant in Participants) {
+                    Repartitions rep = new Repartitions();
+                    rep.weight = 1;
+                    rep.userId = participant.UserId;
+                    rep.operations = Curent;
+                    Repartitions.Add(rep);
+                }
+            } else {
+                Repartitions.RefreshFromModel(Context.Repartitions.Where(r => r.operationsID == Curent.OperationsId));
+            }
+            
+        }
     }
 }

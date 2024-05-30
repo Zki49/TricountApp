@@ -52,26 +52,20 @@
         </Grid>
 
         <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10">
-            <StackPanel>
-                <!-- List of participants with checkboxes, numeric up-down controls, and amounts -->
-                <UniformGrid Columns="3" Rows="4">
-                    <CheckBox Content="Benoît" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="12,50 €" VerticalAlignment="Center" Margin="5"/>
-
-                    <CheckBox Content="Boris" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="0,00 €" VerticalAlignment="Center" Margin="5"/>
-
-                    <CheckBox Content="Marc" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="25,00 €" VerticalAlignment="Center" Margin="5"/>
-
-                    <CheckBox Content="Xavier" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="62,50 €" VerticalAlignment="Center" Margin="5"/>
-                </UniformGrid>
-            </StackPanel>
+            <ItemsControl ItemsSource="{Binding Repartitions}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <!-- List of participants with checkboxes, numeric up-down controls, and amounts -->
+                            <UniformGrid Columns="3" Rows="4">
+                                <CheckBox Content="{Binding userId}" Margin="5"/>
+                                <vw:NumericUpDown Margin="5" />
+                                <TextBlock Text="12$" VerticalAlignment="Center" Margin="5"/>
+                            </UniformGrid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
 
         <Button Content="Save as New Template" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,5"/>

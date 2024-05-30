@@ -30,6 +30,7 @@ namespace prbd_2324_c02.Model
         //[Required]
         [ForeignKey(nameof(operationsID))]
         public virtual Operations operations { get; set; }
+       
     }
 
     /*

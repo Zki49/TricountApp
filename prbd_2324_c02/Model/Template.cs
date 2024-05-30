@@ -6,11 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PRBD_Framework;
 
 namespace prbd_2324_c02.Model
 {
     [Table("templates")]
-    public class Template
+    public class Template : EntityBase<PridContext>
     {
         public enum Fields
         {
