@@ -40,15 +40,16 @@ namespace prbd_2324_c02.ViewModel
 
 
         public EditTricountViewModel(Tricount curent, bool isEdit) {
-            Console.WriteLine("--edittricount en construction ....");
             mode = isEdit;
             this.curent = curent;
+           if (isEdit) {
+                Title= curent.Title;
+            }
             Date = curent.CreatedAt.Equals(new DateTime()) ? DateTime.Now : curent.CreatedAt;
             DatetoText = Date.ToString();
+            Description= string.IsNullOrEmpty(curent.Description) ? " " : curent.Description;
             makeCommand();
             OnRefreshData();
-            Console.WriteLine("--edittricount consrtuit ....");
-
         }
         public override bool Validate() {
             ClearErrors();
@@ -64,8 +65,20 @@ namespace prbd_2324_c02.ViewModel
             return !HasErrors;
         }
         protected override void OnRefreshData() {
-            users.RefreshFromModel(Context.Users.Where(user => user.UserId != CurrentUser.UserId));
-            participants.Add(CurrentUser);
+            if (mode) {
+                var sub = Context.Subscriptions.Where(S => S.TricountId == curent.Id);
+                users.RefreshFromModel(Context.Users);
+                foreach (var s in sub) {
+                    participants.Add(s.User);
+                    users.Remove(s.User);
+                }
+                
+
+            }else {
+                users.RefreshFromModel(Context.Users.Where(user => user.UserId != CurrentUser.UserId));
+                participants.Add(CurrentUser);
+            }
+            
 
         }
         private void makeCommand() {
