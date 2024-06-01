@@ -25,7 +25,7 @@ public partial class MainView : WindowBase
         
     }
     private void DoCloseTab(Tricount member) {
-        tabControl.CloseByTag(string.IsNullOrEmpty(member.Title) ? "<New Member>" : member.Title);
+        tabControl.CloseByTag(string.IsNullOrEmpty(member.Title) ? "<New Tricount>" : member.Title);
     }
     private void OpenTricount(Tricount tricount) {
         if (tricount != null) {

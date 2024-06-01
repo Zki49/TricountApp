@@ -116,6 +116,13 @@ namespace prbd_2324_c02.ViewModel
                 NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount.AddTricount(Title, Description, Date, list, CurrentUser));
                 NotifyColleagues(App.Messages.MSG_CLOSE_TAB, new Tricount());
             } else {
+                curent.Title=Title; 
+                curent.Description=Description;
+                //continuer
+                RaisePropertyChanged();
+                Context.SaveChanges();
+                NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, curent);
+                NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED,curent);
 
             }
           

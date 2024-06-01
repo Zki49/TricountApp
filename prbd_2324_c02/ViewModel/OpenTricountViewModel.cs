@@ -31,7 +31,7 @@ namespace prbd_2324_c02.ViewModel
 
         }
         private void EditTricount() {
-            Console.WriteLine("cc" + Tricount);
+            NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
             NotifyColleagues(App.Messages.MSG_EDIT, Tricount);
         }
         private void deleteTricount() {
