@@ -69,7 +69,7 @@ namespace prbd_2324_c02.ViewModel
             AddUserCommand = new RelayCommand(AddUser ,()=>UserSelected!=null);
             AddAllUserCommand = new RelayCommand(AddAllUser , ()=>users.Count!=0);
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
-           // Delete = new RelayCommand(DeleteAction, () => !HasExpense);
+            Delete = new RelayCommand(deleteTricount);
 
         }
         private void AddUser() {
@@ -88,6 +88,16 @@ namespace prbd_2324_c02.ViewModel
                 users.Clear();
                 
             }
+        }
+        private void deleteTricount() {
+            if (mode) {
+                if (App.ShowDialog<DialogViewModel, User, PridContext>(" Tricount ").Equals(true)) {
+                    curent.delete();
+                }
+            } else {
+                //ferme la vue sans save
+            }
+           
         }
 
         private void AddTricount() {

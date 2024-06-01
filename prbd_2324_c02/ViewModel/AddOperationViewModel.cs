@@ -56,10 +56,16 @@ namespace prbd_2324_c02.ViewModel
 
         }
         private void deleteOperation() {
-            //il faut faire une dialog comme ca 
-            // if (App.ShowDialog<DialogViewModel, Member, MsnContext>("Dialog Demo", 123, CurrentUser) is Member member)
-            Curent.delete();
-            //fermeture de la vue ;
+            if(isedit) {
+                if (App.ShowDialog<DialogViewModel, User, PridContext>("Operation ").Equals(true)) {
+                    Curent.delete();
+                }
+            }else {
+                //fermeture de la vue sans save
+            }
+
+
+
         }
         private void Addoperation() {
             if (isedit) {
