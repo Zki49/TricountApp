@@ -18,11 +18,25 @@ namespace prbd_2324_c02.ViewModel
             private init => SetProperty(ref _tricount, value);
 
         }
-      
+        public ICommand Delete { get; set; }
+
 
         public OpenTricountViewModel(Tricount tricount) {
             Console.WriteLine("$$$" + tricount);
-            _tricount = tricount;
+            Tricount = tricount;
+            Delete = new RelayCommand(deleteTricount);
+
+        }
+        private void deleteTricount() {
+            
+                if (App.ShowDialog<DialogViewModel, User, PridContext>(" Tricount ").Equals(true)) {
+                   
+                    Tricount.delete();
+                NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
+                NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
+
+                
+            }
 
         }
     }

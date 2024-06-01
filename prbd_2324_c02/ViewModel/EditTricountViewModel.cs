@@ -26,7 +26,8 @@ namespace prbd_2324_c02.ViewModel
         public ICommand AddAllUserCommand { get; set; }
         public ICommand AddMySelfCommand { get; set; }
         public ICommand AddTricountCommand { get; set; }
-        public ICommand Delete { get; set; }
+        public ICommand CancelCommand { get; set; }
+
 
         public User UserSelected { get; set; }
         public String Title {
@@ -39,12 +40,12 @@ namespace prbd_2324_c02.ViewModel
 
 
         public EditTricountViewModel(Tricount curent, bool isEdit) {
-            OnRefreshData();
             mode = isEdit;
             this.curent = curent;
             Date = curent.CreatedAt.Equals(new DateTime()) ? DateTime.Now : curent.CreatedAt;
             DatetoText = Date.ToString();
             makeCommand();
+            OnRefreshData();
 
         }
         public override bool Validate() {
@@ -69,7 +70,10 @@ namespace prbd_2324_c02.ViewModel
             AddUserCommand = new RelayCommand(AddUser ,()=>UserSelected!=null);
             AddAllUserCommand = new RelayCommand(AddAllUser , ()=>users.Count!=0);
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
-            Delete = new RelayCommand(deleteTricount);
+            CancelCommand = new RelayCommand(() => {
+                NotifyColleagues(App.Messages.MSG_CLOSE_TAB, curent);
+            });
+            
 
         }
         private void AddUser() {
@@ -88,14 +92,6 @@ namespace prbd_2324_c02.ViewModel
                 users.Clear();
                 
             }
-        }
-        private void deleteTricount() {
-            if (mode) {
-                if (App.ShowDialog<DialogViewModel, User, PridContext>(" Tricount ").Equals(true)) {
-                    curent.delete();
-                }
-            } 
-           
         }
 
         private void AddTricount() {

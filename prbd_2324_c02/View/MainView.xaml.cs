@@ -12,6 +12,8 @@ public partial class MainView : WindowBase
 
         Register<Tricount>(App.Messages.MSG_ADD , tricount => EditTricount(tricount, false));
         Register<Tricount>(App.Messages.MSG_OPEN_TRICOUNT, tricount => OpenTricount(tricount));
+        Register<Tricount>(App.Messages.MSG_CLOSE_TAB,
+           member => DoCloseTab(member));
     }
 
    private void EditTricount(Tricount tricount, bool isEdit) {
@@ -19,6 +21,9 @@ public partial class MainView : WindowBase
             OpenTab(!isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));
         }
         
+    }
+    private void DoCloseTab(Tricount member) {
+        tabControl.CloseByTag(string.IsNullOrEmpty(member.Title) ? "<New Member>" : member.Title);
     }
     private void OpenTricount(Tricount tricount) {
         if (tricount != null) {

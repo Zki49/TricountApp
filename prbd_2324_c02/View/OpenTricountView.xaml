@@ -103,7 +103,7 @@
         <!-- Edit and Delete Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" Margin="10">
             <Button Content="Edit" Margin="5"/>
-            <Button Content="Delete" Margin="5"/>
+            <Button Content="Delete" Margin="5" Command="{Binding Delete}"/>
         </StackPanel>
     </Grid>
 </f:UserControlBase>
