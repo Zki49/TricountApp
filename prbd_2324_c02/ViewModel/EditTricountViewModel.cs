@@ -40,12 +40,14 @@ namespace prbd_2324_c02.ViewModel
 
 
         public EditTricountViewModel(Tricount curent, bool isEdit) {
+            Console.WriteLine("--edittricount en construction ....");
             mode = isEdit;
             this.curent = curent;
             Date = curent.CreatedAt.Equals(new DateTime()) ? DateTime.Now : curent.CreatedAt;
             DatetoText = Date.ToString();
             makeCommand();
             OnRefreshData();
+            Console.WriteLine("--edittricount consrtuit ....");
 
         }
         public override bool Validate() {

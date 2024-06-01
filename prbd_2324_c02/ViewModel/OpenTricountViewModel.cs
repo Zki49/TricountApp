@@ -19,24 +19,28 @@ namespace prbd_2324_c02.ViewModel
 
         }
         public ICommand Delete { get; set; }
+        public ICommand EditCommand { get; set; }
+
 
 
         public OpenTricountViewModel(Tricount tricount) {
             Console.WriteLine("$$$" + tricount);
             Tricount = tricount;
             Delete = new RelayCommand(deleteTricount);
+            EditCommand = new RelayCommand(EditTricount);
 
+        }
+        private void EditTricount() {
+            Console.WriteLine("cc" + Tricount);
+            NotifyColleagues(App.Messages.MSG_EDIT, Tricount);
         }
         private void deleteTricount() {
             
                 if (App.ShowDialog<DialogViewModel, User, PridContext>(" Tricount ").Equals(true)) {
-                   
                     Tricount.delete();
-                NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
-                NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
-
-                
-            }
+                    NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
+                    NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
+                }
 
         }
     }

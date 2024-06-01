@@ -9,16 +9,18 @@ public partial class MainView : WindowBase
 {
     public MainView() {
         InitializeComponent();
-
+        Register<Tricount>(App.Messages.MSG_EDIT, tricount => EditTricount(tricount, true));
         Register<Tricount>(App.Messages.MSG_ADD , tricount => EditTricount(tricount, false));
         Register<Tricount>(App.Messages.MSG_OPEN_TRICOUNT, tricount => OpenTricount(tricount));
         Register<Tricount>(App.Messages.MSG_CLOSE_TAB,
            member => DoCloseTab(member));
+       
     }
 
    private void EditTricount(Tricount tricount, bool isEdit) {
         if (tricount != null) {
-            OpenTab(!isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));
+            Console.Write(tricount +"   is_edit  = "+isEdit );
+           OpenTab(!isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));
         }
         
     }
@@ -27,7 +29,7 @@ public partial class MainView : WindowBase
     }
     private void OpenTricount(Tricount tricount) {
         if (tricount != null) {
-            OpenTab(tricount.Title,tricount.Title, () => new OpenTricountView(tricount));
+            OpenTab(tricount.Title,tricount.Title+"  ", () => new OpenTricountView(tricount));
         }
 
     }
