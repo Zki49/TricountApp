@@ -112,7 +112,13 @@ namespace prbd_2324_c02.ViewModel
         private void AddTricount() {
             List<User> list = new List<User>(participants);
 
-           NotifyColleagues( App.Messages.MSG_TRICOUNT_CHANGED,Tricount.AddTricount(Title, Description, Date, list, CurrentUser));
+            if (!mode) {
+                NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount.AddTricount(Title, Description, Date, list, CurrentUser));
+                NotifyColleagues(App.Messages.MSG_CLOSE_TAB, new Tricount());
+            } else {
+
+            }
+          
 
             
 
