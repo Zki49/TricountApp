@@ -58,7 +58,6 @@ public partial class App : ApplicationBase<User, PridContext> {
         ClearContext();
         Context.Database.EnsureDeleted();
         Context.Database.EnsureCreated();
-
     }
 
     private static void PrepareDatabase() {

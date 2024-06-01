@@ -85,11 +85,18 @@ namespace prbd_2324_c02.ViewModel
             AddUserCommand = new RelayCommand(AddUser ,()=>UserSelected!=null);
             AddAllUserCommand = new RelayCommand(AddAllUser , ()=>users.Count!=0);
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
-            CancelCommand = new RelayCommand(() => {
-                NotifyColleagues(App.Messages.MSG_CLOSE_TAB, curent);
-            });
+            CancelCommand = new RelayCommand(cancel);
             
 
+        }
+        private void cancel() {
+           
+            NotifyColleagues(App.Messages.MSG_CLOSE_TAB, curent);
+            if(mode) {
+                NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, curent);
+            }
+                
+            
         }
         private void AddUser() {
             if (UserSelected != null) {
@@ -116,11 +123,12 @@ namespace prbd_2324_c02.ViewModel
                 NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount.AddTricount(Title, Description, Date, list, CurrentUser));
                 NotifyColleagues(App.Messages.MSG_CLOSE_TAB, new Tricount());
             } else {
+                NotifyColleagues(App.Messages.MSG_CLOSE_TAB, curent);
                 curent.Title=Title; 
                 curent.Description=Description;
                 //continuer
                 RaisePropertyChanged();
-                Context.SaveChanges();
+                Context.SaveChanges();  
                 NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, curent);
                 NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED,curent);
 
