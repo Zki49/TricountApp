@@ -90,7 +90,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,20,0,0" Grid.Column="1" Width="155">
             <Button Content="Save" Height="23" Width="75" Margin="0,0,5,0" Command="{Binding AddTricountCommand}"/>
-            <Button Content="Cancel" Height="23" Width="75" Command="{Binding Delete}" />
+            <Button Content="Cancel" Height="23" Width="75"  />
         </StackPanel>
     </Grid>
 

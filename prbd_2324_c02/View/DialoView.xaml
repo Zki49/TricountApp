@@ -9,11 +9,11 @@
   xmlns:vw="clr-namespace:prbd_2324_c02.View"
   xmlns:converters="clr-namespace:prbd_2324_c02.ViewModel"
         mc:Ignorable="d"
-        Title="confimation" Height="300" Width="400"
+        Title="confimation" Height="165" Width="200"
         d:DataContext="{d:DesignInstance vm:DialogViewModel}"
         WindowStartupLocation="CenterScreen">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Width="150">
             <Button Content="No" Width="50" Command="{Binding NoCommand}" Margin="10" IsCancel="True" />
             <Button Content="Yes" Width="50" Command="{Binding YesCommand}" Margin="10" IsDefault="True"/>
         </StackPanel>

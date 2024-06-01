@@ -94,9 +94,7 @@ namespace prbd_2324_c02.ViewModel
                 if (App.ShowDialog<DialogViewModel, User, PridContext>(" Tricount ").Equals(true)) {
                     curent.delete();
                 }
-            } else {
-                //ferme la vue sans save
-            }
+            } 
            
         }
 
