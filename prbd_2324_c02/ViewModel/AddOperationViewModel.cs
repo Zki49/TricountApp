@@ -26,7 +26,7 @@ namespace prbd_2324_c02.ViewModel
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
-            OnRefreshData();
+           
             Tricount = tricount;
             Curent = curent;
             Title = curent.title;
@@ -35,6 +35,7 @@ namespace prbd_2324_c02.ViewModel
             BoutonaddorSave = isedit ? "Save" : "Add";
             this.isedit = isedit;
             MakeCommand();
+            OnRefreshData();
         }
 
         public override bool Validate() {

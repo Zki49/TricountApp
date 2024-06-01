@@ -26,6 +26,7 @@ namespace prbd_2324_c02.ViewModel
 
         public ICommand Delete { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand AddOperationCommand {  get; set; }
 
 
 
@@ -35,7 +36,12 @@ namespace prbd_2324_c02.ViewModel
             OnRefreshData();
             Delete = new RelayCommand(deleteTricount);
             EditCommand = new RelayCommand(EditTricount);
+            AddOperationCommand = new RelayCommand(addOperation);
 
+        }
+        private void addOperation() {
+            
+            NotifyColleagues(App.Messages.MSG_ADD_OPE,Tricount);
         }
         private void EditTricount() {
             NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);

@@ -14,6 +14,10 @@ public partial class MainView : WindowBase
         Register<Tricount>(App.Messages.MSG_OPEN_TRICOUNT, tricount => OpenTricount(tricount));
         Register<Tricount>(App.Messages.MSG_CLOSE_TAB,
            member => DoCloseTab(member));
+        Register<Tricount>(App.Messages.MSG_ADD_OPE, tricount => {
+           
+            new AddOperationView(tricount,false,new Operations()).Show();
+        });
        
     }
 
