@@ -28,7 +28,7 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     public ICommand openTricount { get; set; }
 
 
-    public ObservableCollection<Tricount> tricounts { get; set; } = new ();
+    public ObservableCollectionFast<Tricount> tricounts { get; set; } = new ();
     public MainViewModel() {
         OnRefreshData();
         LogoutCommand =  new RelayCommand(logout);
