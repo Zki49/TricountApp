@@ -81,6 +81,7 @@ namespace prbd_2324_c02.ViewModel
                 //etc ...
                 //Curent.save();
             }
+           // NotifyColleagues(App.Messages.MSG_CLOSE_TAB);
         }
 
         protected override void OnRefreshData() {

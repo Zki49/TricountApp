@@ -28,7 +28,7 @@ namespace prbd_2324_c02.View
             Console.WriteLine("test");
             InitializeComponent();
             DataContext = _vm = new OpenTricountViewModel(tricount);
-
+            
         }
-    }
+        }
 }

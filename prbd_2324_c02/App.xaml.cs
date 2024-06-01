@@ -13,7 +13,10 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_SIGNUP,
         MSG_ADD,
         MSG_TRICOUNT_CHANGED,
-        MSG_OPEN_TRICOUNT
+        MSG_OPEN_TRICOUNT,
+        MSG_CLOSE_TAB,
+        MSG_EDIT,
+        MSG_RESET
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {
@@ -45,6 +48,17 @@ public partial class App : ApplicationBase<User, PridContext> {
         Register(this, Messages.MSG_SIGNUP,() => {
             NavigateTo<SignupViewModel, User, PridContext>();
         });
+        Register(this, Messages.MSG_RESET, () => {
+            Reset();
+        });
+
+    }
+
+    private void Reset() {
+        ClearContext();
+        Context.Database.EnsureDeleted();
+        Context.Database.EnsureCreated();
+
     }
 
     private static void PrepareDatabase() {

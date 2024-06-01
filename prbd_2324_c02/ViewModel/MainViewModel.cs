@@ -15,7 +15,8 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     public string Color {
         get;
         set;
-    } 
+    }
+    public ICommand ResetCommand { get; set; }
     private string _inputText;
     public string InputText {
         get => _inputText;
@@ -31,13 +32,21 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     public ObservableCollectionFast<Tricount> tricounts { get; set; } = new ();
     public MainViewModel() {
         OnRefreshData();
-        LogoutCommand =  new RelayCommand(logout);
-        ClearCommand = new RelayCommand(ClearTextBox);
-       AddCommand = new RelayCommand(Add);
-        openTricount = new RelayCommand(opentricount);
-        
-        Register<Tricount>(App.Messages.MSG_TRICOUNT_CHANGED, tricount => OnRefreshData());
+        makeCommand();
+       // Register<Tricount>(App.Messages.MSG_TRICOUNT_CHANGED, tricount => OnRefreshData());
 
+    }
+
+    private void makeCommand() {
+        LogoutCommand = new RelayCommand(logout);
+        ClearCommand = new RelayCommand(ClearTextBox);
+        AddCommand = new RelayCommand(Add);
+        openTricount = new RelayCommand(opentricount);
+        ResetCommand = new RelayCommand(reset);
+    }
+    private void reset() {
+        NotifyColleagues(App.Messages.MSG_RESET);
+        NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED ,new Tricount() );
     }
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {

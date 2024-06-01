@@ -32,9 +32,7 @@ namespace prbd_2324_c02.View
 
         }
         private void CloseTab_Click(object sender, RoutedEventArgs e) {
-            var tabItem = ((sender as Button).Parent as StackPanel).Parent as TabItem;
-            var tabControl = tabItem.Parent as TabControl;
-            tabControl.Items.Remove(tabItem);
+          
         }
         /*private void btnCancel_Click(object sender, RoutedEventArgs e) {
             Close();
