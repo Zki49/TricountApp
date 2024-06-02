@@ -45,8 +45,15 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         ResetCommand = new RelayCommand(reset);
     }
     private void reset() {
+        var userId = CurrentUser.UserId;
+        App.ClearContext();
         NotifyColleagues(App.Messages.MSG_RESET);
         NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED ,new Tricount() );
+
+        NotifyColleagues(App.Messages.MSG_LOGOUT);
+        NotifyColleagues(App.Messages.MSG_LOGIN, Context.Users.Find(userId));
+
+        
     }
     protected override void OnRefreshData() {
         if (!CurrentUser.Role) {

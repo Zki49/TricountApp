@@ -39,6 +39,7 @@ public partial class App : ApplicationBase<User, PridContext> {
         CultureInfo.DefaultThreadCurrentUICulture = ci;
         CultureInfo.CurrentCulture = ci;
         CultureInfo.CurrentUICulture = ci;
+        
     }
 
     protected override void OnStartup(StartupEventArgs e) {
