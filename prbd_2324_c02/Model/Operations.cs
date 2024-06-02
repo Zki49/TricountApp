@@ -35,5 +35,9 @@ namespace prbd_2324_c02.Model
             Context.Remove(this);
             Context.SaveChanges();
         }
+        public void save() {
+            Context.Add(this);
+            Context.SaveChanges();
+        }
     }
 }

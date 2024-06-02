@@ -31,12 +31,12 @@ namespace prbd_2324_c02.ViewModel
 
 
         public OpenTricountViewModel(Tricount tricount) {
-            Console.WriteLine("$$$" + tricount);
             Tricount = tricount;
             OnRefreshData();
             Delete = new RelayCommand(deleteTricount);
             EditCommand = new RelayCommand(EditTricount);
             AddOperationCommand = new RelayCommand(addOperation);
+            Register(App.Messages.MSG_OPE_CHANGED,()=>OnRefreshData());
 
         }
         private void addOperation() {
@@ -64,6 +64,7 @@ namespace prbd_2324_c02.ViewModel
                 var balanceForUser = Tricount.balance(user);
                 balance.Add(balanceForUser);
             }
+            Tricount.Reload();
         }
        
     }

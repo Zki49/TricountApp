@@ -70,21 +70,26 @@ namespace prbd_2324_c02.ViewModel
 
         }
         private void Addoperation() {
+            NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
             if (isedit) {
                 //edition de l'operation 
                 Curent.title = Title;
                 Curent.Amount = Amout;
                 //etc ...
                 //Curent.save();
+                RaisePropertyChanged();
+                Context.SaveChanges();
             } else {
                 //creation de l'operation 
                 Curent.Tricount = Tricount;
                 Curent.title = Title;
                 Curent.Amount = Amout;
                 //etc ...
-                //Curent.save();
+                Curent.save();
+                
             }
-           // NotifyColleagues(App.Messages.MSG_CLOSE_TAB);
+
+            
         }
 
         protected override void OnRefreshData() {

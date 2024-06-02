@@ -17,7 +17,10 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_CLOSE_TAB,
         MSG_EDIT,
         MSG_RESET,
-        MSG_ADD_OPE
+        MSG_ADD_OPE,
+        MSG_CLOSE_WINDOWS,
+        MSG_OPE_CHANGED
+
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {
