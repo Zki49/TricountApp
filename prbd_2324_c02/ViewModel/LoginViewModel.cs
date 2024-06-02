@@ -73,7 +73,7 @@ public class LoginViewModel : CommonViewModel {
 
     }
     private void LoginActionAdmin() {
-        var member = Context.Users.Find(6);
+        var member = Context.Users.Find(5);
         NotifyColleagues(App.Messages.MSG_LOGIN, member);
 
     }
