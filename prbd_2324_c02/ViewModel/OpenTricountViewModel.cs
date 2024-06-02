@@ -26,19 +26,25 @@ namespace prbd_2324_c02.ViewModel
 
         public ICommand Delete { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand AddOperationCommand {  get; set; }
 
 
 
         public OpenTricountViewModel(Tricount tricount) {
-            Console.WriteLine("$$$" + tricount);
             Tricount = tricount;
             OnRefreshData();
             Delete = new RelayCommand(deleteTricount);
             EditCommand = new RelayCommand(EditTricount);
+            AddOperationCommand = new RelayCommand(addOperation);
+            Register(App.Messages.MSG_OPE_CHANGED,()=>OnRefreshData());
 
         }
+        private void addOperation() {
+            
+            NotifyColleagues(App.Messages.MSG_ADD_OPE,Tricount);
+        }
         private void EditTricount() {
-            Console.WriteLine("cc" + Tricount);
+            NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
             NotifyColleagues(App.Messages.MSG_EDIT, Tricount);
         }
         private void deleteTricount() {
@@ -58,6 +64,7 @@ namespace prbd_2324_c02.ViewModel
                 var balanceForUser = Tricount.balance(user);
                 balance.Add(balanceForUser);
             }
+            Tricount.Reload();
         }
        
     }

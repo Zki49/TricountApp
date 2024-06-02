@@ -20,8 +20,9 @@ namespace prbd_2324_c02.View
     /// </summary>
     public partial class NumericUpDown : UserControl
     {
-        public NumericUpDown() {
+        public NumericUpDown(/*passer la repartion et la passe au vm*/) {
             InitializeComponent();
+           // DataContext = new NumericUpDownViewModel(repartion);
         }
     }
 }

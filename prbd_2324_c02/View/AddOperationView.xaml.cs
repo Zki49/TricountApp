@@ -26,11 +26,16 @@ namespace prbd_2324_c02.View
         public AddOperationView(Tricount tricount ,bool isedit , Operations curent) {
             InitializeComponent();
            DataContext = new AddOperationViewModel(tricount,curent,isedit);
-
+            Register(App.Messages.MSG_CLOSE_WINDOWS, () => close());
 
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
             Close();
+        }
+
+
+        private void close() {
+            this.Close();
         }
     }
 }

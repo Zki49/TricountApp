@@ -16,7 +16,11 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_OPEN_TRICOUNT,
         MSG_CLOSE_TAB,
         MSG_EDIT,
-        MSG_RESET
+        MSG_RESET,
+        MSG_ADD_OPE,
+        MSG_CLOSE_WINDOWS,
+        MSG_OPE_CHANGED
+
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {
@@ -58,7 +62,6 @@ public partial class App : ApplicationBase<User, PridContext> {
         ClearContext();
         Context.Database.EnsureDeleted();
         Context.Database.EnsureCreated();
-
     }
 
     private static void PrepareDatabase() {

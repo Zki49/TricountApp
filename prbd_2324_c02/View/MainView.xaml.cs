@@ -14,6 +14,10 @@ public partial class MainView : WindowBase
         Register<Tricount>(App.Messages.MSG_OPEN_TRICOUNT, tricount => OpenTricount(tricount));
         Register<Tricount>(App.Messages.MSG_CLOSE_TAB,
            member => DoCloseTab(member));
+        Register<Tricount>(App.Messages.MSG_ADD_OPE, tricount => {
+           
+            new AddOperationView(tricount,false,new Operations()).Show();
+        });
        
     }
 
@@ -25,11 +29,13 @@ public partial class MainView : WindowBase
         
     }
     private void DoCloseTab(Tricount member) {
-        tabControl.CloseByTag(string.IsNullOrEmpty(member.Title) ? "<New Member>" : member.Title);
+        string title = string.IsNullOrEmpty(member.Title) ? "<New Tricount>" : member.Title;
+        Console.WriteLine("on sup avec ce tag "+ title);
+        tabControl.CloseByTag(title);
     }
     private void OpenTricount(Tricount tricount) {
         if (tricount != null) {
-            OpenTab(tricount.Title,tricount.Title+"  ", () => new OpenTricountView(tricount));
+            OpenTab(tricount.Title,tricount.Title, () => new OpenTricountView(tricount));
         }
 
     }
