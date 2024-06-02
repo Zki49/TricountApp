@@ -18,14 +18,14 @@ public partial class App : ApplicationBase<User, PridContext> {
 
         MSG_ADD_OPERATION,
           
-
         MSG_CLOSE_TAB,
         MSG_EDIT,
         MSG_RESET,
         MSG_ADD_OPE,
         MSG_CLOSE_WINDOWS,
-        MSG_OPE_CHANGED
+        MSG_OPE_CHANGED,
 
+        MSG_EDITOPERATION
 
     }
     public App() {

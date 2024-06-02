@@ -32,9 +32,8 @@
         <TextBox Grid.Column="1" Grid.Row="1" Margin="5,5,5,5"  Text="{Binding Amout, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Initiator:" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,159,0" Grid.ColumnSpan="2" Height="16"/>
-        <ComboBox Grid.Column="1" Grid.Row="2" Margin="5,5,5,5">
-            <!-- ComboBox items should be bound to your list of initiators -->
-        </ComboBox>
+        <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged}"/>
+            
 
         <TextBlock Text="Date:" VerticalAlignment="Center" Grid.Row="3" Margin="0,0,159,0" Grid.ColumnSpan="2" Height="16"/>
         <DatePicker Grid.Column="1" Grid.Row="3" Margin="5,5,5,5" SelectedDate= "{Binding  Date, UpdateSourceTrigger=PropertyChanged}" />

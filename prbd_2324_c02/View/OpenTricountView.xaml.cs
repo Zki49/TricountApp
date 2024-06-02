@@ -30,5 +30,16 @@ namespace prbd_2324_c02.View
             DataContext = _vm = new OpenTricountViewModel(tricount);
             
         }
+
+        private void ItemBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            var border = sender as Border;
+            if (border != null && border.DataContext != null) {
+                var operation = border.DataContext;
+
+                Console.WriteLine("Item clicked: " + operation);
+                _vm.CurrentOpe = (Operations)operation;
+
+            }
         }
+    }
 }
