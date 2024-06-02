@@ -98,7 +98,7 @@ namespace prbd_2324_c02.ViewModel
                 foreach(var participant in Participants) {
                     Repartitions rep = new Repartitions();
                     rep.weight = 1;
-                    rep.userId = participant.UserId;
+                    rep.user = participant.User;
                     rep.operations = Curent;
                     Repartitions.Add(rep);
                 }

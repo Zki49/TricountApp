@@ -26,10 +26,10 @@ namespace prbd_2324_c02.ViewModel
         }
 
         private void Increment() {
-           Value++;
+           Value+=1;
         }
         private void Decrement() {
-            Value--;
+            Value-=1;
         }    
     }
 }
