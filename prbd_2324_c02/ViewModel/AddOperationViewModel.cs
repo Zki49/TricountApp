@@ -33,6 +33,7 @@ namespace prbd_2324_c02.ViewModel
             Title = curent.title;
             Amout = curent.Amount;
             Date = curent.CreatAt;
+            this.Curent.Tricount = tricount;
             BoutonaddorSave = isedit ? "Save" : "Add";
             this.isedit = isedit;
             Visibility = isedit ? " " : "Hidden";
@@ -71,12 +72,13 @@ namespace prbd_2324_c02.ViewModel
         }
         private void Addoperation() {
             NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
+            var rep = new List<Repartitions>(Repartitions);
             if (isedit) {
+                
                 //edition de l'operation 
                 Curent.title = Title;
                 Curent.Amount = Amout;
-                //etc ...
-                //Curent.save();
+                Curent.repartitions = rep;
                 RaisePropertyChanged();
                 Context.SaveChanges();
             } else {
@@ -84,7 +86,8 @@ namespace prbd_2324_c02.ViewModel
                 Curent.Tricount = Tricount;
                 Curent.title = Title;
                 Curent.Amount = Amout;
-                //etc ...
+                Curent.repartitions = rep;
+                Curent.CreatAt = Date;
                 Curent.save();
                 
             }
