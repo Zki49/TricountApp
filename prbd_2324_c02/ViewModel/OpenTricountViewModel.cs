@@ -1,7 +1,9 @@
-﻿using prbd_2324_c02.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using prbd_2324_c02.Model;
 using PRBD_Framework;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,21 +11,36 @@ using System.Windows.Input;
 
 namespace prbd_2324_c02.ViewModel
 {
-    class OpenTricountViewModel : ViewModelBase<User, PridContext>
-    { 
+    class OpenTricountViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
+    {
         private readonly Tricount _tricount;
+<<<<<<< HEAD
         public ICommand AddOperationCommand { get; set; }
+=======
+        public ObservableCollectionFast<User> participant { get; set; } = new();
+        public ObservableCollectionFast<double> balance { get; set; } = new();
+>>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
 
-        public Tricount Tricount {  
+
+        public Tricount Tricount {
             get => _tricount;
             private init => SetProperty(ref _tricount, value);
 
         }
-      
+
+        public ICommand Delete { get; set; }
+        public ICommand EditCommand { get; set; }
+        public ICommand AddOperationCommand {  get; set; }
+
+
 
         public OpenTricountViewModel(Tricount tricount) {
-            Console.WriteLine("$$$" + tricount);
-            _tricount = tricount;
+            Tricount = tricount;
+            OnRefreshData();
+            Delete = new RelayCommand(deleteTricount);
+            EditCommand = new RelayCommand(EditTricount);
+            AddOperationCommand = new RelayCommand(addOperation);
+            Register(App.Messages.MSG_OPE_CHANGED,()=>OnRefreshData());
 
             AddOperationCommand = new RelayCommand(AddOperationAction);
 
@@ -32,5 +49,33 @@ namespace prbd_2324_c02.ViewModel
         private void AddOperationAction() {
             NotifyColleagues(App.Messages.MSG_ADD_OPERATION, Tricount);
         }
+        private void addOperation() {
+            
+            NotifyColleagues(App.Messages.MSG_ADD_OPE,Tricount);
+        }
+        private void EditTricount() {
+            NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
+            NotifyColleagues(App.Messages.MSG_EDIT, Tricount);
+        }
+        private void deleteTricount() {
+            
+                if (App.ShowDialog<DialogViewModel, User, PridContext>(" Tricount ").Equals(true)) {
+                    Tricount.delete();
+                    NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
+                    NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
+                }
+
+        }
+
+        protected override void OnRefreshData() {
+
+            participant.RefreshFromModel(Context.Users.Where(u => u.Role.Equals(false) && u.Subscriptions.Any(s => s.TricountId == Tricount.Id) ));
+            foreach (User user in participant) {
+                var balanceForUser = Tricount.balance(user);
+                balance.Add(balanceForUser);
+            }
+            Tricount.Reload();
+        }
+       
     }
 }

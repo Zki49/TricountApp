@@ -96,7 +96,7 @@ namespace prbd_2324_c02.Model
 
 
 
-               return res-myExpense;
+               return -(res-myExpense);
         }
         
         public static Tricount AddTricount( string Title , string description ,DateTime date ,List<User> participants , User Creator) {

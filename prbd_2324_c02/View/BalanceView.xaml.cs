@@ -1,6 +1,4 @@
-﻿using prbd_2324_c02.Model;
-using prbd_2324_c02.ViewModel;
-using PRBD_Framework;
+﻿using PRBD_Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,16 +17,13 @@ using System.Windows.Shapes;
 namespace prbd_2324_c02.View
 {
     /// <summary>
-    /// Logique d'interaction pour OpenTricountView.xaml
+    /// Logique d'interaction pour BalanceView.xaml
     /// </summary>
-    public partial class OpenTricountView : UserControlBase
+    public partial class BalanceView : UserControlBase
     {
-        private readonly OpenTricountViewModel _vm;
-        public OpenTricountView(Tricount tricount) {
-            Console.WriteLine("test");
+        public BalanceView()
+        {
             InitializeComponent();
-            DataContext = _vm = new OpenTricountViewModel(tricount);
-            
         }
-        }
+    }
 }

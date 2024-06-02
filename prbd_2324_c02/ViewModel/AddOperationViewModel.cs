@@ -19,7 +19,11 @@ namespace prbd_2324_c02.ViewModel
         public DateTime Date { get; set; }
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
+<<<<<<< HEAD
         public String VisibleDelete { get; set; }
+=======
+        public string Visibility {  get; set; }
+>>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }
 
@@ -27,14 +31,20 @@ namespace prbd_2324_c02.ViewModel
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
+<<<<<<< HEAD
+=======
+           
+>>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
             Tricount = tricount;
             Curent = curent;
             Title = curent.title;
             Amout = curent.Amount;
             Date = curent.CreatAt;
+            this.Curent.Tricount = tricount;
             BoutonaddorSave = isedit ? "Save" : "Add";
             VisibleDelete = isedit ? "" : "Hidden";
             this.isedit = isedit;
+            Visibility = isedit ? " " : "Hidden";
             MakeCommand();
             OnRefreshData();
         }
@@ -58,26 +68,39 @@ namespace prbd_2324_c02.ViewModel
 
         }
         private void deleteOperation() {
-            //il faut faire une dialog comme ca 
-            // if (App.ShowDialog<DialogViewModel, Member, MsnContext>("Dialog Demo", 123, CurrentUser) is Member member)
-            Curent.delete();
-            //fermeture de la vue ;
+            if (isedit) {
+                if (App.ShowDialog<DialogViewModel, User, PridContext>("Operation ").Equals(true)) {
+                    Curent.delete();
+                }
+            }
+           
+
+
+
         }
         private void Addoperation() {
+            NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
+            var rep = new List<Repartitions>(Repartitions);
             if (isedit) {
+                
                 //edition de l'operation 
                 Curent.title = Title;
                 Curent.Amount = Amout;
-                //etc ...
-                //Curent.save();
+                Curent.repartitions = rep;
+                RaisePropertyChanged();
+                Context.SaveChanges();
             } else {
                 //creation de l'operation 
                 Curent.Tricount = Tricount;
                 Curent.title = Title;
                 Curent.Amount = Amout;
-                //etc ...
-                //Curent.save();
+                Curent.repartitions = rep;
+                Curent.CreatAt = Date;
+                Curent.save();
+                
             }
+
+            
         }
 
         protected override void OnRefreshData() {

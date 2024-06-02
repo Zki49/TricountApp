@@ -78,32 +78,19 @@
                 <Button Content="+" FontSize="24" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Command="{Binding AddOperationCommand}" />
 
 
+                
+                <vw:BalanceView/>
+                    
+                
                 <!-- Balances -->
-                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,20,0,0">
-                    <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="-32,12 €" Foreground="Red" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="Benoît" Margin="0,0,0,5"/>
-                    </StackPanel>
-                    <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="-87,40 €" Foreground="Red" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="Boris (me)" Margin="0,0,0,5"/>
-                    </StackPanel>
-                    <StackPanel Margin="0,0,20,0">
-                        <TextBlock Text="0,00 €" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="Marc" Margin="0,0,0,5"/>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="119,53 €" Foreground="Green" FontSize="16" FontWeight="Bold"/>
-                        <TextBlock Text="Xavier" Margin="0,0,0,5"/>
-                    </StackPanel>
-                </StackPanel>
+                
             </StackPanel>
         </ScrollViewer>
 
         <!-- Edit and Delete Buttons -->
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" Margin="10">
-            <Button Content="Edit" Margin="5"/>
-            <Button Content="Delete" Margin="5"/>
+            <Button Content="Edit" Margin="5"  Command="{Binding EditCommand}"/>
+            <Button Content="Delete" Margin="5" Command="{Binding Delete}"/>
         </StackPanel>
     </Grid>
 </f:UserControlBase>
