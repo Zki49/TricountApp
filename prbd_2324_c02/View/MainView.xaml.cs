@@ -2,6 +2,7 @@
 using PRBD_Framework;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static prbd_2324_c02.App;
 
 namespace prbd_2324_c02.View;
 
@@ -12,9 +13,11 @@ public partial class MainView : WindowBase
 
         Register<Tricount>(App.Messages.MSG_ADD , tricount => EditTricount(tricount, false));
         Register<Tricount>(App.Messages.MSG_OPEN_TRICOUNT, tricount => OpenTricount(tricount));
+        Register<Tricount>(App.Messages.MSG_ADD_OPERATION, tricount => new AddOperationView(tricount, false, new Operations()).Show());
+
     }
 
-   private void EditTricount(Tricount tricount, bool isEdit) {
+    private void EditTricount(Tricount tricount, bool isEdit) {
         if (tricount != null) {
             OpenTab(!isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));
         }

@@ -3,6 +3,7 @@ using prbd_2324_c02.ViewModel;
 using System.Windows;
 using System.Globalization;
 using PRBD_Framework;
+using prbd_2324_c02.View;
 
 namespace prbd_2324_c02;
 
@@ -13,7 +14,9 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_SIGNUP,
         MSG_ADD,
         MSG_TRICOUNT_CHANGED,
-        MSG_OPEN_TRICOUNT
+        MSG_OPEN_TRICOUNT,
+        MSG_ADD_OPERATION
+          
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {
@@ -45,7 +48,7 @@ public partial class App : ApplicationBase<User, PridContext> {
         Register(this, Messages.MSG_SIGNUP,() => {
             NavigateTo<SignupViewModel, User, PridContext>();
         });
-    }
+     }
 
     private static void PrepareDatabase() {
         // Clear database and seed data

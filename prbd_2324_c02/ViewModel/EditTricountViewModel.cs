@@ -26,7 +26,7 @@ namespace prbd_2324_c02.ViewModel
         public ICommand AddAllUserCommand { get; set; }
         public ICommand AddMySelfCommand { get; set; }
         public ICommand AddTricountCommand { get; set; }
-        public ICommand Delete { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public User UserSelected { get; set; }
         public String Title {
@@ -69,7 +69,7 @@ namespace prbd_2324_c02.ViewModel
             AddUserCommand = new RelayCommand(AddUser ,()=>UserSelected!=null);
             AddAllUserCommand = new RelayCommand(AddAllUser , ()=>users.Count!=0);
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
-           // Delete = new RelayCommand(DeleteAction, () => !HasExpense);
+           //DeleteCommand = new RelayCommand(DeleteAction, () => );
 
         }
         private void AddUser() {
@@ -99,6 +99,10 @@ namespace prbd_2324_c02.ViewModel
 
         }
 
+        private void DeleteAction(){
+            participants.Remove(UserSelected);
+            users.Add(UserSelected);
+        }
 
     }
 }

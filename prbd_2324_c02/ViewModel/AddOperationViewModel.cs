@@ -19,6 +19,7 @@ namespace prbd_2324_c02.ViewModel
         public DateTime Date { get; set; }
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
+        public String VisibleDelete { get; set; }
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }
 
@@ -26,15 +27,16 @@ namespace prbd_2324_c02.ViewModel
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
-            OnRefreshData();
             Tricount = tricount;
             Curent = curent;
             Title = curent.title;
             Amout = curent.Amount;
             Date = curent.CreatAt;
             BoutonaddorSave = isedit ? "Save" : "Add";
+            VisibleDelete = isedit ? "" : "Hidden";
             this.isedit = isedit;
             MakeCommand();
+            OnRefreshData();
         }
 
         public override bool Validate() {
@@ -84,7 +86,7 @@ namespace prbd_2324_c02.ViewModel
                 foreach(var participant in Participants) {
                     Repartitions rep = new Repartitions();
                     rep.weight = 1;
-                    rep.userId = participant.UserId;
+                    rep.user = participant.User;
                     rep.operations = Curent;
                     Repartitions.Add(rep);
                 }

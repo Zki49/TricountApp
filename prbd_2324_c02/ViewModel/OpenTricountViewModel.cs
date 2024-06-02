@@ -12,6 +12,7 @@ namespace prbd_2324_c02.ViewModel
     class OpenTricountViewModel : ViewModelBase<User, PridContext>
     { 
         private readonly Tricount _tricount;
+        public ICommand AddOperationCommand { get; set; }
 
         public Tricount Tricount {  
             get => _tricount;
@@ -24,6 +25,12 @@ namespace prbd_2324_c02.ViewModel
             Console.WriteLine("$$$" + tricount);
             _tricount = tricount;
 
+            AddOperationCommand = new RelayCommand(AddOperationAction);
+
+        }
+
+        private void AddOperationAction() {
+            NotifyColleagues(App.Messages.MSG_ADD_OPERATION, Tricount);
         }
     }
 }

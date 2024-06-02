@@ -72,6 +72,12 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding FullName}"/>
+                            <!--
+                            <Button Content="Delete" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,10,0,79" HorizontalAlignment="Left" Width="145" Command="{Binding DeleteCommand}" >
+                                <TextBlock FontFamily="pack://application:,,,/MyWpfApp;component/Resources/#FontAwesome" Text="&#xf1f8;" FontSize="24"/>
+                            </Button>
+                        -->
+
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

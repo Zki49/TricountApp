@@ -18,7 +18,7 @@ namespace prbd_2324_c02.ViewModel
        public ICommand DecrementCommand { get; set; }
        
         public  NumericUpDownViewModel() {
-            Value = 0;
+            Value = 1;
             IncrementCommand = new RelayCommand(Increment);
             DecrementCommand = new RelayCommand(Decrement,()=>Value >0);
 
