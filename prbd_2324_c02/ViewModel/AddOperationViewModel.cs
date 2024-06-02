@@ -111,6 +111,7 @@ namespace prbd_2324_c02.ViewModel
                 Curent.Amount = Amout;
                 Curent.repartitions = rep;
                 Curent.CreatAt = Date;
+                Curent.user = UserSelected;
                 Curent.save();
                 
             }
