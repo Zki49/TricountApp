@@ -139,6 +139,10 @@ namespace prbd_2324_c02.ViewModel
 
         }
 
+        private void DeleteAction(){
+            participants.Remove(UserSelected);
+            users.Add(UserSelected);
+        }
 
     }
 }

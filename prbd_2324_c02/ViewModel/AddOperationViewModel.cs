@@ -19,7 +19,7 @@ namespace prbd_2324_c02.ViewModel
         public DateTime Date { get; set; }
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
-        public string Visibility {  get; set; }
+        public string VisibleDelete {  get; set; }
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }
 
@@ -35,8 +35,8 @@ namespace prbd_2324_c02.ViewModel
             Date = curent.CreatAt;
             this.Curent.Tricount = tricount;
             BoutonaddorSave = isedit ? "Save" : "Add";
+            VisibleDelete = isedit ? "" : "Hidden";
             this.isedit = isedit;
-            Visibility = isedit ? " " : "Hidden";
             MakeCommand();
             OnRefreshData();
         }

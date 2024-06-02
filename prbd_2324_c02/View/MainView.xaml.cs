@@ -2,6 +2,7 @@
 using PRBD_Framework;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static prbd_2324_c02.App;
 
 namespace prbd_2324_c02.View;
 
@@ -21,7 +22,7 @@ public partial class MainView : WindowBase
        
     }
 
-   private void EditTricount(Tricount tricount, bool isEdit) {
+    private void EditTricount(Tricount tricount, bool isEdit) {
         if (tricount != null) {
             Console.Write(tricount +"   is_edit  = "+isEdit );
            OpenTab(!isEdit ? "<New Tricount>" : tricount.Title, tricount.Title, () => new EditTricountView(tricount, isEdit));

@@ -3,6 +3,7 @@ using prbd_2324_c02.ViewModel;
 using System.Windows;
 using System.Globalization;
 using PRBD_Framework;
+using prbd_2324_c02.View;
 
 namespace prbd_2324_c02;
 
@@ -14,12 +15,17 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_ADD,
         MSG_TRICOUNT_CHANGED,
         MSG_OPEN_TRICOUNT,
+
+        MSG_ADD_OPERATION,
+          
+
         MSG_CLOSE_TAB,
         MSG_EDIT,
         MSG_RESET,
         MSG_ADD_OPE,
         MSG_CLOSE_WINDOWS,
         MSG_OPE_CHANGED
+
 
     }
     public App() {
@@ -45,13 +51,15 @@ public partial class App : ApplicationBase<User, PridContext> {
             Login(member);
             NavigateTo<MainViewModel, User, PridContext>();
         });
-        Register(this, Messages.MSG_LOGOUT,() => {
+        Register(this, Messages.MSG_LOGOUT, () => {
             Logout();
             NavigateTo<LoginViewModel, User, PridContext>();
         });
-        Register(this, Messages.MSG_SIGNUP,() => {
+        Register(this, Messages.MSG_SIGNUP, () => {
             NavigateTo<SignupViewModel, User, PridContext>();
         });
+
+    
         Register(this, Messages.MSG_RESET, () => {
             Reset();
         });
@@ -63,6 +71,7 @@ public partial class App : ApplicationBase<User, PridContext> {
         Context.Database.EnsureDeleted();
         Context.Database.EnsureCreated();
     }
+
 
     private static void PrepareDatabase() {
         // Clear database and seed data
