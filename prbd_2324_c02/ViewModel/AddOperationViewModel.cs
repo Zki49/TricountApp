@@ -19,11 +19,7 @@ namespace prbd_2324_c02.ViewModel
         public DateTime Date { get; set; }
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
-<<<<<<< HEAD
-        public String VisibleDelete { get; set; }
-=======
-        public string Visibility {  get; set; }
->>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
+        public string VisibleDelete {  get; set; }
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }
 
@@ -31,10 +27,7 @@ namespace prbd_2324_c02.ViewModel
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
-<<<<<<< HEAD
-=======
            
->>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
             Tricount = tricount;
             Curent = curent;
             Title = curent.title;
@@ -44,7 +37,6 @@ namespace prbd_2324_c02.ViewModel
             BoutonaddorSave = isedit ? "Save" : "Add";
             VisibleDelete = isedit ? "" : "Hidden";
             this.isedit = isedit;
-            Visibility = isedit ? " " : "Hidden";
             MakeCommand();
             OnRefreshData();
         }

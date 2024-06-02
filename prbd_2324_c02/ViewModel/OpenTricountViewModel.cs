@@ -14,12 +14,8 @@ namespace prbd_2324_c02.ViewModel
     class OpenTricountViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     {
         private readonly Tricount _tricount;
-<<<<<<< HEAD
-        public ICommand AddOperationCommand { get; set; }
-=======
         public ObservableCollectionFast<User> participant { get; set; } = new();
         public ObservableCollectionFast<double> balance { get; set; } = new();
->>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
 
 
         public Tricount Tricount {
@@ -42,12 +38,6 @@ namespace prbd_2324_c02.ViewModel
             AddOperationCommand = new RelayCommand(addOperation);
             Register(App.Messages.MSG_OPE_CHANGED,()=>OnRefreshData());
 
-            AddOperationCommand = new RelayCommand(AddOperationAction);
-
-        }
-
-        private void AddOperationAction() {
-            NotifyColleagues(App.Messages.MSG_ADD_OPERATION, Tricount);
         }
         private void addOperation() {
             

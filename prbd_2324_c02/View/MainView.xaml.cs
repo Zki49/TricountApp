@@ -13,10 +13,6 @@ public partial class MainView : WindowBase
         Register<Tricount>(App.Messages.MSG_EDIT, tricount => EditTricount(tricount, true));
         Register<Tricount>(App.Messages.MSG_ADD , tricount => EditTricount(tricount, false));
         Register<Tricount>(App.Messages.MSG_OPEN_TRICOUNT, tricount => OpenTricount(tricount));
-<<<<<<< HEAD
-        Register<Tricount>(App.Messages.MSG_ADD_OPERATION, tricount => new AddOperationView(tricount, false, new Operations()).Show());
-
-=======
         Register<Tricount>(App.Messages.MSG_CLOSE_TAB,
            member => DoCloseTab(member));
         Register<Tricount>(App.Messages.MSG_ADD_OPE, tricount => {
@@ -24,7 +20,6 @@ public partial class MainView : WindowBase
             new AddOperationView(tricount,false,new Operations()).Show();
         });
        
->>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
     }
 
     private void EditTricount(Tricount tricount, bool isEdit) {

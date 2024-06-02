@@ -15,10 +15,10 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_ADD,
         MSG_TRICOUNT_CHANGED,
         MSG_OPEN_TRICOUNT,
-<<<<<<< HEAD
-        MSG_ADD_OPERATION
+
+        MSG_ADD_OPERATION,
           
-=======
+
         MSG_CLOSE_TAB,
         MSG_EDIT,
         MSG_RESET,
@@ -26,7 +26,7 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_CLOSE_WINDOWS,
         MSG_OPE_CHANGED
 
->>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
+
     }
     public App() {
         var ci = new CultureInfo("fr-BE") {
@@ -51,16 +51,15 @@ public partial class App : ApplicationBase<User, PridContext> {
             Login(member);
             NavigateTo<MainViewModel, User, PridContext>();
         });
-        Register(this, Messages.MSG_LOGOUT,() => {
+        Register(this, Messages.MSG_LOGOUT, () => {
             Logout();
             NavigateTo<LoginViewModel, User, PridContext>();
         });
-        Register(this, Messages.MSG_SIGNUP,() => {
+        Register(this, Messages.MSG_SIGNUP, () => {
             NavigateTo<SignupViewModel, User, PridContext>();
         });
-<<<<<<< HEAD
-     }
-=======
+
+    
         Register(this, Messages.MSG_RESET, () => {
             Reset();
         });
@@ -72,7 +71,7 @@ public partial class App : ApplicationBase<User, PridContext> {
         Context.Database.EnsureDeleted();
         Context.Database.EnsureCreated();
     }
->>>>>>> fd5f6976c812c340042c0cf5d512cae0f90509bc
+
 
     private static void PrepareDatabase() {
         // Clear database and seed data
