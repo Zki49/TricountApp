@@ -131,10 +131,14 @@ namespace prbd_2324_c02.ViewModel
                     rep.operations = Curent;
                     Repartitions.Add(rep);
 
-                    users.Add(participant.User); 
+                    users.Add(participant.User);
                 }
             } else {
                 Repartitions.RefreshFromModel(Context.Repartitions.Where(r => r.operationsID == Curent.OperationsId));
+                var Participants = Tricount.Subscriptions;
+                foreach (var participant in Participants) {
+                    users.Add(participant.User);
+                }
             }
             
         }
