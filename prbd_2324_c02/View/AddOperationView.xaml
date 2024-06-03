@@ -46,8 +46,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-                <ComboBox ItemsSource="{Binding templates}" DisplayMemberPath="FullName" SelectedItem="{Binding TemplateSelected, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="5"/>
-            <Button Content="Apply" Grid.Column="1" Margin="5"/>
+                <ComboBox ItemsSource="{Binding templates}" DisplayMemberPath="Title" SelectedItem="{Binding TemplateSelected, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="5"/>
+            <Button Content="Apply" Command="{Binding Apply}" Grid.Column="1" Margin="5"/>
         </Grid>
 
         <ScrollViewer Grid.Row="6" Margin="0,10,0,10">

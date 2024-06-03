@@ -31,11 +31,13 @@ namespace prbd_2324_c02.ViewModel
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
         public string VisibleDelete {  get; set; }
+        public Template TemplateSelected {  get; set; }
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand Apply { get; set; }
 
 
-        public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
+        public ObservableCollectionFast<Repartitions> Repartitions { get; set; } = new();
         public ObservableCollection<Template> templates { get; set; } = new();
         public ObservableCollection<User> users { get; set; } = new();
 
@@ -46,8 +48,12 @@ namespace prbd_2324_c02.ViewModel
             Title = curent.title;
             Amout = curent.Amount;
             Date = curent.CreatAt;
+
             if (!isedit) {
+
                 this.Curent.Tricount = tricount;
+            } else {
+                UserSelected = curent.user;
             }
             BoutonaddorSave = isedit ? "Save" : "Add";
             VisibleDelete = isedit ? "" : "Hidden";
@@ -73,6 +79,35 @@ namespace prbd_2324_c02.ViewModel
         private void MakeCommand() {
             deletCommand = new RelayCommand(deleteOperation);
             AddCommand = new RelayCommand(Addoperation, () => !HasErrors);
+            Apply = new RelayCommand(ApplyTemplates, () => TemplateSelected != null);
+
+        }
+        private void ApplyTemplates() {
+            Repartitions.Clear();
+            foreach(var temp in TemplateSelected.TemplateItems) {
+                Repartitions rep = new Repartitions();
+                rep.weight = temp.weight;
+                rep.user = temp.User;
+                rep.operations = Curent;
+                Repartitions.Add(rep);
+            }
+            foreach (var user in users) {
+                bool isIn = false;
+                foreach(var temp in TemplateSelected.TemplateItems) {
+                    if (user.Equals(temp.User)) {
+                        isIn = true;
+                    }
+                }
+                if (!isIn) {
+                    Repartitions rep = new Repartitions();
+                    rep.weight = 0;
+                    rep.user = user;
+                    rep.operations = Curent;
+                    Repartitions.Add(rep);
+                }
+
+            }
+            
 
         }
         private void deleteOperation() {
