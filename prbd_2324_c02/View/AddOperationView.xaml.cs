@@ -23,6 +23,7 @@ namespace prbd_2324_c02.View
     /// </summary>
     public partial class AddOperationView : WindowBase
     {
+        public Repartitions Value { get; set; }
         public AddOperationView(Tricount tricount ,bool isedit , Operations curent) {
             InitializeComponent();
            DataContext = new AddOperationViewModel(tricount,curent,isedit);

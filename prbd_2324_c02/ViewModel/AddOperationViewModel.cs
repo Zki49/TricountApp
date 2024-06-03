@@ -31,6 +31,7 @@ namespace prbd_2324_c02.ViewModel
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
         public string VisibleDelete {  get; set; }
+        public Repartitions Value { get; set; }
         public Template TemplateSelected {  get; set; }
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }

@@ -1,15 +1,15 @@
-﻿<UserControl x:Class="prbd_2324_c02.View.NumericUpDown"
+﻿<f:UserControlBase x:Class="prbd_2324_c02.View.NumericUpDown"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
+                               xmlns:f="clr-namespace:PRBD_Framework;assembly=PRBD_Framework"
+
              xmlns:local="clr-namespace:prbd_2324_c02.View"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="100">
-    <UserControl.DataContext>
-        <vm:NumericUpDownViewModel x:Name="vm" />
-    </UserControl.DataContext>
+   
     <Grid Margin="0,0,17,7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*" />
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="Auto" MinWidth="25" />
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="TextBox" Grid.Column="0" Text="{Binding Value,  UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Height="35" Margin="18,0,0,8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
+        <TextBox x:Name="TextBox" Grid.Column="0" Text="{Binding Value,ConverterParameter={} ,  UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" VerticalAlignment="Center" HorizontalContentAlignment="Center" Height="35" Margin="18,0,0,8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" >
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -32,4 +32,4 @@
             <Button Content="▼" Command="{Binding DecrementCommand}" Width="18" Height="18" />
         </StackPanel>
     </Grid>
-</UserControl>
+</f:UserControlBase>

@@ -17,8 +17,8 @@ namespace prbd_2324_c02.ViewModel
        public ICommand IncrementCommand { get; set; }
        public ICommand DecrementCommand { get; set; }
        
-        public  NumericUpDownViewModel() {
-            Value = 1;
+        public  NumericUpDownViewModel(object weight) {
+            Value = (int)weight;
             IncrementCommand = new RelayCommand(Increment);
             DecrementCommand = new RelayCommand(Decrement,()=>Value >0);
 
@@ -27,9 +27,11 @@ namespace prbd_2324_c02.ViewModel
 
         private void Increment() {
            Value++;
+           RaisePropertyChanged(nameof(Value));
         }
         private void Decrement() {
             Value--;
-        }    
+            RaisePropertyChanged(nameof(Value));
+        }
     }
 }
