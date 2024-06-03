@@ -15,6 +15,7 @@ namespace prbd_2324_c02.Model
 
         [Required]
         public int weight { get; set; }
+       
 
         //[ForeignKey(nameof(user))]
         public int userId { get; set; }
@@ -30,8 +31,17 @@ namespace prbd_2324_c02.Model
         //[Required]
         [ForeignKey(nameof(operationsID))]
         public virtual Operations operations { get; set; }
-       
+
+        public void increment() {
+            weight++;
+        }public void decrement() {
+            weight--;
+        }
+
     }
+
+
+    
 
     /*
      public class Message : EntityBase<Model> {
