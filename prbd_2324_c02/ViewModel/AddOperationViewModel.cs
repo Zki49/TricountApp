@@ -115,8 +115,11 @@ namespace prbd_2324_c02.ViewModel
                 Curent.save();
                 
             }
+            NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
+            NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
+            NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, Tricount);
 
-            
+
         }
 
         protected override void OnRefreshData() {
