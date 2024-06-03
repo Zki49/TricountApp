@@ -45,9 +45,9 @@ namespace prbd_2324_c02.ViewModel
             AddOperationCommand = new RelayCommand(addOperation);
             openOperation = new RelayCommand(openOperationCommand);
             Register(App.Messages.MSG_OPE_CHANGED,()=>OnRefreshData());
-            Register<Operations>(App.Messages.MSG_EDITOPERATION, operation => {
-                new AddOperationView(tricount, true, operation).Show();
-            });
+          //  Register<Operations>(App.Messages.MSG_EDITOPERATION, operation => {
+            //    new AddOperationView(tricount, true, operation).Show();
+            //});
 
         }
         private void addOperation() {
@@ -79,8 +79,9 @@ namespace prbd_2324_c02.ViewModel
         }
 
         private void openOperationCommand() {
-            Console.WriteLine(CurrentOpe);
-            NotifyColleagues(App.Messages.MSG_EDITOPERATION, CurrentOpe);
+           Console.WriteLine(CurrentOpe);
+            new AddOperationView(Tricount, true, CurrentOpe).Show();
+            // NotifyColleagues(App.Messages.MSG_EDITOPERATION, CurrentOpe);
         }
 
     }
