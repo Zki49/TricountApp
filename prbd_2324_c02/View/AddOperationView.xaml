@@ -46,9 +46,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Width="150" Margin="5">
-                <!-- ComboBox items should be bound to your list of templates -->
-            </ComboBox>
+                <ComboBox ItemsSource="{Binding templates}" DisplayMemberPath="FullName" SelectedItem="{Binding TemplateSelected, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="5"/>
             <Button Content="Apply" Grid.Column="1" Margin="5"/>
         </Grid>
 
