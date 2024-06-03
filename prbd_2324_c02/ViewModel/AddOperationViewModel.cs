@@ -36,9 +36,8 @@ namespace prbd_2324_c02.ViewModel
 
 
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
-        public ObservableCollection<User> users { 
-            get;
-            set; } = new();
+        public ObservableCollection<Template> templates { get; set; } = new();
+        public ObservableCollection<User> users { get; set; } = new();
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
            
@@ -122,6 +121,10 @@ namespace prbd_2324_c02.ViewModel
         }
 
         protected override void OnRefreshData() {
+            var Temp = Tricount.Templates;
+            foreach (var template in Temp) {
+                templates.Add(template);
+            }
             if (!isedit) {
                 var Participants = Tricount.Subscriptions;
                 foreach(var participant in Participants) {
