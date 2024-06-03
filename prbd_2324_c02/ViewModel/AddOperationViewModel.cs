@@ -113,7 +113,6 @@ namespace prbd_2324_c02.ViewModel
                 Curent.CreatAt = Date;
                 Curent.user = UserSelected;
                 Curent.save();
-                
             }
             NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
             NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);

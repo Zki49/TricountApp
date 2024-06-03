@@ -27,6 +27,7 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     public ICommand ClearCommand { get; set; }
     public ICommand AddCommand { get; set; }
     public ICommand openTricount { get; set; }
+    public ICommand ReloadCommand { get; set; } 
 
 
     public ObservableCollectionFast<Tricount> tricounts { get; set; } = new ();
@@ -43,6 +44,14 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         AddCommand = new RelayCommand(Add);
         openTricount = new RelayCommand(opentricount);
         ResetCommand = new RelayCommand(reset);
+        ReloadCommand = new RelayCommand(() => {
+            // refuser un reload s'il y a des changements en cours
+            if (Context.ChangeTracker.HasChanges()) return;
+            // permet de renouveller le contexte EF
+            App.ClearContext();
+            // notifie tout le monde qu'il faut rafraîchir les données
+            NotifyColleagues(ApplicationBaseMessages.MSG_REFRESH_DATA);
+        });
     }
     private void reset() {
         var userId = CurrentUser.UserId;

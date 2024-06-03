@@ -58,7 +58,7 @@ namespace prbd_2324_c02.Model
 
         
         public double balance(User user) {
-
+             
 
             var res = Operations
                       .Where(operation => operation.repartitions.Any(repartition => repartition.userId == user.UserId))
