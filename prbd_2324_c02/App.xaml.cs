@@ -18,14 +18,14 @@ public partial class App : ApplicationBase<User, PridContext> {
 
         MSG_ADD_OPERATION,
           
-
         MSG_CLOSE_TAB,
         MSG_EDIT,
         MSG_RESET,
         MSG_ADD_OPE,
         MSG_CLOSE_WINDOWS,
-        MSG_OPE_CHANGED
+        MSG_OPE_CHANGED,
 
+        MSG_EDITOPERATION
 
     }
     public App() {
@@ -39,6 +39,7 @@ public partial class App : ApplicationBase<User, PridContext> {
         CultureInfo.DefaultThreadCurrentUICulture = ci;
         CultureInfo.CurrentCulture = ci;
         CultureInfo.CurrentUICulture = ci;
+        
     }
 
     protected override void OnStartup(StartupEventArgs e) {

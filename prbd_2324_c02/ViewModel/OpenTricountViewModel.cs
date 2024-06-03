@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using prbd_2324_c02.Model;
+using prbd_2324_c02.View;
 using PRBD_Framework;
 using System;
 using System.Collections.Generic;
@@ -23,10 +25,15 @@ namespace prbd_2324_c02.ViewModel
             private init => SetProperty(ref _tricount, value);
 
         }
+        public Operations CurrentOpe {
+            get;
+            set;
+        }
 
         public ICommand Delete { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand AddOperationCommand {  get; set; }
+        public ICommand openOperation {  get; set; }
 
 
 
@@ -36,7 +43,11 @@ namespace prbd_2324_c02.ViewModel
             Delete = new RelayCommand(deleteTricount);
             EditCommand = new RelayCommand(EditTricount);
             AddOperationCommand = new RelayCommand(addOperation);
+            openOperation = new RelayCommand(openOperationCommand);
             Register(App.Messages.MSG_OPE_CHANGED,()=>OnRefreshData());
+          //  Register<Operations>(App.Messages.MSG_EDITOPERATION, operation => {
+            //    new AddOperationView(tricount, true, operation).Show();
+            //});
 
         }
         private void addOperation() {
@@ -64,8 +75,14 @@ namespace prbd_2324_c02.ViewModel
                 var balanceForUser = Tricount.balance(user);
                 balance.Add(balanceForUser);
             }
-            Tricount.Reload();
+            
         }
-       
+
+        private void openOperationCommand() {
+           Console.WriteLine(CurrentOpe);
+            new AddOperationView(Tricount, true, CurrentOpe).Show();
+            // NotifyColleagues(App.Messages.MSG_EDITOPERATION, CurrentOpe);
+        }
+
     }
 }

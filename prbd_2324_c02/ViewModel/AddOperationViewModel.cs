@@ -14,8 +14,19 @@ namespace prbd_2324_c02.ViewModel
     {
         public Tricount Tricount { get; set; }
         public Operations Curent { get; set; }
-        public String Title { get; set; }
-        public double Amout { get; set; }
+        private String _title;
+
+
+        public User UserSelected { get; set; }
+        public String Title {
+            get => _title;
+            set => SetProperty(ref _title, value, () => Validate());
+        }
+        private double _amout;
+        public double Amout {
+            get => _amout;
+            set => SetProperty(ref _amout, value, () => Validate());
+                }
         public DateTime Date { get; set; }
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
@@ -25,6 +36,9 @@ namespace prbd_2324_c02.ViewModel
 
 
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
+        public ObservableCollection<User> users { 
+            get;
+            set; } = new();
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
            
@@ -33,10 +47,13 @@ namespace prbd_2324_c02.ViewModel
             Title = curent.title;
             Amout = curent.Amount;
             Date = curent.CreatAt;
-            this.Curent.Tricount = tricount;
+            if (!isedit) {
+                this.Curent.Tricount = tricount;
+            }
             BoutonaddorSave = isedit ? "Save" : "Add";
             VisibleDelete = isedit ? "" : "Hidden";
             this.isedit = isedit;
+
             MakeCommand();
             OnRefreshData();
         }
@@ -47,7 +64,7 @@ namespace prbd_2324_c02.ViewModel
 
             if (string.IsNullOrEmpty(Title))
                 AddError(nameof(Title), "required");
-            else if (Amout < 0)
+            else if (Amout <= 0)
                 AddError(nameof(Amout), "minimum 1 cent ");
 
 
@@ -56,13 +73,19 @@ namespace prbd_2324_c02.ViewModel
 
         private void MakeCommand() {
             deletCommand = new RelayCommand(deleteOperation);
-            AddCommand = new RelayCommand(Addoperation);
+            AddCommand = new RelayCommand(Addoperation, () => !HasErrors);
 
         }
         private void deleteOperation() {
             if (isedit) {
                 if (App.ShowDialog<DialogViewModel, User, PridContext>("Operation ").Equals(true)) {
                     Curent.delete();
+                    NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
+                    NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount );
+                    NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
+                    NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, Tricount);
+
+
                 }
             }
            
@@ -88,11 +111,14 @@ namespace prbd_2324_c02.ViewModel
                 Curent.Amount = Amout;
                 Curent.repartitions = rep;
                 Curent.CreatAt = Date;
+                Curent.user = UserSelected;
                 Curent.save();
-                
             }
+            NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
+            NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
+            NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, Tricount);
 
-            
+
         }
 
         protected override void OnRefreshData() {
@@ -104,9 +130,15 @@ namespace prbd_2324_c02.ViewModel
                     rep.user = participant.User;
                     rep.operations = Curent;
                     Repartitions.Add(rep);
+
+                    users.Add(participant.User);
                 }
             } else {
                 Repartitions.RefreshFromModel(Context.Repartitions.Where(r => r.operationsID == Curent.OperationsId));
+                var Participants = Tricount.Subscriptions;
+                foreach (var participant in Participants) {
+                    users.Add(participant.User);
+                }
             }
             
         }
