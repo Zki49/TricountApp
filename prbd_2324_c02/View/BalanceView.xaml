@@ -12,15 +12,18 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UniformGrid>
-        <StackPanel>
-            <TextBlock >
-            <Run Text="{Binding username}"/>
+        <StackPanel  Orientation="Horizontal">
+            <Border Background="{Binding colorRight}" Width="{Binding with}" Height="20" HorizontalAlignment="Left">
+
+                <TextBlock Text="{Binding username}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Border>
+            
         <Border Background="{Binding color}" Width="{Binding with}" Height="20" HorizontalAlignment="Left">
                 
                 <TextBlock Text="{Binding balance}" VerticalAlignment="Center" HorizontalAlignment="Center" />
         </Border>
 
-             </TextBlock>
+             
 
         </StackPanel>
     </UniformGrid>

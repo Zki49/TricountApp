@@ -14,6 +14,8 @@ namespace prbd_2324_c02.ViewModel
         public string balance{ get; set; }
         public double with{ get; set; }
         public String color{ get; set; }
+        public String colorRight { get; set; }
+
 
         public balanceViewModel(String UserName , double balance , String color) {
             if (CurrentUser.FullName.Equals(UserName)) {
@@ -25,6 +27,8 @@ namespace prbd_2324_c02.ViewModel
             if( balance < 0) {
                 this.username= Math.Round(balance, 2).ToString();
                 this.balance = UserName;
+                colorRight=this.color;
+                this.color = "Transparent";
 
                 this.with = -balance;
             } else {
@@ -33,6 +37,7 @@ namespace prbd_2324_c02.ViewModel
             }
             if( balance ==0) {
               this.balance = "0";
+                this.color = "Transparent";
             }
            
         }
