@@ -86,11 +86,16 @@
                 <Button Content="+" FontSize="24" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Command="{Binding AddOperationCommand}" />
 
 
-                
-                <vw:BalanceView/>
-                    
-                
-                <!-- Balances -->
+                <ItemsControl ItemsSource="{Binding balance}" Grid.Row="1">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <vw:BalanceView/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+
+                        <!-- Balances -->
                 
             </StackPanel>
         </ScrollViewer>

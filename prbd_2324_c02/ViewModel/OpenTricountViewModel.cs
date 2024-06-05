@@ -17,7 +17,7 @@ namespace prbd_2324_c02.ViewModel
     {
         private readonly Tricount _tricount;
         public ObservableCollectionFast<User> participant { get; set; } = new();
-        public ObservableCollectionFast<double> balance { get; set; } = new();
+        public ObservableCollectionFast<balanceViewModel> balance { get; set; } = new();
 
 
         public Tricount Tricount {
@@ -75,8 +75,16 @@ namespace prbd_2324_c02.ViewModel
 
             participant.RefreshFromModel(Context.Users.Where(u => u.Role.Equals(false) && u.Subscriptions.Any(s => s.TricountId == Tricount.Id) ));
             foreach (User user in participant) {
-                var balanceForUser = Tricount.balance(user);
-                balance.Add(balanceForUser);
+                double balanceForUser = Tricount.balance(user);
+                var color = "";
+                if (balanceForUser > 0) {
+                    color = "green";
+                }if (balanceForUser < 0) {
+                    color = "red";
+                }
+
+                balance.Add(new balanceViewModel(user.FullName,balanceForUser,color));
+
             }
             
         }
