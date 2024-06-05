@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using prbd_2324_c02.Model;
+using prbd_2324_c02.ViewModel;
 using PRBD_Framework;
 
 namespace prbd_2324_c02.View
@@ -24,6 +26,8 @@ namespace prbd_2324_c02.View
         public detailTricountView()
         {
             InitializeComponent();
+            
         }
+      
     }
 }

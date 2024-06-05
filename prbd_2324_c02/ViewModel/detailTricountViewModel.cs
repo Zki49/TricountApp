@@ -21,13 +21,16 @@ namespace prbd_2324_c02.ViewModel
         public string nbOperation { get; set; }
         public string TotalExpenses { get; set; }
         public string Color { get; set; }
+        public string ColorText { get; set; }
+        public Tricount tricount { get; set; }
 
 
         public detailTricountViewModel() {
 
         }
-        public detailTricountViewModel(Tricount tricount) {
+        public detailTricountViewModel(  Tricount tricount) {
             makeCarte(tricount);
+            this.tricount = tricount;
         }
 
         private void makeCarte(Tricount tricount) {
@@ -53,12 +56,14 @@ namespace prbd_2324_c02.ViewModel
             }
 
             if (tricount.balance(CurrentUser) > 0) {
-                Color = "Green";
+                Color = "#A0D858";
+                ColorText = "Green";
             }
             if(tricount.balance(CurrentUser) < 0) {
                 Color = "Red";
+                ColorText = Color;
             }
-            else {
+            if(tricount.balance(CurrentUser) ==0) {
                 Color = "Gray";
             }
 

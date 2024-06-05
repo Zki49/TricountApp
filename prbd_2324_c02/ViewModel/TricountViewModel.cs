@@ -40,7 +40,7 @@ namespace prbd_2324_c02.ViewModel
             LogoutCommand = new RelayCommand(logout);
             ClearCommand = new RelayCommand(ClearTextBox);
             AddCommand = new RelayCommand(Add);
-            openTricount = new RelayCommand(opentricount);
+            openTricount = new RelayCommand<detailTricountViewModel>(vm=> { NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, vm.tricount); });
 
             Register<Tricount>(App.Messages.MSG_TRICOUNT_CHANGED, tricount => OnRefreshData());
 
