@@ -22,6 +22,8 @@ namespace prbd_2324_c02.ViewModel
             get => _title;
             set => SetProperty(ref _title, value, () => Validate());
         }
+
+        public ObservableCollection<NumericUpDownViewModel> Reparttionsviewmodel { get; set; } = new ObservableCollection<NumericUpDownViewModel>();
         private double _amout;
         public double Amout {
             get => _amout;
@@ -52,9 +54,11 @@ namespace prbd_2324_c02.ViewModel
             BoutonaddorSave = isedit ? "Save" : "Add";
             VisibleDelete = isedit ? "" : "Hidden";
             this.isedit = isedit;
-
-            MakeCommand();
             OnRefreshData();
+            MakeCommand();
+
+           
+
         }
 
         public override bool Validate() {
@@ -142,6 +146,9 @@ namespace prbd_2324_c02.ViewModel
                 foreach (var participant in Participants) {
                     users.Add(participant.User);
                 }
+            }
+            foreach(var rep in Repartitions) {
+                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
             }
             
         }

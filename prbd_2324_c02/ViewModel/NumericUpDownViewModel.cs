@@ -12,25 +12,27 @@ namespace prbd_2324_c02.ViewModel
     public class NumericUpDownViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     {
 
-        public int Value {  get; set; }
+        public Repartitions Value {  get; set; }
 
        public ICommand IncrementCommand { get; set; }
        public ICommand DecrementCommand { get; set; }
        
-        public  NumericUpDownViewModel(object weight) {
-            Value = (int)weight;
+        public  NumericUpDownViewModel( Repartitions rep) {
+            Value = rep;
             IncrementCommand = new RelayCommand(Increment);
-            DecrementCommand = new RelayCommand(Decrement,()=>Value >0);
+            DecrementCommand = new RelayCommand(Decrement,()=>Value.weight >0);
 
 
         }
-
+       
         private void Increment() {
-           Value++;
+           Value.weight++;
            RaisePropertyChanged(nameof(Value));
         }
         private void Decrement() {
-            Value--;
+            Value.weight--;
+            
+            
             RaisePropertyChanged(nameof(Value));
         }
     }
