@@ -98,6 +98,16 @@ namespace prbd_2324_c02.Model
 
                return -(res-myExpense);
         }
+
+        public double myExpense(User user) {
+            return Operations
+                .Where(operation => operation.userId == user.UserId)
+                .Sum(operation => operation.Amount);
+        }
+
+        public double totalExpenses() {
+            return Operations.Sum(o=>o.Amount);
+        }
         
         public static Tricount AddTricount( string Title , string description ,DateTime date ,List<User> participants , User Creator) {
             Tricount tricount = new Tricount();

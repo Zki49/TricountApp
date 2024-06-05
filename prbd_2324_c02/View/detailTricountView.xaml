@@ -11,27 +11,28 @@
  mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.DataContext>
-        <vm:detailTricountViewModel x:Name="vm"/>
-    </UserControl.DataContext>
+    
     <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10" Margin="5" Padding="10" Width="200" Background="{Binding Color}"
-  MouseLeftButtonDown="ItemBorder_MouseLeftButtonDown"  >
+  >
 
         <StackPanel>
             <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
-            <TextBlock Text="{Binding description, Converter={StaticResource DescriptionConverter}}" FontStyle="Italic" FontSize="12" Margin="0,5,0,5"/>
+            <TextBlock Text="{Binding description, Converter={StaticResource DescriptionConverter} }" FontStyle="Italic" FontSize="12" Margin="0,5,0,5"/>
             <TextBlock TextWrapping="Wrap">
-              <Run Text="Created by "/>
-              <Run Text="{Binding UserFulname}"/>
+              <TextBlock Text="{Binding UserFullname}"/>
             </TextBlock>
             <TextBlock TextWrapping="Wrap">
-              <Run Text="on "/>
-              <Run Text="{Binding CreatedAt}"/>
+              <TextBlock Text="{Binding CreatedAt}"/>
             </TextBlock>
             <TextBlock TextWrapping="Wrap">
-              <Run Text="{Binding Operations}"/>
-              <Run Text="Operations"/>
+              <TextBlock Text="{Binding LastOperation}"/>
             </TextBlock>
+            <TextBlock Text="{Binding nbFriends}" />
+            <TextBlock Text="{Binding nbOperation}" />
+            <TextBlock Text="{Binding TotalExpenses}" />
+            <TextBlock Text="{Binding MyExpense}" />
+            <TextBlock Text="{Binding balance}" />
+
         </StackPanel>
     </Border>
 </f:UserControlBase>

@@ -13,7 +13,70 @@ namespace prbd_2324_c02.ViewModel
         public string Title {  get; set; }
         public string description {  get; set; }
         public string CreatedAt {  get; set; }
-        public string ballance {  get; set; }
-        public string UserFulname {  get; set; }
+        public string balance {  get; set; }
+        public string UserFullname {  get; set; }
+        public string LastOperation {  get; set; }
+        public string MyExpense { get; set; }
+        public string nbFriends { get; set; }
+        public string nbOperation { get; set; }
+        public string TotalExpenses { get; set; }
+        public string Color { get; set; }
+
+
+        public detailTricountViewModel() {
+
+        }
+        public detailTricountViewModel(Tricount tricount) {
+            makeCarte(tricount);
+        }
+
+        private void makeCarte(Tricount tricount) {
+            Title = tricount.Title; 
+            description = tricount.Description;
+            CreatedAt = "on " + tricount.CreatedAt.ToString();
+            UserFullname = "Created by: " + tricount.Creator.FullName;
+
+            nbFriends = "With " + getNbFriends(tricount) + "friend";
+            if(getNbFriends(tricount) > 1) {
+                nbFriends+="s";
+            } ;
+
+            nbOperation = tricount.Operations.Count > 0 ? tricount.Operations.Count + "operations"
+                 : "No operation";
+
+            if (tricount.Operations.Count > 0) {
+                LastOperation = "Last operation on " + getLastOperation(tricount);
+
+                TotalExpenses = "Total Expenses: " + tricount.totalExpenses();
+                MyExpense = "My Expenses: " + tricount.myExpense(CurrentUser);
+                balance = "My Balance: " + tricount.balance(CurrentUser);
+            }
+
+            if (tricount.balance(CurrentUser) > 0) {
+                Color = "Green";
+            }
+            if(tricount.balance(CurrentUser) < 0) {
+                Color = "Red";
+            }
+            else {
+                Color = "Gray";
+            }
+
+        }
+
+        private string getLastOperation(Tricount tricount) {
+            var op = tricount.Operations;
+            var res = "";
+            for(int i = 0; i < op.Count - 1; ++i) {
+                if (op[i].CreatAt.CompareTo(op[i+1].CreatAt) <=0) {
+                    res = op[i + 1].CreatAt.ToString();
+                }
+            }
+            return res;
+        }
+        private int getNbFriends(Tricount tricount) {
+            var res = tricount.Subscriptions.Count;
+            return res-1;
+        }
     }
 }

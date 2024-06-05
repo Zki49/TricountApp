@@ -7,6 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 
              xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
+             xmlns:vw="clr-namespace:prbd_2324_c02.View"
 
 
              xmlns:converters="clr-namespace:prbd_2324_c02.ViewModel"
@@ -32,7 +33,7 @@
         <TextBox Margin="10,0,73,0" VerticalAlignment="Center" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
         <Button Grid.Row="0" Content="Clear" HorizontalAlignment="Right" Command="{Binding ClearCommand}" Margin="10" Width="58" />
 
-        <ItemsControl ItemsSource="{Binding tricounts}" Margin="10" Grid.Row="1">
+        <ItemsControl ItemsSource="{Binding cartes}" Margin="10" Grid.Row="1">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding openTricount}"
@@ -47,8 +48,7 @@
             <ItemsControl.ItemTemplate>
                 
                 <DataTemplate>
-
-
+                    <vw:detailTricountView/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

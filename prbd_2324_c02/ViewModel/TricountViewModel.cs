@@ -34,6 +34,7 @@ namespace prbd_2324_c02.ViewModel
 
 
         public ObservableCollection<Tricount> tricounts { get; set; } = new();
+        public ObservableCollection<detailTricountViewModel> cartes { get; set; } = new();
         public TricountViewModel() {
             OnRefreshData();
             LogoutCommand = new RelayCommand(logout);
@@ -42,6 +43,8 @@ namespace prbd_2324_c02.ViewModel
             openTricount = new RelayCommand(opentricount);
 
             Register<Tricount>(App.Messages.MSG_TRICOUNT_CHANGED, tricount => OnRefreshData());
+
+            makeCarte();
 
         }
         protected override void OnRefreshData() {
@@ -81,6 +84,10 @@ namespace prbd_2324_c02.ViewModel
 
         }
 
-    
+        private void makeCarte() {
+            foreach(var tric in tricounts) {
+                cartes.Add(new detailTricountViewModel(tric));
+            }
+        }
 }
 }
