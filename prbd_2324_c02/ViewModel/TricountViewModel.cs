@@ -19,7 +19,6 @@ namespace prbd_2324_c02.ViewModel
         public Tricount currentTricount { get => tricount; set => SetProperty(ref tricount, value,() => Console.WriteLine(value) ); }
 
 
-
         public string Title => "prbd_2324_c02";
         public string Color => "LightGray";
         private string _inputText;
