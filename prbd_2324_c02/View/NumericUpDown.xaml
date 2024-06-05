@@ -36,7 +36,7 @@
                     <Button Content="▼" Command="{Binding DecrementCommand}" Width="18" Height="18" />
                 </StackPanel>
             </Grid>
-            <TextBlock Text="12$" VerticalAlignment="Center" Margin="5"/>
+            <TextBlock Text="{Binding Price}" VerticalAlignment="Center" Margin="5"/>
         </UniformGrid>
     </StackPanel>
 </f:UserControlBase>

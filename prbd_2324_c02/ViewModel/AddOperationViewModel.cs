@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.IdentityModel.Tokens;
 using prbd_2324_c02.Model;
 using PRBD_Framework;
 
@@ -59,6 +60,7 @@ namespace prbd_2324_c02.ViewModel
 
            
 
+           
         }
 
         public override bool Validate() {
@@ -87,14 +89,8 @@ namespace prbd_2324_c02.ViewModel
                     NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount );
                     NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
                     NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, Tricount);
-
-
                 }
             }
-           
-
-
-
         }
         private void Addoperation() {
             NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
@@ -120,18 +116,17 @@ namespace prbd_2324_c02.ViewModel
             NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
             NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
             NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, Tricount);
-
-
         }
 
         protected override void OnRefreshData() {
             var Temp = Tricount.Templates;
+
             foreach (var template in Temp) {
                 templates.Add(template);
             }
             if (!isedit) {
                 var Participants = Tricount.Subscriptions;
-                foreach(var participant in Participants) {
+                foreach (var participant in Participants) {
                     Repartitions rep = new Repartitions();
                     rep.weight = 1;
                     rep.user = participant.User;
@@ -144,13 +139,52 @@ namespace prbd_2324_c02.ViewModel
                 Repartitions.RefreshFromModel(Context.Repartitions.Where(r => r.operationsID == Curent.OperationsId));
                 var Participants = Tricount.Subscriptions;
                 foreach (var participant in Participants) {
+
                     users.Add(participant.User);
                 }
+                foreach (var user in users) {
+                    bool isIn = false;
+                    foreach (var rep in Repartitions) {
+                        if (user.Equals(rep.user)) {
+                            isIn = true;
+                        }
+                    }
+                    if (!isIn) {
+                        Repartitions rep = new Repartitions();
+                        rep.weight = 0;
+                        rep.user = user;
+                        rep.operations = Curent;
+                        Repartitions.Add(rep);
+                        Curent.repartitions.Add(rep);
+                    }
+                }
             }
-            foreach(var rep in Repartitions) {
+            foreach (var rep in Repartitions) {
                 Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
             }
-            
+        }
+
+        public void Reload() {
+            var reparCur = Context.Operations.Find(Curent.OperationsId).repartitions;
+            foreach (var user in users) {
+                bool isIn = false;
+                foreach (var rep in reparCur) {
+                    if (user.Equals(rep.user)) {
+                        isIn = true;
+                    }
+                }
+                if (!isIn) {
+                    Repartitions rep = new Repartitions();
+                    rep.weight = 0;
+                    rep.user = user;
+                    rep.operations = Curent;
+                    Repartitions.Remove(rep);
+                    Curent.repartitions.Remove(rep);
+                }
+            }
+            Curent.Reload();    
+            RaisePropertyChanged();
+            App.ClearContext();
         }
     }
 }

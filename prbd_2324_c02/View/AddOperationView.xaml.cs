@@ -24,14 +24,19 @@ namespace prbd_2324_c02.View
     public partial class AddOperationView : WindowBase
     {
         public Repartitions Value { get; set; }
+        private AddOperationViewModel _vm;
         public AddOperationView(Tricount tricount ,bool isedit , Operations curent) {
             InitializeComponent();
-           DataContext = new AddOperationViewModel(tricount,curent,isedit);
+           DataContext = _vm = new AddOperationViewModel(tricount,curent,isedit);
             Register(App.Messages.MSG_CLOSE_WINDOWS, () => close());
 
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
+
+            NotifyColleagues(App.Messages.MSG_MAJ);
+            _vm.Reload();
             Close();
+            NotifyColleagues(App.Messages.MSG_CANCEL_OPE);
         }
 
 

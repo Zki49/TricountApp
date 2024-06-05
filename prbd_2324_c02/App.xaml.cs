@@ -25,7 +25,10 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_CLOSE_WINDOWS,
         MSG_OPE_CHANGED,
 
-        MSG_EDITOPERATION
+        MSG_EDITOPERATION,
+        MSG_REP_CHANGE,
+        MSG_CANCEL_OPE,
+        MSG_MAJ
 
     }
     public App() {

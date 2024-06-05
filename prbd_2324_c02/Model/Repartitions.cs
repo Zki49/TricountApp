@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRBD_Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace prbd_2324_c02.Model
 {
-    public class Repartitions
+    public class Repartitions : EntityBase<PridContext>
     {
 
         public Repartitions() { }
@@ -36,6 +37,14 @@ namespace prbd_2324_c02.Model
             weight++;
         }public void decrement() {
             weight--;
+        }
+
+        public bool Equals(Repartitions other) {
+            if(other.userId == userId && other.operationsID == operationsID) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }

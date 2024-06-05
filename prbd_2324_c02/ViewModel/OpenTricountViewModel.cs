@@ -45,9 +45,18 @@ namespace prbd_2324_c02.ViewModel
             AddOperationCommand = new RelayCommand(addOperation);
             openOperation = new RelayCommand(openOperationCommand);
             Register(App.Messages.MSG_OPE_CHANGED,()=>OnRefreshData());
-          //  Register<Operations>(App.Messages.MSG_EDITOPERATION, operation => {
+            //  Register<Operations>(App.Messages.MSG_EDITOPERATION, operation => {
             //    new AddOperationView(tricount, true, operation).Show();
             //});
+
+            Register(App.Messages.MSG_CANCEL_OPE, () => {
+                //On a trouvé aucune autre technique
+                tricount.Reload();
+                CurrentOpe.Reload();
+                RaisePropertyChanged();
+                Console.Write("Open");
+            });
+
 
         }
         private void addOperation() {
