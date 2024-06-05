@@ -26,8 +26,10 @@ namespace prbd_2324_c02.ViewModel
         }
        
         private void Increment() {
+            
            Value.weight++;
            RaisePropertyChanged(nameof(Value));
+            Console.Write(Value.weight);
         }
         private void Decrement() {
             Value.weight--;
