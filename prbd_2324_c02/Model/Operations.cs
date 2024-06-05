@@ -29,7 +29,7 @@ namespace prbd_2324_c02.Model
         public int userId { get; set; }
 
         public virtual User user { get; set; }
-        public virtual List<Repartitions> repartitions { get; set; }
+        public virtual List<Repartitions> repartitions { get; set; } = new();
 
         public void delete() {
             Context.Remove(this);

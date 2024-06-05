@@ -49,13 +49,7 @@ namespace prbd_2324_c02.ViewModel
             //    new AddOperationView(tricount, true, operation).Show();
             //});
 
-            Register(App.Messages.MSG_CANCEL_OPE, () => {
-                //On a trouvé aucune autre technique
-                tricount.Reload();
-                CurrentOpe.Reload();
-                RaisePropertyChanged();
-                Console.Write("Open");
-            });
+            
 
 
         }

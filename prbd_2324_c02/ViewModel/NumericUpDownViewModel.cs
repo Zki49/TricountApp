@@ -20,6 +20,7 @@ namespace prbd_2324_c02.ViewModel
 
         public  NumericUpDownViewModel(Repartitions rep) {
             Value = rep;
+            Console.WriteLine(Value.operations.repartitions);
             IncrementCommand = new RelayCommand(Increment);
             DecrementCommand = new RelayCommand(Decrement,()=>Value.weight >0);
             Price = "" + getPrice();
@@ -52,11 +53,15 @@ namespace prbd_2324_c02.ViewModel
         }
 
         private double getPrice() {
+            
             if (Value.weight != 0) {
+                Console.WriteLine(Value.operations.Amount * ((double)Value.weight / (double)Value.operations.repartitions.Sum(rep => rep.weight)));
                 return (Value.operations.Amount * ((double)Value.weight / (double)Value.operations.repartitions.Sum(rep => rep.weight)));
             } else {
                 return 0;
             }
+           // Console.WriteLine();
+            //return 0.0;
         }
 
 

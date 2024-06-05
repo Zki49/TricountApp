@@ -103,6 +103,7 @@ namespace prbd_2324_c02.ViewModel
                 Curent.repartitions = rep;
                 RaisePropertyChanged();
                 Context.SaveChanges();
+
             } else {
                 //creation de l'operation 
                 Curent.Tricount = Tricount;
@@ -112,10 +113,14 @@ namespace prbd_2324_c02.ViewModel
                 Curent.CreatAt = Date;
                 Curent.user = UserSelected;
                 Curent.save();
+                Context.SaveChanges();
+                RaisePropertyChanged();
+
             }
             NotifyColleagues(App.Messages.MSG_TRICOUNT_CHANGED, Tricount);
             NotifyColleagues(App.Messages.MSG_CLOSE_TAB, Tricount);
             NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, Tricount);
+            RaisePropertyChanged();
         }
 
         protected override void OnRefreshData() {
@@ -132,7 +137,7 @@ namespace prbd_2324_c02.ViewModel
                     rep.user = participant.User;
                     rep.operations = Curent;
                     Repartitions.Add(rep);
-
+                    Curent.repartitions.Add(rep);
                     users.Add(participant.User);
                 }
             } else {
@@ -162,11 +167,19 @@ namespace prbd_2324_c02.ViewModel
             foreach (var rep in Repartitions) {
                 Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
             }
+            Context.SaveChanges();
+            RaisePropertyChanged();
+            
         }
 
         public void Reload() {
-            var reparCur = Context.Operations.Find(Curent.OperationsId).repartitions;
-            foreach (var user in users) {
+            /*App.ClearContext();
+            Repartitions.Clear();
+            templates.Clear();
+            users.Clear();
+            Reparttionsviewmodel.Clear();
+            //var reparCur = Context.Operations.Find(Curent.OperationsId).repartitions;
+            /*foreach (var user in users) {
                 bool isIn = false;
                 foreach (var rep in reparCur) {
                     if (user.Equals(rep.user)) {
@@ -176,15 +189,16 @@ namespace prbd_2324_c02.ViewModel
                 if (!isIn) {
                     Repartitions rep = new Repartitions();
                     rep.weight = 0;
-                    rep.user = user;
-                    rep.operations = Curent;
+                    rep.userId = user.UserId;
+                    rep.operationsID = Curent.OperationsId;
                     Repartitions.Remove(rep);
                     Curent.repartitions.Remove(rep);
                 }
-            }
-            Curent.Reload();    
-            RaisePropertyChanged();
-            App.ClearContext();
+            }*/
+           
+            /*Curent.Reload();    
+            RaisePropertyChanged();*/
+            
         }
     }
 }
