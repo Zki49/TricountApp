@@ -32,26 +32,25 @@
 
         <TextBox Margin="10,0,73,0" VerticalAlignment="Center" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
         <Button Grid.Row="0" Content="Clear" HorizontalAlignment="Right" Command="{Binding ClearCommand}" Margin="10" Width="58" />
-        <ScrollViewer Grid.Row="1">
-            <ListView ItemsSource="{Binding cartes}" Margin="10" Name="listview">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding openTricount}"
+
+        <ListView ItemsSource="{Binding cartes}" Margin="10"   Grid.Row="1"  Name="listview" BorderBrush="Transparent" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding openTricount}"
                                    CommandParameter="{Binding SelectedItem, ElementName=listview}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <vw:detailTricountView />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollViewer>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <vw:detailTricountView />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Margin="10">
             <Button Content="New Tricount" Height="22" Margin="5" Command="{Binding AddCommand}"/>
             <Button Content="Null Balance" Margin="5"  />
