@@ -58,20 +58,27 @@ namespace prbd_2324_c02.Model
             return TemplateItems.ToString();
         }
 
-      /*  public static void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Template>()
-                .HasMany(t => t.TemplateItems)
-                .WithOne(ti => ti.Template)
-                .HasForeignKey(ti => ti.TemplateId);
+        public  void AddTemplate() {
+            Context.Add(this);
+            Context.SaveChanges();
+        }
 
-            modelBuilder.Entity<Template>()
-                .HasKey(t => t.Id);
+     
 
-            modelBuilder.Entity<Template>()
-                .HasOne(t => t.Tricount)
-                .WithMany(tc => tc.Templates)
-                .HasForeignKey(t => t.TricountId);
-        }*/
+        /*  public static void OnModelCreating(ModelBuilder modelBuilder) {
+              modelBuilder.Entity<Template>()
+                  .HasMany(t => t.TemplateItems)
+                  .WithOne(ti => ti.Template)
+                  .HasForeignKey(ti => ti.TemplateId);
+
+              modelBuilder.Entity<Template>()
+                  .HasKey(t => t.Id);
+
+              modelBuilder.Entity<Template>()
+                  .HasOne(t => t.Tricount)
+                  .WithMany(tc => tc.Templates)
+                  .HasForeignKey(t => t.TricountId);
+          }*/
 
 
         //public static Template GetByKey(int id) {
@@ -81,11 +88,11 @@ namespace prbd_2324_c02.Model
         //}
 
         //dgdgdgd
-      /*  public static Template GetByKey(int id) {
-            using var dbContext = new PridContext();
-            return dbContext.Templates
-                .FirstOrDefault(t => t.Id == id);*/
-        }
+        /*  public static Template GetByKey(int id) {
+              using var dbContext = new PridContext();
+              return dbContext.Templates
+                  .FirstOrDefault(t => t.Id == id);*/
+    }
 
 
         //public static List<Template> GetByTricount(int id) {

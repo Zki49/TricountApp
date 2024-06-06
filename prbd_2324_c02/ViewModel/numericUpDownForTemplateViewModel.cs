@@ -24,7 +24,7 @@ namespace prbd_2324_c02.ViewModel
                 Value = template_Items;
                 IncrementCommand = new RelayCommand(Increment);
                 DecrementCommand = new RelayCommand(Decrement, () => Value.weight > 0);
-               
+
             }
 
             private void Increment() {

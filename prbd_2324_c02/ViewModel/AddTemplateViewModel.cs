@@ -58,16 +58,15 @@ namespace prbd_2324_c02.ViewModel
 
         private void Addtemplate() {
             if (isedit) {
+
                 //edition de la template
                 Curent.Title = Title;
                 //etc ...
                 //Curent.save();
             } else {
-                //creation de la template 
-                Curent.Tricount = Tricount;
                 Curent.Title = Title;
-                //etc ...
-                //Curent.save();
+                Curent.AddTemplate();
+                RaisePropertyChanged();
             }
         }
 
