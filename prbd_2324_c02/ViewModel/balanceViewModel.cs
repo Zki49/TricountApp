@@ -38,6 +38,7 @@ namespace prbd_2324_c02.ViewModel
             if( balance ==0) {
               this.balance = "0";
                 this.color = "Transparent";
+                this.with = 100;
             }
            
         }
