@@ -25,5 +25,9 @@ namespace prbd_2324_c02.View
         public DeleteView() {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }
