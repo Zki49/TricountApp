@@ -30,6 +30,7 @@ namespace prbd_2324_c02.Model
 
         public virtual User user { get; set; }
         public virtual List<Repartitions> repartitions { get; set; } = new();
+        
 
         public void delete() {
             Context.Remove(this);
@@ -38,6 +39,10 @@ namespace prbd_2324_c02.Model
         public void save() {
             Context.Add(this);
             Context.SaveChanges();
+            repartitions.Clear();
+        }
+        public String toString() {
+            return Amount.ToString();
         }
     }
 }

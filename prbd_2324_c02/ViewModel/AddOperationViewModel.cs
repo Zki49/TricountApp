@@ -89,15 +89,39 @@ namespace prbd_2324_c02.ViewModel
         private void ApplyTemplate() {
             Reparttionsviewmodel.Clear();
             Curent.repartitions.Clear();
+           
+            //Curent.repartitions = new();
             Context.SaveChanges();
-            Curent.repartitions = new();
-            foreach(var item in TemplateSelected.TemplateItems) {
-                var rep = new Repartitions(item);
-                rep.operations = Curent;
+            RaisePropertyChanged();
+            foreach (var item in TemplateSelected.TemplateItems) {
+                /*var rep = new Repartitions(item);
                 Curent.repartitions.Add(rep);
-                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
+                rep.operations = Curent;*/
+
+
+                //rep.operationsID = Curent.OperationsId;
+                //rep.userId = Curent.userId;
+                Repartitions rep = new Repartitions();
+                rep.weight = item.weight;
+                rep.user = item.User;
+                //rep.operations = Curent;
+                Repartitions.Add(rep);
+                Curent.repartitions.Add(rep);
+                //users.Add(participant.User);
+
+                //Curent.Amount = Amout;
+                Console.WriteLine(Curent.repartitions.Count());
+                //Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
                 Context.SaveChanges();
+                
+
             }
+            foreach(var rep in Curent.repartitions) {
+                rep.operations.Amount = Amout;
+                Console.WriteLine(rep.operations.Amount);
+                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , Curent.repartitions.Count()));
+            }
+
 
         }
         private void deleteOperation() {
@@ -184,7 +208,7 @@ namespace prbd_2324_c02.ViewModel
                 }
             }
             foreach (var rep in Repartitions) {
-                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
+                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , Curent.repartitions.Count()));
             }
             Context.SaveChanges();
             RaisePropertyChanged();
