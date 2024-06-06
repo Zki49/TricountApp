@@ -56,6 +56,7 @@ namespace prbd_2324_c02.ViewModel
             makeCommand();
             OnRefreshData();
             Register<User>(App.Messages.MSG_USER_DELETE, user => {
+                Console.WriteLine("delete demande");
                 DeleteAction(user);
             });
         }
