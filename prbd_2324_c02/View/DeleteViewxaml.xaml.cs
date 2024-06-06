@@ -20,9 +20,9 @@ namespace prbd_2324_c02.View
     /// <summary>
     /// Logique d'interaction pour DeleteViewxaml.xaml
     /// </summary>
-    public partial class DeleteViewxaml : UserControlBase
+    public partial class DeleteView: UserControlBase
     {
-        public DeleteViewxaml() {
+        public DeleteView() {
             InitializeComponent();
         }
     }

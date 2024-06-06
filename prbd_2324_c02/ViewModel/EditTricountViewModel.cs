@@ -113,7 +113,7 @@ namespace prbd_2324_c02.ViewModel
                 participants.Add(UserSelected);
                 users.Remove(UserSelected);
                 userDelete.Add(new DeleteViewModel(UserSelected));
-                UserSelected = null;
+                //UserSelected = null;
             }
         }
         private void AddAllUser() {
