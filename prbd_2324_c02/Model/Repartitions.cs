@@ -13,6 +13,11 @@ namespace prbd_2324_c02.Model
     {
 
         public Repartitions() { }
+        public Repartitions(Template_items temp_item) {
+            this.weight = temp_item.weight;
+            this.user = temp_item.User;
+            
+        }
 
         [Required]
         public int weight { get; set; }
@@ -46,6 +51,7 @@ namespace prbd_2324_c02.Model
                 return false;
             }
         }
+       
 
     }
 

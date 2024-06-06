@@ -67,6 +67,7 @@ namespace prbd_2324_c02.ViewModel
                 Curent.Title = Title;
                 Curent.AddTemplate();
                 RaisePropertyChanged();
+                NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
             }
         }
 

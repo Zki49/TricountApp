@@ -34,8 +34,12 @@ namespace prbd_2324_c02.ViewModel
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
         public string VisibleDelete {  get; set; }
+        public Template TemplateSelected {  get; set; }
+
+
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand Apply { get; set; }
 
 
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
@@ -79,6 +83,21 @@ namespace prbd_2324_c02.ViewModel
         private void MakeCommand() {
             deletCommand = new RelayCommand(deleteOperation);
             AddCommand = new RelayCommand(Addoperation, () => !HasErrors);
+            Apply = new RelayCommand(ApplyTemplate);
+
+        }
+        private void ApplyTemplate() {
+            Reparttionsviewmodel.Clear();
+            Curent.repartitions.Clear();
+            Context.SaveChanges();
+            Curent.repartitions = new();
+            foreach(var item in TemplateSelected.TemplateItems) {
+                var rep = new Repartitions(item);
+                rep.operations = Curent;
+                Curent.repartitions.Add(rep);
+                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
+                Context.SaveChanges();
+            }
 
         }
         private void deleteOperation() {

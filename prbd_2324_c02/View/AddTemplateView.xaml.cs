@@ -25,6 +25,7 @@ namespace prbd_2324_c02.View
         public AddTemplateView(Tricount tricount, bool isedit, Template curent) {
             InitializeComponent();
             DataContext = new AddTemplateViewModel(tricount, curent, isedit);
+            Register(App.Messages.MSG_CLOSE_WINDOWS, () => Close());
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e) {
             Close();
