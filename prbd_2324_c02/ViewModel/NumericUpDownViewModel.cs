@@ -11,8 +11,8 @@ namespace prbd_2324_c02.ViewModel
 {
     public class NumericUpDownViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
     {
-
-        public Repartitions Value {  get; set; }
+        
+        public Repartitions  Value {  get; set; }
 
        public ICommand IncrementCommand { get; set; }
        public ICommand DecrementCommand { get; set; }

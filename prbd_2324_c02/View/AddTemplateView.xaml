@@ -30,24 +30,13 @@
 
         <ScrollViewer Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10">
             <StackPanel>
-                <!-- List of participants with checkboxes, numeric up-down controls, and amounts -->
-                <UniformGrid Columns="3" Rows="4">
-                    <CheckBox Content="Benoît" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="" VerticalAlignment="Center" Margin="5"/>
-
-                    <CheckBox Content="Boris" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="" VerticalAlignment="Center" Margin="5"/>
-
-                    <CheckBox Content="Marc" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="" VerticalAlignment="Center" Margin="5"/>
-
-                    <CheckBox Content="Xavier" Margin="5"/>
-                    <vw:NumericUpDown Margin="5" />
-                    <TextBlock Text="" VerticalAlignment="Center" Margin="5"/>
-                </UniformGrid>
+                <ItemsControl ItemsSource="{Binding tempateItemviewmodel}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <vw:numericUpDownForTemplateView />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </ScrollViewer>
 
