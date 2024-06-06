@@ -24,7 +24,7 @@
         <ItemsControl ItemsSource="{Binding tempateItemviewmodel}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <vw:NumericUpDown/>
+                    <vw:numericUpDownForTemplateView />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
