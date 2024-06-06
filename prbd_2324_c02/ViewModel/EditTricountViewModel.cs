@@ -29,9 +29,12 @@ namespace prbd_2324_c02.ViewModel
         public ICommand AddTricountCommand { get; set; }
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        private User _user;
 
-
-        public User UserSelected { get; set; }
+        public User UserSelected {
+            get;
+            set;
+        }
         public String Title {
             get => _title;
             set => SetProperty(ref _title, value, () => Validate());
@@ -109,11 +112,15 @@ namespace prbd_2324_c02.ViewModel
             
         }
         private void AddUser() {
+              
             if (UserSelected != null) {
+                //!!!!!!!!!!!!apres le remove le user selected devien null !!!!!!!!
+                userDelete.Add(new DeleteViewModel(UserSelected));
                 participants.Add(UserSelected);
                 users.Remove(UserSelected);
-                userDelete.Add(new DeleteViewModel(UserSelected));
-                //UserSelected = null;
+               
+              
+                UserSelected = null;
             }
         }
         private void AddAllUser() {
