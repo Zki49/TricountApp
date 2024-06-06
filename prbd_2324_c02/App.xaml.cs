@@ -28,7 +28,8 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_EDITOPERATION,
         MSG_REP_CHANGE,
         MSG_CANCEL_OPE,
-        MSG_MAJ
+        MSG_MAJ,
+        MSG_USER_DELETE
 
     }
     public App() {

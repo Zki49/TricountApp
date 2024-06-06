@@ -22,11 +22,13 @@ namespace prbd_2324_c02.ViewModel
         private DateTime _date;
         public ObservableCollection<User> users { get; set; } = new();
         public ObservableCollection<User> participants { get; set; } = new();
+        public ObservableCollection<DeleteViewModel> userDelete { get; set; } = new();
         public ICommand AddUserCommand { get; set; }
         public ICommand AddAllUserCommand { get; set; }
         public ICommand AddMySelfCommand { get; set; }
         public ICommand AddTricountCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
 
         public User UserSelected { get; set; }
@@ -50,6 +52,9 @@ namespace prbd_2324_c02.ViewModel
             Description= string.IsNullOrEmpty(curent.Description) ? " " : curent.Description;
             makeCommand();
             OnRefreshData();
+            Register<User>(App.Messages.MSG_USER_DELETE, user => {
+                DeleteAction(user);
+            });
         }
         public override bool Validate() {
             ClearErrors();
@@ -78,7 +83,12 @@ namespace prbd_2324_c02.ViewModel
                 users.RefreshFromModel(Context.Users.Where(user => user.UserId != CurrentUser.UserId));
                 participants.Add(CurrentUser);
             }
-            
+
+            foreach(var par in participants) {
+                userDelete.Add(new DeleteViewModel(par));
+            }
+
+          
 
         }
         private void makeCommand() {
@@ -86,7 +96,7 @@ namespace prbd_2324_c02.ViewModel
             AddAllUserCommand = new RelayCommand(AddAllUser , ()=>users.Count!=0);
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
             CancelCommand = new RelayCommand(cancel);
-            
+            DeleteCommand = new RelayCommand(()=>Console.Write("texstf"));
 
         }
         private void cancel() {
@@ -102,6 +112,7 @@ namespace prbd_2324_c02.ViewModel
             if (UserSelected != null) {
                 participants.Add(UserSelected);
                 users.Remove(UserSelected);
+                userDelete.Add(new DeleteViewModel(UserSelected));
                 UserSelected = null;
             }
         }
@@ -110,6 +121,7 @@ namespace prbd_2324_c02.ViewModel
                 List<User> list = new List<User>(users);
                 foreach (var user in list) {
                     participants.Add(user);
+                    userDelete.Add(new DeleteViewModel(user));
                 }
                 users.Clear();
                 
@@ -139,9 +151,10 @@ namespace prbd_2324_c02.ViewModel
 
         }
 
-        private void DeleteAction(){
-            participants.Remove(UserSelected);
-            users.Add(UserSelected);
+        private void DeleteAction(User user){
+            participants.Remove(user);
+            users.Add(user);
+            Console.Write("delte");
         }
 
     }

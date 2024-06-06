@@ -68,16 +68,12 @@
                     <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
 
-                <ListBox   x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"    ItemsSource="{Binding participants}" Grid.ColumnSpan="2">
+                <ListBox   x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"    ItemsSource="{Binding userDelete}" Grid.ColumnSpan="2">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding FullName}"/>
-                            <!--
-                            <Button Content="Delete" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="76,10,0,79" HorizontalAlignment="Left" Width="145" Command="{Binding DeleteCommand}" >
-                                <TextBlock FontFamily="pack://application:,,,/MyWpfApp;component/Resources/#FontAwesome" Text="&#xf1f8;" FontSize="24"/>
-                            </Button>
-                        -->
-
+                            <StackPanel Orientation="Horizontal">
+                                <vw:DeleteView/>
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
