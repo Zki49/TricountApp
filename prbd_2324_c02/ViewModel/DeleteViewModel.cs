@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PRBD_Framework;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace prbd_2324_c02.ViewModel
 {
@@ -18,7 +19,18 @@ namespace prbd_2324_c02.ViewModel
         public DeleteViewModel(User user) {
             this.user = user;
             this.FullName = user.FullName;
-            DeleteCommand = new RelayCommand(() => { Console.WriteLine("del")/* NotifyColleagues(App.Messages.MSG_USER_DELETE, this.user)*/; }) ;
+            DeleteCommand = new RelayCommand(() => {  NotifyColleagues(App.Messages.MSG_USER_DELETE, this.user); }) ;
         }
+
+       /* public override bool Equals(Object other) {
+            
+            if (other.GetType() is DeleteViewModel) {
+                var Other = (DeleteViewModel)other;
+                if (user.Equals(Other.user))
+                    return true;
+            }else { return false; }
+            return false;
+           
+        }*/
     }
 }

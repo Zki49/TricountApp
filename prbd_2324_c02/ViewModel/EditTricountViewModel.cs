@@ -160,9 +160,17 @@ namespace prbd_2324_c02.ViewModel
         }
 
         private void DeleteAction(User user){
-            participants.Remove(user);
+           
             users.Add(user);
             Console.Write("delte");
+            var list = new List<DeleteViewModel>(userDelete);
+            foreach (var item in list) {
+                if(item.user.Equals(user)) {
+                    userDelete.Remove(item);
+
+                }
+            }
+            //participants.Remove(user);
         }
 
     }
