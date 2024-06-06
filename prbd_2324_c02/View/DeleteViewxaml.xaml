@@ -8,7 +8,11 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="150">
+<<<<<<< HEAD
     <Grid>
+=======
+    <Grid >
+>>>>>>> e96d37967248d463e4eb91e1b39b5a30b5cf768c
         <TextBlock Text="{Binding FullName}" VerticalAlignment="Center" Margin="2,0,40,0" Height="14" RenderTransformOrigin="-0.588,0.5" >
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -20,6 +24,7 @@
             </TextBlock.RenderTransform>
         </TextBlock>
 
+<<<<<<< HEAD
         <!-- Button wrapping the icon -->
         <Button VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="25" Margin="115,9,0,0" Background="red" BorderBrush="Transparent" Command="{Binding DeleteCommand}">
             <Button.Template>
@@ -30,5 +35,13 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+=======
+        <Viewbox VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="1.412,0.6" Height="30" Width="25" Margin="115,9,0,0" >
+            <Canvas Width="3381" Height="2713" >
+                <Path Fill="Red" Data="M432 32H320l-9.4-18.7C306.7 5.8 296.9 0 286.1 0H161.9c-10.8 0-20.6 5.8-25.5 13.3L127 32H16C7.2 32 0 39.2 0 48v32c0 8.8 7.2 16 16 16h16l21.4 339c1.7 27.5 24.5 49 52 49h256c27.5 0 50.3-21.5 52-49L416 96h16c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16zM194.1 45.7c.3-.5.8-.7 1.3-.7h124.2c.5 0 1 .3 1.3.7L324.3 64H187.7l6.4-18.3zM368 432c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16v256zm-96 0c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16v256zm-96 0c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16v256z" Height="1973" Canvas.Left="909.037" Stretch="Fill" Canvas.Top="562.334" Width="2045"
+                     />
+            </Canvas>
+        </Viewbox>
+>>>>>>> e96d37967248d463e4eb91e1b39b5a30b5cf768c
     </Grid>
 </f:UserControlBase>

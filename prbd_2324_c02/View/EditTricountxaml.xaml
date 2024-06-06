@@ -82,7 +82,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,5,5,5">
-                    <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                     <Button Content="Add" Height="23" Margin="5,0,0,0" Command="{Binding AddUserCommand}"/>
                     <Button Content="Add Myself" Height="23" Margin="5,0,0,0"/>
                     <Button Content="Add Everybody" Height="23" Margin="5,0,0,0" Command="{Binding AddAllUserCommand}"/>

@@ -18,7 +18,7 @@ namespace prbd_2324_c02.ViewModel
         public DeleteViewModel(User user) {
             this.user = user;
             this.FullName = user.FullName;
-            DeleteCommand = new RelayCommand(() => NotifyColleagues(App.Messages.MSG_USER_DELETE, this.user));
+            DeleteCommand = new RelayCommand(() => { Console.WriteLine("del")/* NotifyColleagues(App.Messages.MSG_USER_DELETE, this.user)*/; }) ;
         }
     }
 }
