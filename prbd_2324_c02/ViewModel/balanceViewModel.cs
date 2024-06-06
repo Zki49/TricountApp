@@ -19,7 +19,7 @@ namespace prbd_2324_c02.ViewModel
 
         public balanceViewModel(String UserName , double balance , String color) {
             if (CurrentUser.FullName.Equals(UserName)) {
-                UserName += "(me)  ";
+                UserName += "   (me)";
             }
             this.username = UserName;
             this.balance = Math.Round(balance,2).ToString();
