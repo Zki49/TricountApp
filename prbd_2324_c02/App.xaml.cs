@@ -15,7 +15,7 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_ADD,
         MSG_TRICOUNT_CHANGED,
         MSG_OPEN_TRICOUNT,
-
+        MSG_ADD_TEMPLATE,
         MSG_ADD_OPERATION,
           
         MSG_CLOSE_TAB,

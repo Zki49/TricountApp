@@ -18,7 +18,7 @@ namespace prbd_2324_c02.ViewModel
         public string BoutonaddorSave { get; set; }
         public bool isedit { get; set; }
         public ICommand AddCommand { get; set; }
-        public ObservableCollectionFast<numericUpDownForTemplateViewModel> tempateItemviewmodel { get; set; }
+        public ObservableCollectionFast<numericUpDownForTemplateViewModel> tempateItemviewmodel { get; set; } = new();
         public AddTemplateViewModel(Tricount tricount, Template curent, bool isedit) {
             Tricount = tricount;
             Curent = curent;
@@ -33,6 +33,7 @@ namespace prbd_2324_c02.ViewModel
                 tempateItemviewmodel.Add(new numericUpDownForTemplateViewModel(tempIt));
               
             }
+            Console.WriteLine(tempateItemviewmodel.Count());
 
 
         }

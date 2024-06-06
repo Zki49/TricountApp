@@ -29,6 +29,7 @@ namespace prbd_2324_c02.ViewModel
         public ICommand AddTricountCommand { get; set; }
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand Newtemplate {  get; set; }
         private User _user;
 
         public User UserSelected {
@@ -100,8 +101,25 @@ namespace prbd_2324_c02.ViewModel
             AddAllUserCommand = new RelayCommand(AddAllUser , ()=>users.Count!=0);
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
             CancelCommand = new RelayCommand(cancel);
-            DeleteCommand = new RelayCommand(()=>Console.Write("texstf"));
+            Newtemplate = new RelayCommand(NewTemplate ,() => mode);
 
+        }
+
+        private void NewTemplate() {
+            if (mode) {
+                Template template = new Template();
+                template.Tricount = curent;
+                foreach (var subscription in curent.Subscriptions) {
+                    var templateItem = new Template_items();
+                    templateItem.weight = 1;
+                    templateItem.template = template;
+                    templateItem.User = subscription.User;
+                    template.TemplateItems.Add(templateItem);
+                }
+                Console.WriteLine(template.ToString());
+                NotifyColleagues(App.Messages.MSG_ADD_TEMPLATE, template);
+                
+            }
         }
         private void cancel() {
            

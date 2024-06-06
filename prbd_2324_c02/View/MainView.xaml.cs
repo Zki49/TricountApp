@@ -18,7 +18,9 @@ public partial class MainView : WindowBase
         Register<Tricount>(App.Messages.MSG_ADD_OPE, tricount => {
             new AddOperationView(tricount,false,new Operations()).Show();
         });
-        
+        Register<Template>(App.Messages.MSG_ADD_TEMPLATE,Template => {
+            new AddTemplateView( Template.Tricount , false,Template).Show();
+        } );
        
     }
 

@@ -33,7 +33,7 @@ namespace prbd_2324_c02.Model
         [Key]
         public int Id { get; set; }
 
-        public virtual List<Template_items> TemplateItems { get; set; }
+        public virtual List<Template_items> TemplateItems { get; set; } = new();
 
         public string Title { get; set; }
 
@@ -55,7 +55,7 @@ namespace prbd_2324_c02.Model
         }
 
         public override string ToString() {
-            return Title;
+            return TemplateItems.ToString();
         }
 
       /*  public static void OnModelCreating(ModelBuilder modelBuilder) {
