@@ -18,6 +18,7 @@ namespace prbd_2324_c02.ViewModel
         private Tricount curent;
         private bool mode;
         private String _title;
+        private String GrandTitle;
         private String _description;
         private DateTime _date;
         public ObservableCollection<User> users { get; set; } = new();
@@ -31,6 +32,7 @@ namespace prbd_2324_c02.ViewModel
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand Newtemplate {  get; set; }
+        public ICommand AddMySelf {  get; set; }
         
         private User _user;
 
@@ -45,13 +47,16 @@ namespace prbd_2324_c02.ViewModel
         public String Description { get; set; }
         public DateTime Date { get => _date; set => SetProperty(ref _date, value, () => Console.Write(value)); }
         public String DatetoText { get; set; }
+        public String Creator { get; set; }
 
 
         public EditTricountViewModel(Tricount curent, bool isEdit) {
             mode = isEdit;
             this.curent = curent;
-           if (isEdit) {
+            Creator = curent.Creator.FullName;
+            if (isEdit) {
                 Title= curent.Title;
+                GrandTitle = curent.Title;
             }
             Date = curent.CreatedAt.Equals(new DateTime()) ? DateTime.Now : curent.CreatedAt;
             DatetoText = Date.ToString();
@@ -117,7 +122,17 @@ namespace prbd_2324_c02.ViewModel
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
             CancelCommand = new RelayCommand(cancel);
             Newtemplate = new RelayCommand(NewTemplate ,() => mode);
+            AddMySelf = new RelayCommand(AddMyself);
 
+        }
+
+        private void AddMyself() {
+            if (users.Contains(CurrentUser)) {
+                
+                userDelete.Add(new DeleteViewModel(CurrentUser));
+                users.Remove(CurrentUser);
+
+            }
         }
 
         private void NewTemplate() {
@@ -182,7 +197,6 @@ namespace prbd_2324_c02.ViewModel
                 NotifyColleagues(App.Messages.MSG_CLOSE_TAB, curent);
                 curent.Title=Title; 
                 curent.Description=Description;
-                //continuer
                 RaisePropertyChanged();
                 Context.SaveChanges();  
                 NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, curent);
@@ -206,7 +220,6 @@ namespace prbd_2324_c02.ViewModel
 
                 }
             }
-            //participants.Remove(user);
         }
 
         private void DeleteTemplate(Template temp) {
