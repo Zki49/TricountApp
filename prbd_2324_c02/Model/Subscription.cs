@@ -22,23 +22,23 @@ namespace prbd_2324_c02.Model
             public Subscription() {
             }
 
-            public Subscription(int tricountId, int userId) {
-                TricountId = tricountId;
-                UserId = userId;
+            public Subscription(Tricount tricountId, User userId) {
+                Tricount = tricountId;
+                User = userId;
             }
 
-            [Key, Column("tricount")]
+           
             public int TricountId { get; set; }
 
-            [Key, Column("user")]
+           
             public int UserId { get; set; }
-
+          
             [ForeignKey(nameof(TricountId))]
-            public Tricount Tricount { get; set; }
-
+            public virtual Tricount Tricount { get; set; }
+          
             [ForeignKey(nameof(UserId))]
-            public User User { get; set; }
-
+            public virtual User User { get; set; }
+        
             public override bool Equals(object obj) {
                 if (obj is not Subscription subscription)
                     return false;
@@ -54,7 +54,7 @@ namespace prbd_2324_c02.Model
                 return $"Subscription[tricountId={TricountId}, userId={UserId}]";
             }
 
-            public static void OnModelCreating(ModelBuilder modelBuilder) {
+          /*  public static void OnModelCreating(ModelBuilder modelBuilder) {
                 modelBuilder.Entity<Subscription>()
                     .HasKey(s => new { s.TricountId, s.UserId });
 
@@ -67,7 +67,7 @@ namespace prbd_2324_c02.Model
                     .HasOne(s => s.User)
                     .WithMany(u => u.Subscriptions)
                     .HasForeignKey(s => s.UserId);
-            }
+            }*/
 
         //    public static Subscription GetByKey(int tricountId, int userId) {
         //        using var dbContext = new PridContext();
