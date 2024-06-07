@@ -54,7 +54,7 @@ namespace prbd_2324_c02.ViewModel
                     Console.WriteLine("rentre filtre !!!!");
                     tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId && (EF.Functions.Like(t.Title, InputText + "%") ||
                                                                                                                       EF.Functions.Like(t.Description, InputText + "%") ||
-                                                                                                                      EF.Functions.Like(t.Creator.FullName, InputText + "%"))));
+                                                                                                                      EF.Functions.Like(t.Creator.FullName, InputText + "%"))).OrderByDescending(tricounts => tricounts.Operations.OrderByDescending(o => o.CreatAt)));
                     cartes.Clear();
                     makeCarte();
                 } else {
@@ -66,9 +66,12 @@ namespace prbd_2324_c02.ViewModel
                 if (!string.IsNullOrEmpty(InputText)) {
                     tricounts.RefreshFromModel(Context.Tricounts.Where(t => (EF.Functions.Like(t.Title, InputText + "%") ||
                                                                              EF.Functions.Like(t.Description, InputText + "%") ||
-                                                                             EF.Functions.Like(t.Creator.FullName, InputText + "%"))));
+                                                                             EF.Functions.Like(t.Creator.FullName, InputText + "%")
+                                                                             
+                        )).OrderByDescending(tricounts=>tricounts.Operations.OrderByDescending(o=>o.CreatAt)));
                     cartes.Clear();
                     makeCarte();
+
                 } else {
                     tricounts.RefreshFromModel(Context.Tricounts);
                     cartes.Clear();

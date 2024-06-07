@@ -10,6 +10,7 @@
         xmlns:converters="clr-namespace:prbd_2324_c02.ViewModel"
         mc:Ignorable="d"
         Title="AddOperationView" Height="655" Width="300">
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="27.96"/>
@@ -46,7 +47,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-                <ComboBox ItemsSource="{Binding templates}" DisplayMemberPath="Title" SelectedItem="{Binding TemplateSelected, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="5"/>
+            <ComboBox ItemsSource="{Binding templates}" DisplayMemberPath="Title" SelectedItem="{Binding TemplateSelected, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="5"/>
             <Button Content="Apply" Command="{Binding Apply}" Grid.Column="1" Margin="5"/>
         </Grid>
 

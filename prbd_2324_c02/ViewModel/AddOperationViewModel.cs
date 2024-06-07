@@ -62,6 +62,8 @@ namespace prbd_2324_c02.ViewModel
             Date = curent.CreatAt;
             if (!isedit) {
                 this.Curent.Tricount = tricount;
+            } else {
+                UserSelected = curent.user;
             }
             BoutonaddorSave = isedit ? "Save" : "Add";
             VisibleDelete = isedit ? "" : "Hidden";
@@ -73,6 +75,8 @@ namespace prbd_2324_c02.ViewModel
                 OnRefreshData();
                 
             });  
+
+            
 
            
 
@@ -99,7 +103,7 @@ namespace prbd_2324_c02.ViewModel
         private void MakeCommand() {
             deletCommand = new RelayCommand(deleteOperation);
             AddCommand = new RelayCommand(Addoperation, () => !HasErrors);
-            Apply = new RelayCommand(ApplyTemplate);
+            Apply = new RelayCommand(ApplyTemplate, () => TemplateSelected != null);
             SaveTemplate = new RelayCommand(SaveTemplateAction, () => !HasErrors);
 
         }
