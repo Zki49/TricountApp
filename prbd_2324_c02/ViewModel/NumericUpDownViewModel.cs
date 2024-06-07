@@ -20,16 +20,36 @@ namespace prbd_2324_c02.ViewModel
         public double Amount { get; set; }
         public int Nb_ope { get; set; }
         private Operations op {  get; set; }
+        public bool IsCheck {
+            get => IsChecked;
+            set => SetProperty(ref IsChecked, value, () => {
+                if (!value) {
+                    Value.weight = 0;
+                    RaisePropertyChanged(nameof(Value));
+                    NotifyColleagues(App.Messages.MSG_REP_CHANGE, Value);
+                }
+                else if(value && Value.weight == 0) {
+                    Value.weight = 1;
+                    RaisePropertyChanged(nameof(Value));
+                    NotifyColleagues(App.Messages.MSG_REP_CHANGE, Value);
+                }
+            });
+        }
+        private bool IsChecked;
 
         public  NumericUpDownViewModel(Repartitions rep , double amount , int nb_ope) {
             Value = rep;
             Amount = amount;
             Nb_ope = nb_ope;
+            IsCheck = rep.weight > 0 ? true : false;
+            
+            
             // faire ca car sinon avec la navihgation ca plant pk impossible de savoir ///
             op = rep.operations;
             IncrementCommand = new RelayCommand(Increment);
             DecrementCommand = new RelayCommand(Decrement,()=>Value.weight >0);
             Price = "" + getPrice();
+            
 
             Register<Repartitions>(App.Messages.MSG_REP_CHANGE, rep => {
                 Price = "" + getPrice();
