@@ -21,6 +21,9 @@ public partial class MainView : WindowBase
         Register<Template>(App.Messages.MSG_ADD_TEMPLATE,Template => {
             new AddTemplateView( Template.Tricount , false,Template).Show();
         } );
+        Register<Template>(App.Messages.MSG_EDIT_TEMPLATE, Template => {
+            new AddTemplateView(Template.Tricount, true, Template).Show();
+        });
        
     }
 

@@ -58,8 +58,13 @@ namespace prbd_2324_c02.Model
             return TemplateItems.ToString();
         }
 
+
         public  void AddTemplate() {
             Context.Add(this);
+            Context.SaveChanges();
+        }
+        public  void RemoveTemplate() {
+            Context.Remove(this);
             Context.SaveChanges();
         }
 

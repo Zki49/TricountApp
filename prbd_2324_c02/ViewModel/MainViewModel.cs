@@ -65,13 +65,15 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
         
     }
     protected override void OnRefreshData() {
-        if (!CurrentUser.Role) {
+       /* if (!CurrentUser.Role) {
             if (!string.IsNullOrEmpty(InputText)) { 
                 tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId &&(EF.Functions.Like(t.Title,InputText + "%" ) ||
                                                                                                                   EF.Functions.Like(t.Description, InputText + "%") ||
-                                                                                                                  EF.Functions.Like(t.Creator.FullName, InputText + "%"))));
+                                                                                                                  EF.Functions.Like(t.Creator.FullName, InputText + "%") 
+                                                                                                                 
+                                                                                                                  )));
             } else {
-                tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId));
+                tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId || t.Subscriptions.Any(s => s.UserId == CurrentUser.UserId)));
             }
         } else {
             if (!string.IsNullOrEmpty(InputText)) {
@@ -81,7 +83,7 @@ public class MainViewModel : PRBD_Framework.ViewModelBase<User, PridContext>
             } else {
                 tricounts.RefreshFromModel(Context.Tricounts);
             }
-        }
+        }*/
         
     }
     private void logout() {

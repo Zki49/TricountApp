@@ -44,25 +44,35 @@ namespace prbd_2324_c02.ViewModel
 
             Register<Tricount>(App.Messages.MSG_TRICOUNT_CHANGED, tricount => OnRefreshData());
 
-            makeCarte();
+           // makeCarte();
 
         }
         protected override void OnRefreshData() {
+            tricounts.Clear();
             if (!CurrentUser.Role) {
                 if (!string.IsNullOrEmpty(InputText)) {
+                    Console.WriteLine("rentre filtre !!!!");
                     tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId && (EF.Functions.Like(t.Title, InputText + "%") ||
                                                                                                                       EF.Functions.Like(t.Description, InputText + "%") ||
                                                                                                                       EF.Functions.Like(t.Creator.FullName, InputText + "%"))));
+                    cartes.Clear();
+                    makeCarte();
                 } else {
-                    tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId));
+                    tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId || t.Subscriptions.Any(s => s.UserId == CurrentUser.UserId)));
+                    cartes.Clear();
+                    makeCarte();
                 }
             } else {
                 if (!string.IsNullOrEmpty(InputText)) {
                     tricounts.RefreshFromModel(Context.Tricounts.Where(t => (EF.Functions.Like(t.Title, InputText + "%") ||
                                                                              EF.Functions.Like(t.Description, InputText + "%") ||
                                                                              EF.Functions.Like(t.Creator.FullName, InputText + "%"))));
+                    cartes.Clear();
+                    makeCarte();
                 } else {
                     tricounts.RefreshFromModel(Context.Tricounts);
+                    cartes.Clear();
+                    makeCarte();
                 }
             }
 
