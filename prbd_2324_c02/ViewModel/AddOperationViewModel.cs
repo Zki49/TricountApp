@@ -124,6 +124,24 @@ namespace prbd_2324_c02.ViewModel
                 
 
             }
+            foreach(var user in users) {
+                bool isIn = false;
+                foreach (var rep in Repartitions) {
+                    if(user.Equals(rep.user)) { 
+                        isIn = true;
+                    }
+                }
+                if(!isIn) {
+                    Repartitions rep = new Repartitions();
+                    rep.weight = 0;
+                    rep.user = user;
+                    rep.operations = Curent;
+                    rep.operations.Amount = Amout;
+
+                    Repartitions.Add(rep);
+                    temp.Add(rep);
+                }
+            }
             foreach(var rep in Repartitions) {
                 rep.operations.Amount = Amout;
                 var tot = Repartitions.Sum(r => r.weight);
