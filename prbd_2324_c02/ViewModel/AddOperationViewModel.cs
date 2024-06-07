@@ -42,6 +42,7 @@ namespace prbd_2324_c02.ViewModel
         public ICommand deletCommand { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand Apply { get; set; }
+        public ICommand SaveTemplate { get; set; }
 
 
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
@@ -99,6 +100,7 @@ namespace prbd_2324_c02.ViewModel
             deletCommand = new RelayCommand(deleteOperation);
             AddCommand = new RelayCommand(Addoperation, () => !HasErrors);
             Apply = new RelayCommand(ApplyTemplate);
+            SaveTemplate = new RelayCommand(SaveTemplateAction, () => !HasErrors);
 
         }
         private void ApplyTemplate() {
@@ -269,6 +271,25 @@ namespace prbd_2324_c02.ViewModel
             //Context.SaveChanges();
             // RaisePropertyChanged();
             Validate();
+
+        }
+        private void SaveTemplateAction() {
+
+            var temp = new Template();
+            temp.Tricount = Tricount;
+            var ti = new List<Template_items>();
+            foreach(var rep in Repartitions) {
+                var templateI = new Template_items();
+                templateI.weight = rep.weight;
+                templateI.User = rep.user;
+                templateI.template = temp;
+
+                ti.Add(templateI);
+
+            }
+
+        temp.TemplateItems = ti;
+            NotifyColleagues(App.Messages.MSG_ADD_TEMPLATE, temp);
 
         }
 
