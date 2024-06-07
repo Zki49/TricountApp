@@ -124,8 +124,8 @@ namespace prbd_2324_c02.ViewModel
             }
             foreach(var rep in Repartitions) {
                 rep.operations.Amount = Amout;
-                Console.WriteLine(rep.operations.Amount);
-                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , Repartitions.Count()));
+                var tot = Repartitions.Sum(r => r.weight);
+                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout ,tot));
             }
            
 
