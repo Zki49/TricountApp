@@ -49,6 +49,7 @@ namespace prbd_2324_c02.ViewModel
         public ObservableCollection<User> users { get; set; } = new();
         private Repartitions _partitions;
         public ObservableCollection<Repartitions> temp { get; set; } = new();
+        private bool templateAply= false;
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
            
@@ -101,6 +102,7 @@ namespace prbd_2324_c02.ViewModel
             Reparttionsviewmodel.Clear();
             Curent.repartitions.Clear();
             Repartitions.Clear();
+            templateAply=true;
             foreach (var item in TemplateSelected.TemplateItems) {
               
                 Repartitions rep = new Repartitions();
@@ -175,39 +177,42 @@ namespace prbd_2324_c02.ViewModel
         protected override void OnRefreshData() {
             bool prem = temp.Count()==0;
             templates.Clear();
+            Reparttionsviewmodel.Clear();
             var Temp = Tricount.Templates;
 
             foreach (var template in Temp) {
                 templates.Add(template);
             }
-            if (!isedit) {
-                var Participants = Tricount.Subscriptions;
-                foreach (var participant in Participants) {
-                    Repartitions rep = new Repartitions();
-                    rep.weight = 1;
-                    rep.user = participant.User;
-                    rep.operations = Curent;
-                    rep.operations.Amount = Amout;
-                    Repartitions.Add(rep);
-                    //Curent.repartitions.Add(rep);
-                    users.Add(participant.User);
-                }
-            } else {
-                Repartitions.RefreshFromModel(Context.Repartitions.Where(r => r.operationsID == Curent.OperationsId));
-                var Participants = Tricount.Subscriptions;
-                foreach (var participant in Participants) {
-
-                    users.Add(participant.User);
-                }
-                foreach (var user in users) {
-                    bool isIn = false;
-                    foreach (var rep in Repartitions) {
-                        if (user.Equals(rep.user)) {
-                            isIn = true;
-                        }
+            if (!templateAply) {
+                if (!isedit) {
+                    var Participants = Tricount.Subscriptions;
+                    foreach (var participant in Participants) {
+                        Repartitions rep = new Repartitions();
+                        rep.weight = 1;
+                        rep.user = participant.User;
+                        rep.operations = Curent;
+                        rep.operations.Amount = Amout;
+                        Repartitions.Add(rep);
+                        //Curent.repartitions.Add(rep);
+                        users.Add(participant.User);
                     }
-                    if (!isIn ) {
-                        if(prem) {
+                } else {
+                    Repartitions.RefreshFromModel(Context.Repartitions.Where(r => r.operationsID == Curent.OperationsId));
+                    var Participants = Tricount.Subscriptions;
+                    foreach (var participant in Participants) {
+
+                        users.Add(participant.User);
+                    }
+
+                    foreach (var user in users) {
+                        bool isIn = false;
+                        foreach (var rep in Repartitions) {
+                            if (user.Equals(rep.user)) {
+                                isIn = true;
+                            }
+                        }
+                        if (!isIn) {
+                            if (prem) {
 
                                 Repartitions rep = new Repartitions();
                                 rep.weight = 0;
@@ -218,17 +223,20 @@ namespace prbd_2324_c02.ViewModel
                                 temp.Add(rep);
                             }
 
-                      
+
+
+                        }
+                    }
+                }
+                if (!prem) {
+                    foreach (var rep in temp) {
+                        Repartitions.Add(rep);
 
                     }
                 }
             }
-            if (!prem) {
-                foreach (var rep in temp) {
-                    Repartitions.Add(rep);
-
-                }
-            }
+            
+            
            
 
             Reparttionsviewmodel.Clear();
