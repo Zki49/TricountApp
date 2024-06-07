@@ -29,7 +29,11 @@ public partial class App : ApplicationBase<User, PridContext> {
         MSG_REP_CHANGE,
         MSG_CANCEL_OPE,
         MSG_MAJ,
-        MSG_USER_DELETE
+        MSG_USER_DELETE,
+        MSG_TEMPLATE_CHANGE,
+        MSG_TEMPLATE_DELETE,
+        MSG_EDIT_TEMPLATE,
+        MSG_ADD_NEW_TEMPLATE
 
     }
     public App() {

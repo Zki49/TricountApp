@@ -61,14 +61,19 @@ namespace prbd_2324_c02.ViewModel
 
                 //edition de la template
                 Curent.Title = Title;
-                //etc ...
-                //Curent.save();
+                Context.SaveChanges();
+                RaisePropertyChanged();
+                NotifyColleagues(App.Messages.MSG_TEMPLATE_CHANGE);
             } else {
                 Curent.Title = Title;
                 Curent.AddTemplate();
                 RaisePropertyChanged();
-                NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
+                NotifyColleagues(App.Messages.MSG_ADD_NEW_TEMPLATE, Curent);
             }
+            NotifyColleagues(App.Messages.MSG_CLOSE_WINDOWS);
+            
+
+
         }
 
 

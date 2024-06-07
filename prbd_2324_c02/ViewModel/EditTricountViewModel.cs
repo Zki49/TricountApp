@@ -23,6 +23,7 @@ namespace prbd_2324_c02.ViewModel
         public ObservableCollection<User> users { get; set; } = new();
         public ObservableCollection<User> participants { get; set; } = new();
         public ObservableCollection<DeleteViewModel> userDelete { get; set; } = new();
+        public ObservableCollection<templateViewModel> templates { get; set; } = new();
         public ICommand AddUserCommand { get; set; }
         public ICommand AddAllUserCommand { get; set; }
         public ICommand AddMySelfCommand { get; set; }
@@ -30,6 +31,7 @@ namespace prbd_2324_c02.ViewModel
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand Newtemplate {  get; set; }
+        
         private User _user;
 
         public User UserSelected {
@@ -60,6 +62,12 @@ namespace prbd_2324_c02.ViewModel
                 Console.WriteLine("delete demande");
                 DeleteAction(user);
             });
+            Register<Template>(App.Messages.MSG_TEMPLATE_DELETE, template => {
+                Console.WriteLine("delete demande");
+                DeleteTemplate(template);
+            });
+            Register(App.Messages.MSG_TEMPLATE_CHANGE, () => OnRefreshData());
+            Register<Template>(App.Messages.MSG_ADD_NEW_TEMPLATE, template => templates.Add(new templateViewModel(template)) ); 
         }
         public override bool Validate() {
             ClearErrors();
@@ -75,6 +83,10 @@ namespace prbd_2324_c02.ViewModel
             return !HasErrors;
         }
         protected override void OnRefreshData() {
+            userDelete.Clear();
+            templates.Clear();
+            users.Clear();
+            participants.Clear();
             if (mode) {
                 var sub = Context.Subscriptions.Where(S => S.TricountId == curent.Id);
                 users.RefreshFromModel(Context.Users);
@@ -92,6 +104,9 @@ namespace prbd_2324_c02.ViewModel
             foreach(var par in participants) {
                 userDelete.Add(new DeleteViewModel(par));
             }
+            foreach(var temp in curent.Templates) {
+                templates.Add(new templateViewModel(temp));
+            }
 
           
 
@@ -106,6 +121,7 @@ namespace prbd_2324_c02.ViewModel
         }
 
         private void NewTemplate() {
+
             if (mode) {
                 Template template = new Template();
                 template.Tricount = curent;
@@ -115,8 +131,10 @@ namespace prbd_2324_c02.ViewModel
                     templateItem.template = template;
                     templateItem.User = subscription.User;
                     template.TemplateItems.Add(templateItem);
+                    
                 }
-                Console.WriteLine(template.ToString());
+                
+                Console.WriteLine(template.Title);
                 NotifyColleagues(App.Messages.MSG_ADD_TEMPLATE, template);
                 
             }
@@ -189,6 +207,14 @@ namespace prbd_2324_c02.ViewModel
                 }
             }
             //participants.Remove(user);
+        }
+
+        private void DeleteTemplate(Template temp) {
+
+            templates.Remove(new templateViewModel(temp));
+            temp.RemoveTemplate();
+            OnRefreshData();
+            RaisePropertyChanged(nameof(templates));
         }
 
     }

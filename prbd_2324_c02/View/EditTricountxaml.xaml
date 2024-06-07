@@ -9,45 +9,40 @@
                    xmlns:vm="clr-namespace:prbd_2324_c02.ViewModel"
                    mc:Ignorable="d" 
                    d:DesignHeight="450" d:DesignWidth="800">
-
-
-
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-            <RowDefinition Height="Auto" MinHeight="161"/>
-            <RowDefinition Height="Auto" MinHeight="168.8"/>
+            <RowDefinition Height="Auto" MinHeight="80"/>
+            <RowDefinition Height="Auto" MinHeight="100"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="725"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="New Tricount - No Description" 
-                               FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2"/>
+                   FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2"/>
         <TextBlock Grid.Row="1" Margin="0,5,0,10" Grid.ColumnSpan="2">
-                        <Run Text="created by "/>
-                        <Run Text=" "/>
-                        <Run Text="on "/>
+            <Run Text="created by "/>
+            <Run Text=" "/>
+            <Run Text="on "/>
         </TextBlock>
 
         <TextBlock Text="Title:" Grid.Row="2" VerticalAlignment="Center" Height="16"/>
         <TextBox x:Name="TitleTextBox" Grid.Row="2" Grid.Column="1" 
-                             BorderThickness="1" Margin="5,5,5,5" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+                 BorderThickness="1" Margin="5,5,5,5" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBlock Text="Description:" Grid.Row="3" VerticalAlignment="Center" Height="16"/>
         <TextBox x:Name="DescriptionTextBox" Grid.Row="3" Grid.Column="1" 
-                             Margin="5,20,5,10"  Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+                 Margin="5,20,5,10" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Creation Date:" Grid.Row="4" VerticalAlignment="Center" Height="61"/>
-        <DatePicker x:Name="CreationDatePicker" SelectedDate= "{Binding  Date, UpdateSourceTrigger=PropertyChanged}" 
-                                 
-                                Grid.Row="4" Grid.Column="1" Margin="0,30,10,107"  DisplayDateEnd="{x:Static sys:DateTime.Today}">
+        <DatePicker x:Name="CreationDatePicker" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}" 
+                    Grid.Row="4" Grid.Column="1" Margin="10,50,457,87" DisplayDateEnd="{x:Static sys:DateTime.Today}">
             <DatePicker.Resources>
                 <sys:Boolean x:Key="SelectedDateFormat">Short</sys:Boolean>
                 <Style TargetType="DatePickerTextBox">
@@ -56,46 +51,92 @@
             </DatePicker.Resources>
         </DatePicker>
 
-        <GroupBox Header="Participants" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="66*"/>
-                    <ColumnDefinition Width="31*"/>
-                    <ColumnDefinition Width="200"/>
-                </Grid.ColumnDefinitions>
+        <Grid Grid.Row="5" Grid.ColumnSpan="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
 
-                <ListBox   x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5"    ItemsSource="{Binding userDelete}" Grid.ColumnSpan="2">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <vw:DeleteView/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <StackPanel Grid.Row="0" Grid.Column="2" Margin="5,5,5,5">
-                    <Button Content="New Template" Height="23" Width="150" Command="{Binding Newtemplate}"/>
-                </StackPanel>
+            <GroupBox Header="Participants" Grid.Column="0" Margin="0,0,10,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="66*"/>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,5,5,5">
-                    <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
-                    <Button Content="Add" Height="23" Margin="5,0,0,0" Command="{Binding AddUserCommand}"/>
-                    <Button Content="Add Myself" Height="23" Margin="5,0,0,0"/>
-                    <Button Content="Add Everybody" Height="23" Margin="5,0,0,0" Command="{Binding AddAllUserCommand}"/>
-                </StackPanel>
-            </Grid>
-        </GroupBox>
+                    <ListBox x:Name="ParticipantsListBox" Grid.Row="0" Grid.Column="0" Margin="5,5,5,5" ItemsSource="{Binding userDelete}" Grid.ColumnSpan="2">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <vw:DeleteView/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Right" Margin="0,20,0,0" Grid.Column="1" Width="155">
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,5,5,5">
+                        <ComboBox Width="200" ItemsSource="{Binding users}" DisplayMemberPath="FullName" SelectedItem="{Binding UserSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <Button Content="Add" Height="23" Margin="5,0,0,0" Command="{Binding AddUserCommand}"/>
+                        <Button Content="Add Myself" Height="23" Margin="5,0,0,0"/>
+                        <Button Content="Add Everybody" Height="23" Margin="5,0,0,0" Command="{Binding AddAllUserCommand}"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Templates" Grid.Column="1" Margin="0,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Margin="5,5,5,5" ItemsSource="{Binding templates}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center" Margin="2,0,40,0" Height="14" RenderTransformOrigin="-0.588,0.5" >
+                                        <TextBlock.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleY="1"/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform Y="0"/>
+                                            </TransformGroup>
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+
+                                    <!-- Button wrapping the icon -->
+                                    <Button Command="{Binding DeleteCommand}" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="25" Margin="115,9,0,0" Background="Transparent" BorderBrush="Transparent" >
+                                        <Viewbox>
+                                            <Canvas Width="3381" Height="2713">
+                                                <Path Fill="Red" Data="M432 32H320l-9.4-18.7C306.7 5.8 296.9 0 286.1 0H161.9c-10.8 0-20.6 5.8-25.5 13.3L127 32H16C7.2 32 0 39.2 0 48v32c0 8.8 7.2 16 16 16h16l21.4 339c1.7 27.5 24.5 49 52 49h256c27.5 0 50.3-21.5 52-49L416 96h16c8.8 0 16-7.2 16-16V48c0-8.8-7.2-16-16-16zM194.1 45.7c.3-.5.8-.7 1.3-.7h124.2c.5 0 1 .3 1.3.7L324.3 64H187.7l6.4-18.3zM368 432c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16v256zm-96 0c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16v256zm-96 0c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16v256z" Height="3017" Stretch="Fill" Width="2895" />
+                                            </Canvas>
+                                        </Viewbox>
+                                    </Button>
+                                    <Button  Command="{Binding EditTemplateCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="25" Margin="115,9,0,0" Background="Transparent" BorderBrush="Transparent">
+                                        <Viewbox>
+                                            <Canvas Width="64" Height="64">
+                                                <Path Fill="Black" Data="M45.12,6.58,57.42,18.88a3.07,3.07,0,0,1,0,4.33L24.74,55.89a3.07,3.07,0,0,1-2.16.9H12.13a1.54,1.54,0,0,1-1.54-1.54V41.42a3.07,3.07,0,0,1,.9-2.16L40.79,6.58A3.07,3.07,0,0,1,45.12,6.58ZM38.25,10.42,13.67,35H9V30.32L33.57,5.75a1.54,1.54,0,0,1,2.18,0l2.5,2.5A1.54,1.54,0,0,1,38.25,10.42Zm-1.3,1.3L10.42,38.25a1.54,1.54,0,0,1-2.18,0l-2.5-2.5a1.54,1.54,0,0,1,0-2.18L32.27,7.06a1.54,1.54,0,0,1,2.18,0l2.5,2.5A1.54,1.54,0,0,1,36.95,11.72Z"/>
+                                            </Canvas>
+                                        </Viewbox>
+                                        </Button>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Content="New Template" Height="23" Width="150" Command="{Binding Newtemplate}" Grid.Row="1" HorizontalAlignment="Left" Margin="5"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6" HorizontalAlignment="Right" Margin="0,20,0,0" Grid.Column="1" Width="155">
             <Button Content="Save" Height="23" Width="75" Margin="0,0,5,0" Command="{Binding AddTricountCommand}"/>
             <Button Content="Cancel" Height="23" Width="75" Command="{Binding CancelCommand}" />
         </StackPanel>
     </Grid>
-
-
-
 </f:UserControlBase>
