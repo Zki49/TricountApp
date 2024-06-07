@@ -16,7 +16,9 @@ namespace prbd_2324_c02.ViewModel
         public Tricount Tricount { get; set; }
         public Operations Curent { get; set; }
         private String _title;
-
+        /// bricolage bricolage 
+        private Operations _operations;
+        ///on doit faire des truc bizard mais on a pas le choix sinon le framwork fait de chose bizard sans quon lui demande 
 
         public User UserSelected { get; set; }
         public String Title {
@@ -50,6 +52,7 @@ namespace prbd_2324_c02.ViewModel
            
             Tricount = tricount;
             Curent = curent;
+            _operations = new Operations(curent);
             Title = curent.title;
             Amout = curent.Amount;
             Date = curent.CreatAt;
@@ -73,6 +76,8 @@ namespace prbd_2324_c02.ViewModel
 
             if (string.IsNullOrEmpty(Title))
                 AddError(nameof(Title), "required");
+
+           // else if () ;
             else if (Amout <= 0)
                 AddError(nameof(Amout), "minimum 1 cent ");
 
@@ -89,22 +94,11 @@ namespace prbd_2324_c02.ViewModel
         private void ApplyTemplate() {
             Reparttionsviewmodel.Clear();
             Curent.repartitions.Clear();
-           
-            //Curent.repartitions = new();
-            Context.SaveChanges();
-            RaisePropertyChanged();
             foreach (var item in TemplateSelected.TemplateItems) {
-                /*var rep = new Repartitions(item);
-                Curent.repartitions.Add(rep);
-                rep.operations = Curent;*/
-
-
-                //rep.operationsID = Curent.OperationsId;
-                //rep.userId = Curent.userId;
+              
                 Repartitions rep = new Repartitions();
                 rep.weight = item.weight;
                 rep.user = item.User;
-                //rep.operations = Curent;
                 Repartitions.Add(rep);
                 Curent.repartitions.Add(rep);
                 //users.Add(participant.User);
@@ -113,6 +107,7 @@ namespace prbd_2324_c02.ViewModel
                 Console.WriteLine(Curent.repartitions.Count());
                 //Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
                 Context.SaveChanges();
+
                 
 
             }
@@ -216,6 +211,11 @@ namespace prbd_2324_c02.ViewModel
         }
 
         public void Reload() {
+            //Curent.delete();
+            //_operations.save();
+            //Tricount.Operations.Add(_operations);
+          //  Context.SaveChanges();
+
             /*App.ClearContext();
             Repartitions.Clear();
             templates.Clear();

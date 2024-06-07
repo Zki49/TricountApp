@@ -11,7 +11,10 @@ namespace prbd_2324_c02.Model
 {
     public class Repartitions : EntityBase<PridContext>
     {
-
+        public Repartitions(Repartitions other) { 
+           user = other.user;
+            weight = other.weight;
+        }
         public Repartitions() { }
         public Repartitions(Template_items temp_item) {
             this.weight = temp_item.weight;

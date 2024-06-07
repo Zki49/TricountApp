@@ -11,6 +11,19 @@ namespace prbd_2324_c02.Model
 {
     public class Operations : EntityBase<PridContext>
     {
+        //copie profonde
+        public Operations(Operations other) {
+            //on ne changera pas cela donc c'est pas grave on va quand meme pas travailler pour rien ;)
+            user = other.user; 
+            title = other.title;
+            //on ne changera pas cela donc c'est pas grave on va quand meme pas travailler pour rien ;)
+            Tricount = other.Tricount;
+            Amount = other.Amount;
+            string dateString = other.CreatAt.ToString();
+            CreatAt= DateTime.Parse(dateString);
+            copieList(other);
+
+        }
         public Operations() { }
         [Key]
         public virtual int OperationsId {  get; set; }
@@ -39,10 +52,20 @@ namespace prbd_2324_c02.Model
         public void save() {
             Context.Add(this);
             Context.SaveChanges();
-            repartitions.Clear();
+            //repartitions.Clear();
         }
         public String toString() {
             return Amount.ToString();
         }
+
+        public void copieList(Operations other) {
+            foreach(var rep in other.repartitions) {
+                Repartitions repa = new Repartitions(rep);
+                repa.operations = this;
+                repa.operations.Amount = Amount;
+                repartitions.Add(repa);
+            }
+        }
+
     }
 }
