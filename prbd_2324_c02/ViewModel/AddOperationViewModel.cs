@@ -100,29 +100,34 @@ namespace prbd_2324_c02.ViewModel
         private void ApplyTemplate() {
             Reparttionsviewmodel.Clear();
             Curent.repartitions.Clear();
+            Repartitions.Clear();
             foreach (var item in TemplateSelected.TemplateItems) {
               
                 Repartitions rep = new Repartitions();
                 rep.weight = item.weight;
                 rep.user = item.User;
+                rep.operations = Curent;
+                rep.operations.Amount=Amout;
+
                 Repartitions.Add(rep);
-                Curent.repartitions.Add(rep);
+                temp.Add(rep);
+              //  Curent.repartitions.Add(rep);
                 //users.Add(participant.User);
 
                 //Curent.Amount = Amout;
                 Console.WriteLine(Curent.repartitions.Count());
                 //Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep));
-                Context.SaveChanges();
+                //Context.SaveChanges();
 
                 
 
             }
-            foreach(var rep in Curent.repartitions) {
+            foreach(var rep in Repartitions) {
                 rep.operations.Amount = Amout;
                 Console.WriteLine(rep.operations.Amount);
-                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , Curent.repartitions.Count()));
+                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , Repartitions.Count()));
             }
-
+           
 
         }
         private void deleteOperation() {
