@@ -29,7 +29,6 @@ namespace prbd_2324_c02.View
            // DataContext = new NumericUpDownViewModel(Content);
            // DataContext = new NumericUpDownViewModel(repartion);
         }
-        public static readonly DependencyProperty NumberProperty =
-        DependencyProperty.Register("Value", typeof(int), typeof(NumericUpDown), new PropertyMetadata(0));
+       
     }
 }

@@ -31,7 +31,7 @@ namespace prbd_2324_c02.ViewModel
             DecrementCommand = new RelayCommand(Decrement,()=>Value.weight >0);
             Price = "" + getPrice();
 
-            Register(App.Messages.MSG_REP_CHANGE, () => {
+            Register<Repartitions>(App.Messages.MSG_REP_CHANGE, rep => {
                 Price = "" + getPrice();
                 RaisePropertyChanged(nameof(Price));
             });
@@ -48,7 +48,7 @@ namespace prbd_2324_c02.ViewModel
             Price = "" + getPrice();
             RaisePropertyChanged(nameof(Value));
            RaisePropertyChanged(nameof(Price));
-            NotifyColleagues(App.Messages.MSG_REP_CHANGE);
+            NotifyColleagues(App.Messages.MSG_REP_CHANGE,Value);
         }
         private void Decrement() {
             Value.weight--;
@@ -56,12 +56,12 @@ namespace prbd_2324_c02.ViewModel
             RaisePropertyChanged(nameof(Value));
             RaisePropertyChanged(nameof(Price));
             
-            NotifyColleagues(App.Messages.MSG_REP_CHANGE);
+            NotifyColleagues(App.Messages.MSG_REP_CHANGE, Value);
         }
 
         private double getPrice() {
             if (Value.weight != 0) {
-                return (op.Amount * ((double)Value.weight / (double)op.repartitions.Sum(rep => rep.weight)));
+                return (op.Amount * ((double)Value.weight / (double)Nb_ope));
             } else {
                 return 0;
             }

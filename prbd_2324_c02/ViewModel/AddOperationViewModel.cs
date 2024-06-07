@@ -47,6 +47,8 @@ namespace prbd_2324_c02.ViewModel
         public ObservableCollection<Repartitions> Repartitions { get; set; } = new();
         public ObservableCollection<Template> templates { get; set; } = new();
         public ObservableCollection<User> users { get; set; } = new();
+        private Repartitions _partitions;
+        public ObservableCollection<Repartitions> temp { get; set; } = new();
 
         public AddOperationViewModel(Tricount tricount, Operations curent, bool isedit) {
            
@@ -64,6 +66,10 @@ namespace prbd_2324_c02.ViewModel
             this.isedit = isedit;
             OnRefreshData();
             MakeCommand();
+            Register<Repartitions>(App.Messages.MSG_REP_CHANGE,rep => { 
+                _partitions=rep;
+                OnRefreshData();
+            });  
 
            
 
@@ -162,6 +168,8 @@ namespace prbd_2324_c02.ViewModel
         }
 
         protected override void OnRefreshData() {
+            bool prem = temp.Count()==0;
+            templates.Clear();
             var Temp = Tricount.Templates;
 
             foreach (var template in Temp) {
@@ -174,8 +182,9 @@ namespace prbd_2324_c02.ViewModel
                     rep.weight = 1;
                     rep.user = participant.User;
                     rep.operations = Curent;
+                    rep.operations.Amount = Amout;
                     Repartitions.Add(rep);
-                    Curent.repartitions.Add(rep);
+                    //Curent.repartitions.Add(rep);
                     users.Add(participant.User);
                 }
             } else {
@@ -192,21 +201,38 @@ namespace prbd_2324_c02.ViewModel
                             isIn = true;
                         }
                     }
-                    if (!isIn) {
-                        Repartitions rep = new Repartitions();
-                        rep.weight = 0;
-                        rep.user = user;
-                        rep.operations = Curent;
-                        Repartitions.Add(rep);
-                        Curent.repartitions.Add(rep);
+                    if (!isIn ) {
+                        if(prem) {
+
+                                Repartitions rep = new Repartitions();
+                                rep.weight = 0;
+                                rep.user = user;
+                                rep.operations = Curent;
+                                rep.operations.Amount = Amout;
+                                Repartitions.Add(rep);
+                                temp.Add(rep);
+                            }
+
+                      
+
                     }
                 }
             }
-            foreach (var rep in Repartitions) {
-                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , Curent.repartitions.Count()));
+            if (!prem) {
+                foreach (var rep in temp) {
+                    Repartitions.Add(rep);
+
+                }
             }
-            Context.SaveChanges();
-            RaisePropertyChanged();
+           
+
+            Reparttionsviewmodel.Clear();
+            var tot= Repartitions.Sum(r => r.weight);   
+            foreach (var rep in Repartitions) {
+                Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , tot));
+            }
+            //Context.SaveChanges();
+           // RaisePropertyChanged();
             
         }
 
