@@ -70,6 +70,7 @@ namespace prbd_2324_c02.ViewModel
             Register<Repartitions>(App.Messages.MSG_REP_CHANGE,rep => { 
                 _partitions=rep;
                 OnRefreshData();
+                
             });  
 
            
@@ -84,7 +85,9 @@ namespace prbd_2324_c02.ViewModel
             if (string.IsNullOrEmpty(Title))
                 AddError(nameof(Title), "required");
 
-           // else if () ;
+            else if (Repartitions.Sum(r => r.weight) == 0) {
+                AddError(nameof(Reparttionsviewmodel), "You must check at least one participant !");
+            }
             else if (Amout <= 0)
                 AddError(nameof(Amout), "minimum 1 cent ");
 
@@ -252,6 +255,7 @@ namespace prbd_2324_c02.ViewModel
 
                     }
                 }
+                
             }
             
             
@@ -263,8 +267,9 @@ namespace prbd_2324_c02.ViewModel
                 Reparttionsviewmodel.Add(new NumericUpDownViewModel(rep , Amout , tot));
             }
             //Context.SaveChanges();
-           // RaisePropertyChanged();
-            
+            // RaisePropertyChanged();
+            Validate();
+
         }
 
         public void Reload() {
@@ -300,5 +305,6 @@ namespace prbd_2324_c02.ViewModel
             RaisePropertyChanged();*/
             
         }
+     
     }
 }
