@@ -32,6 +32,7 @@ namespace prbd_2324_c02.ViewModel
         public ICommand CancelCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand Newtemplate {  get; set; }
+        public ICommand AddMySelf {  get; set; }
         
         private User _user;
 
@@ -121,7 +122,17 @@ namespace prbd_2324_c02.ViewModel
             AddTricountCommand = new RelayCommand(AddTricount,()=> !HasErrors );
             CancelCommand = new RelayCommand(cancel);
             Newtemplate = new RelayCommand(NewTemplate ,() => mode);
+            AddMySelf = new RelayCommand(AddMyself);
 
+        }
+
+        private void AddMyself() {
+            if (users.Contains(CurrentUser)) {
+                
+                userDelete.Add(new DeleteViewModel(CurrentUser));
+                users.Remove(CurrentUser);
+
+            }
         }
 
         private void NewTemplate() {
@@ -186,7 +197,6 @@ namespace prbd_2324_c02.ViewModel
                 NotifyColleagues(App.Messages.MSG_CLOSE_TAB, curent);
                 curent.Title=Title; 
                 curent.Description=Description;
-                //continuer
                 RaisePropertyChanged();
                 Context.SaveChanges();  
                 NotifyColleagues(App.Messages.MSG_OPEN_TRICOUNT, curent);
@@ -210,7 +220,6 @@ namespace prbd_2324_c02.ViewModel
 
                 }
             }
-            //participants.Remove(user);
         }
 
         private void DeleteTemplate(Template temp) {
