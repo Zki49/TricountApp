@@ -18,6 +18,7 @@ namespace prbd_2324_c02.ViewModel
         private Tricount curent;
         private bool mode;
         private String _title;
+        private String GrandTitle;
         private String _description;
         private DateTime _date;
         public ObservableCollection<User> users { get; set; } = new();
@@ -45,13 +46,16 @@ namespace prbd_2324_c02.ViewModel
         public String Description { get; set; }
         public DateTime Date { get => _date; set => SetProperty(ref _date, value, () => Console.Write(value)); }
         public String DatetoText { get; set; }
+        public String Creator { get; set; }
 
 
         public EditTricountViewModel(Tricount curent, bool isEdit) {
             mode = isEdit;
             this.curent = curent;
-           if (isEdit) {
+            Creator = curent.Creator.FullName;
+            if (isEdit) {
                 Title= curent.Title;
+                GrandTitle = curent.Title;
             }
             Date = curent.CreatedAt.Equals(new DateTime()) ? DateTime.Now : curent.CreatedAt;
             DatetoText = Date.ToString();
