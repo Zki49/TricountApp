@@ -16,21 +16,11 @@ namespace prbd_2324_c02.ViewModel
         public User user { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        public DeleteViewModel(User user) {
+        public DeleteViewModel(User user,Tricount tricount) {
             this.user = user;
             this.FullName = user.FullName;
+            this.FullName += "  ("+tricount.Operations.Where(o => o.userId == user.UserId).Count()+" operations)";
             DeleteCommand = new RelayCommand(() => {  NotifyColleagues(App.Messages.MSG_USER_DELETE, this.user); }) ;
         }
-
-       /* public override bool Equals(Object other) {
-            
-            if (other.GetType() is DeleteViewModel) {
-                var Other = (DeleteViewModel)other;
-                if (user.Equals(Other.user))
-                    return true;
-            }else { return false; }
-            return false;
-           
-        }*/
     }
 }

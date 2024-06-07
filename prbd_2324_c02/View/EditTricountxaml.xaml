@@ -95,7 +95,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <ListBox Margin="5,5,5,5" ItemsSource="{Binding templates}">
+                    <ListBox Margin="5,5,5,5" ItemsSource="{Binding templates}" Visibility="{Binding visible}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>

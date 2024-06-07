@@ -34,12 +34,14 @@ namespace prbd_2324_c02.ViewModel
         public ICommand EditCommand { get; set; }
         public ICommand AddOperationCommand {  get; set; }
         public ICommand openOperation {  get; set; }
+        public String canEdit {  get; set; }
 
 
 
         public OpenTricountViewModel(Tricount tricount) {
             Tricount = tricount;
             OnRefreshData();
+            this.canEdit   = Tricount.Creator.UserId == CurrentUser.UserId || CurrentUser.Role ? " " : "Hidden";
             Delete = new RelayCommand(deleteTricount);
             EditCommand = new RelayCommand(EditTricount);
             AddOperationCommand = new RelayCommand(addOperation);
@@ -53,6 +55,7 @@ namespace prbd_2324_c02.ViewModel
 
 
         }
+       
         private void addOperation() {
             
             NotifyColleagues(App.Messages.MSG_ADD_OPE,Tricount);

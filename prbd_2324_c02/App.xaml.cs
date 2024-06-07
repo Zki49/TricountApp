@@ -84,7 +84,7 @@ public partial class App : ApplicationBase<User, PridContext> {
 
     private static void PrepareDatabase() {
         // Clear database and seed data
-        Context.Database.EnsureDeleted();
+       Context.Database.EnsureDeleted();
         Context.Database.EnsureCreated();
 
        // Context.seedData();

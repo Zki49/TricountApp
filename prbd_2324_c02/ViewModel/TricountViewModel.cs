@@ -54,11 +54,11 @@ namespace prbd_2324_c02.ViewModel
                     Console.WriteLine("rentre filtre !!!!");
                     tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId && (EF.Functions.Like(t.Title, InputText + "%") ||
                                                                                                                       EF.Functions.Like(t.Description, InputText + "%") ||
-                                                                                                                      EF.Functions.Like(t.Creator.FullName, InputText + "%"))).OrderByDescending(tricounts => tricounts.Operations.OrderByDescending(o => o.CreatAt)));
+                                                                                                                      EF.Functions.Like(t.Creator.FullName, InputText + "%"))).OrderByDescending(t => t.Operations.Any() ? t.Operations.Max(o => o.CreatAt) : t.CreatedAt));//.OrderByDescending(tricounts => tricounts.Operations.OrderByDescending(o => o.CreatAt)));
                     cartes.Clear();
                     makeCarte();
                 } else {
-                    tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId || t.Subscriptions.Any(s => s.UserId == CurrentUser.UserId)));
+                    tricounts.RefreshFromModel(Context.Tricounts.Where(t => t.Creator.UserId == CurrentUser.UserId || t.Subscriptions.Any(s => s.UserId == CurrentUser.UserId)).OrderByDescending(t => t.Operations.Any() ? t.Operations.Max(o => o.CreatAt) : t.CreatedAt));//.OrderByDescending(tricounts => tricounts.Operations.OrderByDescending(o => o.CreatAt))) ;
                     cartes.Clear();
                     makeCarte();
                 }
@@ -68,12 +68,12 @@ namespace prbd_2324_c02.ViewModel
                                                                              EF.Functions.Like(t.Description, InputText + "%") ||
                                                                              EF.Functions.Like(t.Creator.FullName, InputText + "%")
                                                                              
-                        )).OrderByDescending(tricounts=>tricounts.Operations.OrderByDescending(o=>o.CreatAt)));
+                        )).OrderByDescending(t => t.Operations.Any() ? t.Operations.Max(o => o.CreatAt) : t.CreatedAt));//.OrderByDescending(tricounts=>tricounts.Operations.OrderByDescending(o=>o.CreatAt)));
                     cartes.Clear();
                     makeCarte();
 
                 } else {
-                    tricounts.RefreshFromModel(Context.Tricounts);
+                    tricounts.RefreshFromModel(Context.Tricounts.OrderByDescending(t => t.Operations.Any() ? t.Operations.Max(o => o.CreatAt) : t.CreatedAt));
                     cartes.Clear();
                     makeCarte();
                 }

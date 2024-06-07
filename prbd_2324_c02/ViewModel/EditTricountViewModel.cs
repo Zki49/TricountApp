@@ -48,16 +48,19 @@ namespace prbd_2324_c02.ViewModel
         public DateTime Date { get => _date; set => SetProperty(ref _date, value, () => Console.Write(value)); }
         public String DatetoText { get; set; }
         public String Creator { get; set; }
+        public string visible {  get; set; }
 
 
         public EditTricountViewModel(Tricount curent, bool isEdit) {
             mode = isEdit;
             this.curent = curent;
-            Creator = curent.Creator.FullName;
+            visible = isEdit ? "" : "Hidden";
+            
             if (isEdit) {
                 Title= curent.Title;
                 GrandTitle = curent.Title;
-            }
+                Creator = curent.Creator.FullName;
+            } 
             Date = curent.CreatedAt.Equals(new DateTime()) ? DateTime.Now : curent.CreatedAt;
             DatetoText = Date.ToString();
             Description= string.IsNullOrEmpty(curent.Description) ? " " : curent.Description;
@@ -107,7 +110,7 @@ namespace prbd_2324_c02.ViewModel
             }
 
             foreach(var par in participants) {
-                userDelete.Add(new DeleteViewModel(par));
+                userDelete.Add(new DeleteViewModel(par, curent));
             }
             foreach(var temp in curent.Templates) {
                 templates.Add(new templateViewModel(temp));
@@ -129,7 +132,7 @@ namespace prbd_2324_c02.ViewModel
         private void AddMyself() {
             if (users.Contains(CurrentUser)) {
                 
-                userDelete.Add(new DeleteViewModel(CurrentUser));
+                userDelete.Add(new DeleteViewModel(CurrentUser,curent));
                 users.Remove(CurrentUser);
 
             }
@@ -167,7 +170,7 @@ namespace prbd_2324_c02.ViewModel
               
             if (UserSelected != null) {
                 //!!!!!!!!!!!!apres le remove le user selected devien null !!!!!!!!
-                userDelete.Add(new DeleteViewModel(UserSelected));
+                userDelete.Add(new DeleteViewModel(UserSelected,curent));
                 participants.Add(UserSelected);
                 users.Remove(UserSelected);
                
@@ -180,7 +183,7 @@ namespace prbd_2324_c02.ViewModel
                 List<User> list = new List<User>(users);
                 foreach (var user in list) {
                     participants.Add(user);
-                    userDelete.Add(new DeleteViewModel(user));
+                    userDelete.Add(new DeleteViewModel(user,curent));
                 }
                 users.Clear();
                 

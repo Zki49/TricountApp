@@ -105,8 +105,8 @@
         </ScrollViewer>
 
         <!-- Edit and Delete Buttons -->
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="10">
-            <Button Content="Edit" Margin="5"  Command="{Binding EditCommand}"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Margin="10" Visibility="{Binding canEdit}">
+            <Button  Content="Edit" Margin="5"  Command="{Binding EditCommand}"/>
             <Button Content="Delete" Margin="5" Command="{Binding Delete}"/>
         </StackPanel>
     </Grid>
