@@ -18,7 +18,7 @@ namespace prbd_2324_c02.ViewModel
         public String isInOpe { get; set; }
 
         public DeleteViewModel(User user,Tricount tricount) {
-            isInOpe = tricount.Operations.Where(o => o.userId == user.UserId).Count() == 0 ? "Hidden":"";
+            isInOpe = tricount.Operations.Where(o => o.userId == user.UserId).Count() == 0 ? "": "Hidden";
             this.user = user;
             this.FullName = user.FullName;
             this.FullName += "  ("+tricount.Operations.Where(o => o.userId == user.UserId).Count()+" operations)";
